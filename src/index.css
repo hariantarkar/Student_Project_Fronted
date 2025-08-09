@@ -1,0 +1,24 @@
+.getstartingdiv {
+  background-image: url("/images/getstartingimg.png");
+  background-size: cover;
+  background-position: center;
+  height: 100vh;   /* 100% of viewport height */
+  width: 100vw;    /* 100% of viewport width */
+  padding: 30px;
+  margin: 10;       /* prevent any default margin */
+  overflow: hidden; /* optional, to avoid scrollbars */
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background: #f4f4f4;
+}
+
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
