@@ -1,24 +1,74 @@
-.getstartingdiv {
+
+ .home-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.background-section {
+  flex: 1;
   background-image: url("/images/getstartingimg.png");
   background-size: cover;
-  background-position: center;
-  height: 100vh;   /* 100% of viewport height */
-  width: 100vw;    /* 100% of viewport width */
-  padding: 30px;
-  margin: 10;       /* prevent any default margin */
-  overflow: hidden; /* optional, to avoid scrollbars */
+  background-position: calc(60% + 50px) center; /* shift 40px right */
+  display: flex;
+  align-items: flex-end;
 }
 
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  padding: 10px 20px;
-  background: #f4f4f4;
+/* Mobile optimization */
+@media (max-width: 768px) {
+  .btn-lg {
+    font-size: 14px;
+    padding: 8px 14px;
+     margin-left: 10px;
+  }
 }
 
-.content {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Make container width fixed and centered */
+.container {
+  max-width: 400px;
+  margin: 30px auto; /* center horizontally with some top/bottom margin */
+  background-color: #222; /* dark background similar to bg-dark */
+  padding: 20px;
+  border-radius: 8px;
+  color: white;
 }
+
+/* Make both input and button full width and visually consistent */
+.container input.form-control,
+.container button.btn {
+  width: 100%;       /* full container width */
+  box-sizing: border-box; /* include padding/border in width */
+  font-size: 1rem;
+  border-radius: 5px;
+}
+
+/* Add spacing between input and button */
+.container button.btn {
+  margin-top: 12px;
+}
+
+/* Optional: style message alert */
+.alert-info {
+  background-color: #17a2b8;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  font-weight: 500;
+} 
