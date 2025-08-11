@@ -1,5 +1,55 @@
+// import React, { useState } from "react";
+// import { saveCourse } from "../services/courseService";
+
+// export default function CourseComponent() {
+//   const [courseName, setCourseName] = useState("");
+//   const [message, setMessage] = useState("");
+
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+//     setMessage("");
+
+//     if (!courseName.trim()) {
+//       setMessage("Please enter a course name.");
+//       return;
+//     }
+
+//     try {
+//       const backendMessage = await saveCourse(courseName);
+//       setMessage(backendMessage);  // <-- show message from backend
+//       setCourseName("");
+//     } catch (error) {
+//       setMessage(error.message);
+//     }
+//   };
+
+//   return (
+//     <div className="container bg-dark p-3 mt-3">
+//       <h2>Add Course</h2>
+//       {message && <div className="alert alert-info ">{message}</div>}
+//       <form onSubmit={handleSubmit}>
+//         <div className="mb-2">
+//           <label htmlFor="courseName" className="form-label">
+//             Course Name
+//           </label>
+//           <input
+//             type="text"
+//             id="courseName"
+//             className="form-control"
+//             value={courseName}
+//             onChange={(e) => setCourseName(e.target.value)}
+//             placeholder="Enter course name"
+//           />
+//         </div>
+//         <button type="submit" className="btn btn-primary control form-control">Add New Course </button>
+//       </form>
+//     </div>
+//   );
+// }
+
+
 import React, { useState } from "react";
-import { saveCourse } from "../services/courseService";
+import { saveCourse } from "../courseservices/courseService";
 
 export default function CourseComponent() {
   const [courseName, setCourseName] = useState("");
@@ -16,7 +66,7 @@ export default function CourseComponent() {
 
     try {
       const backendMessage = await saveCourse(courseName);
-      setMessage(backendMessage);  // <-- show message from backend
+      setMessage(backendMessage);
       setCourseName("");
     } catch (error) {
       setMessage(error.message);
@@ -24,11 +74,11 @@ export default function CourseComponent() {
   };
 
   return (
-    <div className="container bg-dark p-5 mt-4">
+    <div className="container">
       <h2>Add Course</h2>
-      {message && <div className="alert alert-info ">{message}</div>}
+      {message && <div className="alert alert-info">{message}</div>}
       <form onSubmit={handleSubmit}>
-        <div className="mb-3">
+        <div className="mb-2">
           <label htmlFor="courseName" className="form-label">
             Course Name
           </label>
@@ -42,9 +92,13 @@ export default function CourseComponent() {
           />
         </div>
         <button type="submit" className="btn btn-primary">
-          Save Course
+          Add New Course
         </button>
       </form>
     </div>
+
+
+
+
   );
 }
