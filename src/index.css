@@ -1,5 +1,6 @@
 
 
+
  .home-container {
   height: 100vh;
   display: flex;
@@ -73,6 +74,7 @@
   margin-bottom: 15px;
   font-weight: 500;
 } 
+
 
 body {
   background-color: #f8f9fa;
