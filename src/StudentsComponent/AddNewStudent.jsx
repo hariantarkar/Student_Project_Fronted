@@ -120,7 +120,7 @@
 
 
 import React from "react";
-import { addStudent } from "../studentServices/studentService.jsx";
+import { addStudent } from "../services/studentService.jsx";
 
 export default class AddStudent extends React.Component {
   constructor(props) {

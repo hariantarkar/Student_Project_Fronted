@@ -1,7 +1,6 @@
 import React from "react";
-
 import "bootstrap/dist/css/bootstrap.min.css";
-import { getAllCourses, updateCourse, deleteCourse } from "../courseservices/courseService";
+import { getAllCourses, updateCourse, deleteCourse } from "../services/courseService";
 
 export default class ViewAllCourses extends React.Component {
   state = {
@@ -49,7 +48,6 @@ export default class ViewAllCourses extends React.Component {
 //     }
 //   };
 
-
 handleDelete = (cid) => {
   if (window.confirm("Are you sure you want to delete this course?")) {
     deleteCourse(cid)
@@ -63,21 +61,20 @@ handleDelete = (cid) => {
   }
 };
 
-
-  render() {
+  render() { 
     return (
-      <div className="container mt-4">
-        <h2 className="mb-3">All Courses</h2>
-        <table className="table table-bordered table-hover">
-          <thead className="table-dark">
+      <div className="container mt-4"style={{ backgroundColor: "teal", color: "white", width:"85vh" }}>
+          <h3 className="text-center mb-4">All Courses</h3>
+        <table className="table table-bordered table-hover "style={{ backgroundColor: "teal", color: "white", width: "80vh" }}>
+          <thead className="text-center align-middle">
             <tr>
               <th>ID</th>
-              <th>Name</th>
-              <th>Update</th>
-              <th>Delete</th>
+              <th style={{ width: "40%" }}>Course Name</th>
+              <th>Update Course</th>
+              <th>Delete Course</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="text-center align-middle">
             {this.state.courses.map((course) => (
               <tr key={course.cid}>
                 <td>{course.cid}</td>
@@ -103,18 +100,17 @@ handleDelete = (cid) => {
                     </button>
                   ) : (
                     <button
-                      className="btn btn-warning btn-sm"
+                      className="btn btn-warning btn-sm" style={{ width: "80px", padding: "5px" }}
                       onClick={() => this.handleEdit(course.cid, course.name)}
                     >
-                      Edit
+                      Update
                     </button>
                   )}
                 </td>
                 <td>
                   <button
-                    className="btn btn-danger btn-sm"
-                    onClick={() => this.handleDelete(course.cid)}
-                  >
+                    className="btn btn-danger btn-sm"style={{ width: "80px", padding: "5px" }}
+                    onClick={() => this.handleDelete(course.cid)} >
                     Delete
                   </button>
                 </td>
@@ -126,7 +122,6 @@ handleDelete = (cid) => {
     );
   }
 }
-
 
 // class ViewCourses extends React.Component {
 //   constructor(props) {
