@@ -20,18 +20,7 @@ export const addStudent = async (student) => {
 export const getStudents = async () => {
   const response = await fetch("http://localhost:9999/viewAllStudent");
   const result = await response.json();
-  return result.data; 
-};
-export const updateStudent = async (student) => {
-  const response = await fetch("http://localhost:9999/updateStudent", {
-    method: "PUT",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(student),
-  });
-  if (!response.ok) {
-    throw new Error("Failed to update student");
-  }
-  return await response.json();
+  return result.data;
 };
 
 export const deleteStudent = async (sid) => {
@@ -43,3 +32,6 @@ export const deleteStudent = async (sid) => {
   }
   return await response.json();
 };
+
+
+
