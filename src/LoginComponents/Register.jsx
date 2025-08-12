@@ -6,7 +6,9 @@ export default class Register extends Component {
   constructor() {
     super();
     this.state = {
-      username: "",
+      name: "",
+      email: "",
+      contact: "",
       password: "",
       role: "student",
       error: "",
@@ -21,16 +23,16 @@ export default class Register extends Component {
 
   handleSubmit = async (e) => {
     e.preventDefault();
-    const { username, password, role } = this.state;
+    const { name,email,contact, password, role } = this.state;
 
-    if (!username || !password) {
+    if (!name || !email || !contact || !password) {
       this.setState({ error: "All fields are required" });
       return;
     }
 
     try {
       this.setState({ loading: true });
-      const res = await RegistrationService.registerUser({ username, password, role });
+      const res = await RegistrationService.registerUser({ name,email,contact, password, role });
       this.setState({ success: res.data.message, error: "", loading: false });
     } catch (err) {
       this.setState({
@@ -50,8 +52,20 @@ export default class Register extends Component {
         
         <form onSubmit={this.handleSubmit}>
           <div className="mb-3">
-            <label className="form-label">Username</label>
-            <input type="text" name="username" className="form-control" value={this.state.username}
+            <label className="form-label">Full Name</label>
+            <input type="text" name="name" className="form-control" value={this.state.name}
+              onChange={this.handleChange} placeholder="Enter username" required/>
+          </div>
+
+          <div className="mb-3">
+            <label className="form-label">Email</label>
+            <input type="email" name="email" className="form-control" value={this.state.email}
+              onChange={this.handleChange} placeholder="Enter username" required/>
+          </div>
+
+          <div className="mb-3">
+            <label className="form-label">Contact</label>
+            <input type="text" name="contact" className="form-control" value={this.state.contact}
               onChange={this.handleChange} placeholder="Enter username" required/>
           </div>
 
