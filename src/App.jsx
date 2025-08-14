@@ -1,6 +1,6 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { BrowserRouter, Route, Routes,NavLink } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import HomePage from "./HomeComponents/HomePage.jsx";
  import Navbar from "./HomeComponents/NavBars.jsx";
