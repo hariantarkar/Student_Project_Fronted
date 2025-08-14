@@ -1,0 +1,56 @@
+.keyfeature-page {
+  max-width: 1200px;
+}
+
+.about-section h2 {
+  font-weight: bold;
+  color: #0b1220;
+}
+
+.about-section p {
+  font-size: 1.05rem;
+  color: #596770;
+}
+
+.feature-card {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.feature-card h5 {
+  color: #007bff;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.feature-card p {
+  color: #444;
+  font-size: 0.95rem;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 14px 25px rgba(0,0,0,0.15);
+}
+
+.contact-section {
+  text-align: center;
+}
+
+.contact-card {
+  background: linear-gradient(90deg, #007bff, #6f42c1);
+  color: white;
+  border-radius: 12px;
+  max-width: 500px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+.contact-card h5 {
+  font-weight: bold;
+}
+
+.contact-card p {
+  margin-bottom: 0;
+}

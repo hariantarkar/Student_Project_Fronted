@@ -6,7 +6,7 @@ export default class Login extends Component {
   constructor() {
     super();
     this.state = {
-      username: "",
+      email: "",
       password: "",
       error: "",
       loading: false
@@ -21,16 +21,16 @@ export default class Login extends Component {
 
   handleSubmit = async (e) => {
   e.preventDefault();
-  const { username, password } = this.state;
+  const { email, password } = this.state;
 
-  if (!username || !password) {
+  if (!email || !password) {
     this.setState({ error: "All fields are required" });
     return;
   }
 
   try {
     this.setState({ loading: true });
-    const data = await LoginService.loginUser({ username, password });
+    const data = await LoginService.loginUser({ email, password });
     console.log("Login success:", data);
 
     if (data.user.role === "admin") {
@@ -63,10 +63,10 @@ export default class Login extends Component {
           <div className="mb-3">
             <label className="form-label">Username</label>
             <input
-              type="text"
-              name="username"
+              type="email"
+              name="email"
               className="form-control"
-              value={this.state.username}
+              value={this.state.email}
               onChange={this.handleChange}
               placeholder="Enter username"
               required
@@ -98,3 +98,5 @@ export default class Login extends Component {
     );
   }
 }
+
+
