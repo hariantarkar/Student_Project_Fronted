@@ -32,6 +32,18 @@ export const deleteStudent = async (sid) => {
   }
   return await response.json();
 };
-
+export const getUnregisteredStudents = async () => {
+  try {
+    const response = await fetch("http://localhost:9999/unregistered-students");
+    if (!response.ok) {
+      throw new Error("Failed to fetch unregistered students");
+    }
+    const data = await response.json();
+    return data.data; // return only array part
+  } catch (err) {
+    console.error("Error fetching unregistered students:", err);
+    throw err;
+  }
+};
 
 

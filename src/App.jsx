@@ -5,13 +5,12 @@ import Home from "./HomeComponents/Home.jsx";
 
 import AddNewCourse from "./CourseComponents/addNewCourse.jsx";
 
-import CourseComponent from "./CourseComponents/CourseComponent.jsx";
-
 
 
 import ViewCourses from "./CourseComponents/ViewCourses.jsx";
 import AddNewStudent from "./StudentsComponent/AddNewStudent.jsx";
-import ViewAllStudent from "./StudentsComponent/ViewAllStudent.jsx"; 
+import ViewAllStudent from "./StudentsComponent/ViewAllStudent.jsx";
+import UnregisteredStudents from "./StudentsComponent/UnregisteredStudents.jsx"; 
 
 
 
@@ -37,6 +36,7 @@ export default class App extends React.Component {
             <Route path="/viewCourses" element={<ViewCourses />} />
             <Route path="/addNewStudent" element={<AddNewStudent />} />
             <Route path="/viewAllStudents" element={<ViewAllStudent />} />
+           <Route path="/unregisteredStudents" element={<UnregisteredStudents />} />
 
 
             <Route path="/login" element={<Login />} />
