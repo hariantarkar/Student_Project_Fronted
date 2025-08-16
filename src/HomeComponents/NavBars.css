@@ -1,9 +1,12 @@
+/* 🔹 Base Navbar */
 .navbar {
-  background-color: #1c1c1c !important; /* Darker than default bg-dark */
+  background-color: #1c1c1c !important;
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4);
   padding: 0.6rem 1.5rem;
+  z-index: 1000;
 }
 
+/* 🔹 Brand / Logo */
 .navbar-brand {
   color: #db9d23 !important;
   font-weight: 700;
@@ -11,11 +14,11 @@
   letter-spacing: 0.5px;
   transition: color 0.3s ease-in-out;
 }
-
 .navbar-brand:hover {
   color: #ff7b00 !important;
 }
 
+/* 🔹 Nav Links */
 .navbar-nav .nav-link {
   color: #f8f9fa !important;
   font-weight: 500;
@@ -26,18 +29,12 @@
   position: relative;
   transition: color 0.3s ease, background-color 0.3s ease;
 }
-
-/* .navbar-nav .nav-link.active {
-  color: #f8f9fa !important;
-  background-color: transparent !important;
-  font-weight: 600;
-} */
-
 .navbar-nav .nav-link:hover {
   background-color: rgba(0, 212, 255, 0.2);
   color: #00d4ff !important;
 }
 
+/* 🔹 Link Hover Underline Effect */
 .navbar-nav .nav-link::after {
   content: "";
   position: absolute;
@@ -48,24 +45,22 @@
   background-color: #00d4ff;
   transition: all 0.3s ease-in-out;
 }
-
 .navbar-nav .nav-link:hover::after {
   width: 100%;
   left: 0;
 }
 
+/* 🔹 Toggler (Hamburger) */
 .navbar-toggler {
   border: none;
 }
-
 .navbar-light .navbar-toggler-icon,
 .navbar-dark .navbar-toggler-icon,
 .navbar-toggler-icon {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
 }
 
-
-
+/* 🔹 Login Button */
 .navbar-nav .nav-link.login-link {
   background-color: #00d4ff;
   color: #000 !important;
@@ -74,17 +69,12 @@
   padding: 8px 14px;
   transition: background-color 0.3s ease;
 }
-
 .navbar-nav .nav-link.login-link:hover {
   background-color: #00aacc;
   color: #fff !important;
 }
 
-
-
-
-
-
+/* 🔹 App Title (if used separately) */
 .app-title {
   font-family: "Poppins", sans-serif;
   font-weight: 700;
@@ -95,15 +85,106 @@
   text-shadow: 2px 2px 8px rgba(255, 255, 255, 0.4);
   transition: transform 0.3s ease, color 0.3s ease;
 }
-
 .app-title .highlight {
   background: linear-gradient(90deg, #ffcc00, #ff4d4d);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-weight: 800;
 }
-
 .app-title:hover {
   transform: scale(1.05);
   color: #00d4ff;
+}
+
+/* =============================================
+   📱 Responsive Media Queries
+   ============================================= */
+
+/* 🔹 Large Tablets & Small Laptops (<= 991px) */
+@media (max-width: 991px) {
+  .navbar-collapse {
+    flex-direction: row !important;
+    justify-content: center;
+    align-items: center;
+  }
+  .navbar-nav {
+    flex-direction: row !important;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+  }
+  .navbar-nav .nav-item {
+    width: auto;
+  }
+  .navbar-nav .nav-link {
+    text-align: center;
+    margin: 4px 6px;
+  }
+}
+
+/* 🔹 Medium Tablets (<= 768px, e.g., iPad Mini portrait) */
+@media (max-width: 768px) {
+  .navbar-nav .nav-link {
+    font-size: 1rem;
+    padding: 6px 12px;
+  }
+  .navbar-brand {
+    font-size: 1.3rem;
+  }
+}
+
+/* 🔹 Small Mobiles (<= 576px, e.g., iPhone SE, Galaxy A51/71) */
+@media (max-width: 576px) {
+  .navbar {
+    padding: 0.4rem 1rem;
+  }
+  .navbar-brand {
+    font-size: 1.2rem;
+  }
+  .navbar-nav .nav-link {
+    font-size: 0.95rem;
+    padding: 6px 10px;
+    margin: 2px 4px;
+  }
+  .navbar-nav .nav-link.login-link {
+    padding: 6px 10px;
+  }
+}
+
+/* 🔹 Extra Small Mobiles (<= 420px, e.g., Vivo Y51A, iPhone SE landscape) */
+@media (max-width: 420px) {
+  .navbar-collapse {
+    flex-direction: row !important;
+    justify-content: flex-start;
+    align-items: center;
+    overflow-x: auto;   /* scroll if too many links */
+    white-space: nowrap; /* keep items in one row */
+  }
+  .navbar-nav {
+    flex-direction: row !important;
+    justify-content: flex-start;
+    width: auto;
+  }
+  .navbar-nav .nav-item {
+    display: inline-block;
+    flex: 0 0 auto;   /* prevent shrinking */
+  }
+  .navbar-nav .nav-link {
+    padding: 6px 8px;
+    font-size: 0.85rem;
+  }
+  .navbar-brand {
+    font-size: 1rem;
+  }
+}
+
+/* 🔹 Ultra Small Devices (<= 360px, older Androids) */
+@media (max-width: 360px) {
+  .navbar-nav .nav-link {
+    font-size: 0.8rem;
+    padding: 5px 6px;
+  }
+  .navbar-brand {
+    font-size: 0.9rem;
+  }
 }
