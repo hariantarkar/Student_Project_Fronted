@@ -16,6 +16,9 @@ import AddNewCourse from "./CourseComponents/addNewCourse.jsx";
 import AddNewStudent from "./StudentsComponent/AddNewStudent.jsx";
 import ViewAllStudent from "./StudentsComponent/ViewAllStudent.jsx";
 import UnregisteredStudents from "./StudentsComponent/UnregisteredStudents.jsx"; 
+//import ApproveStudent from "./StudentsComponent/ApproveStudent.jsx";
+import ViewApprovedStudents from "./StudentsComponent/ViewApprovedStudents.jsx";
+//import PendingStudentApproval from "./StudentsComponent/PendingStudentApproval.jsx";
 
 import AdminDashboard from "./DashboardComponent/AdminDashboard.jsx";
 
@@ -32,6 +35,11 @@ export default class App extends React.Component {
             <Route path="/" element={<HomePage />} />
             <Route path="/about" element={<AboutPage />}/>
 
+         
+
+            <Route path="/addCourse" element={<AddNewCourse />} />
+
+
             <Route path="/addCourse" element={<AddNewCourse />} />
 
             <Route path="/viewCourses" element={<ViewCourses />} />
@@ -40,16 +48,21 @@ export default class App extends React.Component {
 
             <Route path="/keyfeature" element={<KeyFeature />} />
 
-           <Route path="/unregisteredStudents" element={<UnregisteredStudents />} />
-
-
+            <Route path="/unregisteredStudents" element={<UnregisteredStudents />} />
+            {/* <Route path="/approveStudent" element={<ApproveStudent />} /> */}
+            <Route path="/viewApprovedStudents" element={<ViewApprovedStudents />} />
+            {/* <Route path="/pendingStudentApproval" element={<PendingStudentApproval />} /> */}
 
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/admin/dashboard" element={localStorage.getItem("role") === "admin"
                 ? <AdminDashboard />: <HomePage />}/>
+
           </Routes>
         </BrowserRouter>
+      
+     
+
       </>
     );
   }
