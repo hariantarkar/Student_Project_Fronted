@@ -10,23 +10,12 @@ import AboutPage from "./HomeComponents/AboutPage.jsx";
 import Login from "./LoginComponents/Login.jsx";
 import Register from "./LoginComponents/Register.jsx";
 
-import CourseComponent from "./CourseComponents/CourseComponent.jsx";
 import ViewCourses from "./CourseComponents/ViewCourses.jsx";
-
-import StudentComponent from "./StudentsComponent/studentComponent.jsx";
-
-import Home from "./HomeComponents/Home.jsx";
-
 import AddNewCourse from "./CourseComponents/addNewCourse.jsx";
-
-
-
-
 
 import AddNewStudent from "./StudentsComponent/AddNewStudent.jsx";
 import ViewAllStudent from "./StudentsComponent/ViewAllStudent.jsx";
 import UnregisteredStudents from "./StudentsComponent/UnregisteredStudents.jsx"; 
-
 
 import AdminDashboard from "./DashboardComponent/AdminDashboard.jsx";
 
@@ -43,12 +32,8 @@ export default class App extends React.Component {
             <Route path="/" element={<HomePage />} />
             <Route path="/about" element={<AboutPage />}/>
 
-            <Route path="/" element={<Home />} />
-
             <Route path="/addCourse" element={<AddNewCourse />} />
 
-
-            <Route path="/addCourse" element={<CourseComponent />} />
             <Route path="/viewCourses" element={<ViewCourses />} />
             <Route path="/addNewStudent" element={<AddNewStudent />} />
             <Route path="/viewAllStudents" element={<ViewAllStudent />} />
@@ -62,7 +47,7 @@ export default class App extends React.Component {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/admin/dashboard" element={localStorage.getItem("role") === "admin"
-                ? <AdminDashboard />: <Home />}/>
+                ? <AdminDashboard />: <HomePage />}/>
           </Routes>
         </BrowserRouter>
       </>
