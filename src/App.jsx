@@ -11,13 +11,7 @@ import Login from "./LoginComponents/Login.jsx";
 import Register from "./LoginComponents/Register.jsx";
 
 import ViewCourses from "./CourseComponents/ViewCourses.jsx";
-
-
 import AddNewCourse from "./CourseComponents/addNewCourse.jsx";
-
-
-
-
 
 import AddNewStudent from "./StudentsComponent/AddNewStudent.jsx";
 import ViewAllStudent from "./StudentsComponent/ViewAllStudent.jsx";
@@ -26,7 +20,6 @@ import UnregisteredStudents from "./StudentsComponent/UnregisteredStudents.jsx";
 import ViewApprovedStudents from "./StudentsComponent/ViewApprovedStudents.jsx";
 //import PendingStudentApproval from "./StudentsComponent/PendingStudentApproval.jsx";
 
-//import AdminDashboard from "./DashboardComponent/AdminDashboard.jsx";
 import AdminDashboard from "./DashboardComponent/AdminDashboard.jsx";
 
 
@@ -47,6 +40,8 @@ export default class App extends React.Component {
             <Route path="/addCourse" element={<AddNewCourse />} />
 
 
+            <Route path="/addCourse" element={<AddNewCourse />} />
+
             <Route path="/viewCourses" element={<ViewCourses />} />
             <Route path="/addNewStudent" element={<AddNewStudent />} />
             <Route path="/viewAllStudents" element={<ViewAllStudent />} />
@@ -62,7 +57,7 @@ export default class App extends React.Component {
             <Route path="/register" element={<Register />} />
             <Route path="/admin/dashboard" element={localStorage.getItem("role") === "admin"
                 ? <AdminDashboard />: <HomePage />}/>
-                
+
           </Routes>
         </BrowserRouter>
       
