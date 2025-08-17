@@ -1,0 +1,96 @@
+/* .students-card {
+  max-width: 950px;
+  margin: 40px auto;
+  background: #fff;
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  text-align: center;
+}
+
+.tabs-title {
+  font-size: 26px;
+  font-weight: bold;
+  margin-bottom: 25px;
+  color: #222;
+}
+
+.students-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.student-box {
+  border: 2px solid black;
+  padding: 40px;
+  cursor: pointer;
+  font-style: italic;
+  font-weight: bold;
+  min-width: 220px;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  background: #fafafa;
+}
+
+.student-box:hover {
+  background: #007bff;
+  color: white;
+  transform: scale(1.05);
+} */
+
+/* Card + title (keep your existing ones if you already have them) */
+.students-card { 
+  background: #fff; 
+  border-radius: 18px; 
+  box-shadow: 0 12px 36px rgba(0,0,0,.08);
+  padding: 28px 24px;
+}
+.tabs-title { 
+  text-align: center; 
+  font-weight: 800; 
+  margin-bottom: 18px; 
+}
+
+/* Tabs container */
+.students-container {
+  display: flex;
+  gap: 28px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Individual tab button (NavLink) */
+.student-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 280px;
+  padding: 26px 30px;
+  border: 2px solid #1b1f2320;
+  border-radius: 14px;
+  font-weight: 700;
+  text-decoration: none;        /* << no blue underline */
+  color: #1f2937;               /* text color */
+  background: #ffffff;
+  transition: box-shadow .2s ease, transform .2s ease, border-color .2s ease;
+}
+
+.student-box:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px rgba(0,0,0,.08);
+}
+
+/* Active tab */
+.student-box.active {
+  background: #eaf2ff;
+  border-color: #5a8cff;
+}
+
+/* Placeholder shown only on /studentsTabs */
+.tabs-placeholder {
+  margin-top: 20px;
+  text-align: center;
+  color: #6b7280;
+  font-size: 0.95rem;
+}

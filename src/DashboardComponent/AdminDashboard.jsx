@@ -14,7 +14,7 @@ export default function SidebarWithDashboard() {
             <Book className="me-2" /> Course
           </li>
           <li className="mb-2 d-flex align-items-center px-2">
-            <People className="me-2" /> Student
+            <People className="me-2" /> Students
           </li>
           <li className="mb-2 d-flex align-items-center px-2">
             <Speedometer className="me-2" /> Performance
