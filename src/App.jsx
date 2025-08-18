@@ -8,6 +8,7 @@ import HomePage from "./HomeComponents/HomePage.jsx";
 import Navbar from "./HomeComponents/NavBars.jsx";
 import KeyFeature from "./HomeComponents/KeyFeature.jsx";
 import AboutPage from "./HomeComponents/AboutPage.jsx";
+import Contact from "./HomeComponents/Contact.jsx";
 
 import Login from "./LoginComponents/Login.jsx";
 import Register from "./LoginComponents/Register.jsx";
@@ -24,7 +25,7 @@ import ViewApprovedStudents from "./StudentsComponent/ViewApprovedStudents.jsx";
 import StudentsTabs from "./StudentsComponent/StudentsTabs.jsx";
 
 import AdminDashboard from "./DashboardComponent/AdminDashboard.jsx";
-
+import PerformanceAdd from "./PerformanceComponent/PerformanceAdd.jsx";
 
 
 export default class App extends React.Component {
@@ -37,7 +38,7 @@ export default class App extends React.Component {
 
             <Route path="/" element={<HomePage />} />
             <Route path="/about" element={<AboutPage />} />
-
+            <Route path="/contact" element={<Contact />} />
 
 
             <Route path="/addCourse" element={<AddNewCourse />} />
@@ -57,7 +58,7 @@ export default class App extends React.Component {
             <Route path="/register" element={<Register />} />
             <Route path="/admin/dashboard" element={localStorage.getItem("role") === "admin"
               ? <AdminDashboard /> : <HomePage />} />
-
+            <Route path="/performance/add" element={<PerformanceAdd />} />
             {/* <Route path="/studentsTabs" element={<StudentsTabs />} /> */}
             {/* <Route path="/unregisteredStudents" element={<UnregisteredStudents />} />
               <Route path="/viewApprovedStudents" element={<ViewApprovedStudents />} />

@@ -1,0 +1,99 @@
+.contact-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  margin-top: 50px;
+}
+
+.contact-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  padding: 30px;
+  width: 100%;
+  max-width: 500px;
+  animation: fadeIn 0.3s ease-in-out;
+  background-color: #ccc;
+}
+
+.contact-card h3 {
+  font-weight: bold;
+  color: black;
+  margin-bottom: 20px;
+}
+
+.contact-card .form-label {
+  font-weight: 700;
+  color: #333;
+}
+
+.contact-card .form-control {
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  transition: border 0.2s ease;
+}
+
+.contact-card .form-control:focus {
+  border-color: #007bff;
+  box-shadow: none;
+}
+
+.contact-card button {
+  border-radius: 8px;
+  font-weight: 600;
+  padding: 10px;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.contact-card button:hover {
+  background: #6f42c1;
+  transform: translateY(-2px);
+}
+
+.alert {
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ✅ Landscape Mode Fix */
+@media screen and (max-height: 500px) and (orientation: landscape) {
+  .contact-container {
+    min-height: auto;
+    height: auto;
+    align-items: flex-start;
+    padding: 30px 10px;
+  }
+
+  .contact-card {
+    max-width: 90%;
+    margin: 20px auto;
+    padding: 20px;
+  }
+
+  .contact-card h3 {
+    font-size: 1.5rem;
+    margin-top: 1rem;
+  }
+
+  .contact-card .form-control {
+    padding: 8px;
+  }
+
+  .contact-card button {
+    padding: 8px;
+  }
+}

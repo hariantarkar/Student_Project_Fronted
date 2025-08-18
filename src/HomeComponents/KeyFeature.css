@@ -30,9 +30,11 @@
   font-size: 0.95rem;
 }
 
-.feature-card:hover {
+.feature-card:hover p {
   transform: translateY(-5px);
   box-shadow: 0 14px 25px rgba(0,0,0,0.15);
+  font-weight: bold;
+  color: #000;
 }
 
 .contact-section {
@@ -53,4 +55,9 @@
 
 .contact-card p {
   margin-bottom: 0;
+}
+
+.KeyFeature-root * {
+  animation: none !important;
+  transition: none !important;
 }

@@ -1,0 +1,96 @@
+:root {
+  --card-max-width: 1100px;
+  --card-padding: 60px;
+  --navbar-height: 56px; 
+}
+
+.hero-about {
+  background: linear-gradient(135deg, #17d761, #24055e);
+  padding: 40px 0;
+  min-height: calc(100vh - var(--navbar-height));
+  width: 100%; 
+}
+
+.about-card {
+  background: #ffffff;
+  border-radius: 20px;
+  /* box-shadow: 0 12px 30px rgba(2, 6, 23, 0.18); */
+  padding: var(--card-padding);
+  max-width: var(--card-max-width); 
+  width: 100%; 
+  margin: 0 auto; 
+  color: #000;
+}
+
+.about-title {
+  font-size: 2.6rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.section-title {
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+  color: #333;
+}
+
+.section-text {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #444;
+  margin-bottom: 1rem;
+  text-align: justify;
+}
+
+.section-list {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #444;
+  margin-left: 1.2rem;
+}
+
+.section-list li {
+  margin-bottom: 0.6rem;
+}
+
+@media (max-width: 768px) {
+  .about-card {
+    padding: 30px 20px;
+  }
+
+  .about-title {
+    font-size: 2rem;
+  }
+
+  .section-title {
+    font-size: 1.3rem;
+  }
+
+  .section-text,
+  .section-list {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-title {
+    font-size: 1.6rem;
+  }
+
+  .section-title {
+    font-size: 1.2rem;
+  }
+
+  .section-text,
+  .section-list {
+    font-size: 0.95rem;
+  }
+}
+
+.about-root * {
+  animation: none !important;
+  transition: none !important;
+}

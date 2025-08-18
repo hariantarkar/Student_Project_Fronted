@@ -1,12 +1,14 @@
-/* 🔹 Base Navbar */
 .navbar {
   background-color: #1c1c1c !important;
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4);
   padding: 0.6rem 1.5rem;
-  z-index: 1000;
+   position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;          
+  z-index: 1000; 
 }
 
-/* 🔹 Brand / Logo */
 .navbar-brand {
   color: #db9d23 !important;
   font-weight: 700;
@@ -18,7 +20,6 @@
   color: #ff7b00 !important;
 }
 
-/* 🔹 Nav Links */
 .navbar-nav .nav-link {
   color: #f8f9fa !important;
   font-weight: 500;
@@ -34,7 +35,6 @@
   color: #00d4ff !important;
 }
 
-/* 🔹 Link Hover Underline Effect */
 .navbar-nav .nav-link::after {
   content: "";
   position: absolute;
@@ -50,7 +50,6 @@
   left: 0;
 }
 
-/* 🔹 Toggler (Hamburger) */
 .navbar-toggler {
   border: none;
 }
@@ -60,7 +59,6 @@
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
 }
 
-/* 🔹 Login Button */
 .navbar-nav .nav-link.login-link {
   background-color: #00d4ff;
   color: #000 !important;
@@ -74,7 +72,6 @@
   color: #fff !important;
 }
 
-/* 🔹 App Title (if used separately) */
 .app-title {
   font-family: "Poppins", sans-serif;
   font-weight: 700;
@@ -96,11 +93,6 @@
   color: #00d4ff;
 }
 
-/* =============================================
-   📱 Responsive Media Queries
-   ============================================= */
-
-/* 🔹 Large Tablets & Small Laptops (<= 991px) */
 @media (max-width: 991px) {
   .navbar-collapse {
     flex-direction: row !important;
@@ -122,7 +114,6 @@
   }
 }
 
-/* 🔹 Medium Tablets (<= 768px, e.g., iPad Mini portrait) */
 @media (max-width: 768px) {
   .navbar-nav .nav-link {
     font-size: 1rem;
@@ -133,7 +124,6 @@
   }
 }
 
-/* 🔹 Small Mobiles (<= 576px, e.g., iPhone SE, Galaxy A51/71) */
 @media (max-width: 576px) {
   .navbar {
     padding: 0.4rem 1rem;
@@ -151,14 +141,13 @@
   }
 }
 
-/* 🔹 Extra Small Mobiles (<= 420px, e.g., Vivo Y51A, iPhone SE landscape) */
 @media (max-width: 420px) {
   .navbar-collapse {
     flex-direction: row !important;
     justify-content: flex-start;
     align-items: center;
-    overflow-x: auto;   /* scroll if too many links */
-    white-space: nowrap; /* keep items in one row */
+    overflow-x: auto;   
+    white-space: nowrap; 
   }
   .navbar-nav {
     flex-direction: row !important;
@@ -167,7 +156,7 @@
   }
   .navbar-nav .nav-item {
     display: inline-block;
-    flex: 0 0 auto;   /* prevent shrinking */
+    flex: 0 0 auto;   
   }
   .navbar-nav .nav-link {
     padding: 6px 8px;
@@ -178,7 +167,6 @@
   }
 }
 
-/* 🔹 Ultra Small Devices (<= 360px, older Androids) */
 @media (max-width: 360px) {
   .navbar-nav .nav-link {
     font-size: 0.8rem;
