@@ -1,14 +1,18 @@
 :root {
+  --navbar-height: 56px;   
   --footer-height: 48px;
   --card-max-width: 1100px;
   --card-padding: 60px;
 }
 
 .hero {
-  background: linear-gradient(135deg, #007bff, #6f42c1);
-  padding: 40px 0;
-  min-height: calc(100vh - var(--navbar-height) - var(--footer-height));
-  margin-top: var(--navbar-height);
+  background: linear-gradient(135deg, #bacee4, #5ecdd3);
+  height: calc(100vh - var(--navbar-height)); 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  overflow: hidden; 
 }
 
 .hero-card {
@@ -17,7 +21,7 @@
   box-shadow: 0 12px 30px rgba(2, 6, 23, 0.18);
   padding: var(--card-padding);
   max-width: var(--card-max-width);
-  margin: 0 auto;
+  width: 100%;
   text-align: center;
   color: black;
 }
@@ -49,7 +53,6 @@
   color: #fff;
 }
 
-/* ✅ Responsive HomePage */
 @media (max-width: 768px) {
   .hero-card {
     padding: 30px 20px;
@@ -74,3 +77,28 @@
     font-size: 0.9rem;
   }
 }
+
+@media screen and (max-height: 500px) and (orientation: landscape) {
+  .hero {
+    height: auto;          
+    min-height: 100vh;
+    padding: 20px;         
+    align-items: flex-start;
+  }
+
+  .hero-card {
+    max-width: 90%;        
+    padding: 20px;
+    margin: auto;
+  }
+
+  .hero-title {
+    font-size: 2rem;
+    margin-top: 2rem;
+  }
+
+  .hero-sub {
+    font-size: 1rem;
+  }
+}
+

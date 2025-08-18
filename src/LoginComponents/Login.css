@@ -1,0 +1,114 @@
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #113b1801, #295527);
+  padding: 20px;
+}
+
+.login-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  padding: 30px;
+  width: 100%;
+  max-width: 400px;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.login-card h3 {
+  font-weight: bold;
+  color: #20bc37;
+  margin-bottom: 20px;
+}
+
+.login-card .form-label {
+  font-weight: 700;
+  color: #333;
+}
+
+.login-card .form-control {
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  transition: border 0.2s ease;
+}
+
+.login-card .form-control:focus {
+  border-color: #007bff;
+  box-shadow: none;
+}
+
+.login-card button {
+  border-radius: 8px;
+  font-weight: 600;
+  padding: 10px;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.login-card button:hover {
+  background: #6f42c1;
+  transform: translateY(-2px);
+}
+
+.alert {
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+
+.login-card .register-link {
+  display: block;
+  margin-top: 15px;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.login-card .register-link a {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.login-card .register-link a:hover {
+  text-decoration: underline;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media screen and (max-height: 500px) and (orientation: landscape) {
+  .login-container {
+    min-height: auto;
+    height: auto;
+    align-items: flex-start;
+    padding: 30px 10px;
+  }
+
+  .login-card {
+    max-width: 90%;
+    margin: 20px auto;
+    padding: 20px;
+  }
+
+  .login-card h3 {
+    font-size: 1.5rem;
+    margin-top: 1.0rem;
+  }
+
+  .login-card .form-control {
+    padding: 8px;
+  }
+
+  .login-card button {
+    padding: 8px;
+  }
+}

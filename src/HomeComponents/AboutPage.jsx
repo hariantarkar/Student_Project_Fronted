@@ -1,94 +1,79 @@
 import React from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
+import "./AboutPage.css";
 
 export default function AboutPage() {
   return (
-    <div>
-      {/* Hero Section */}
-      <section className="bg-primary text-white text-center py-5">
+    <div className="about-root d-flex flex-column">
+      <main className="flex-fill hero-about d-flex align-items-center">
         <div className="container">
-          <h1 className="fw-bold">About Our Prediction System</h1>
-          <p className="lead">
-            Empowering educators with AI-driven insights to improve student success.
-          </p>
-        </div>
-      </section>
+          <div className="about-card mx-auto">
+            <section className="about-section">
+              <h2 className="section-title">Introduction</h2>
+              <p className="section-text">
+                The <b>Student Performance Prediction System</b> is an innovative web-based
+                platform developed to forecast student academic outcomes using advanced{" "}
+                <b>Linear Regression techniques</b>. By analyzing crucial factors such as study
+                hours, attendance records, mock interview results, MCQ test scores, and internal
+                assessments, the system provides an accurate prediction of a student’s final
+                performance.
+              </p>
+              <p className="section-text">
+                This initiative bridges the gap between <b>data analytics and education</b>,
+                offering teachers, students, and institutions the ability to make informed
+                academic decisions.
+              </p>
+            </section>
 
-      {/* Main Content */}
-      <div className="container py-5">
-        {/* Purpose */}
-        <h2 className="fw-bold text-dark mb-3">📌 Purpose</h2>
-        <p>
-          The Student Performance Prediction Web Application uses a trained Linear Regression
-          model to predict a student's academic readiness. By analyzing data such as attendance,
-          mock interview scores, and test performance, the system helps educators identify students
-          who may need additional support and provide timely interventions.
-        </p>
+            <section className="about-section">
+              <h2 className="section-title">Vision</h2>
+              <p className="section-text">
+                Our vision is to create a <b>data-driven academic ecosystem</b> where technology
+                empowers education. We aspire to build a future where institutions can proactively
+                support students, ensuring that every learner reaches their{" "}
+                <b>maximum potential</b>.
+              </p>
+            </section>
 
-        {/* Objectives */}
-        <h2 className="fw-bold text-dark mt-5 mb-3">🎯 Objectives</h2>
-        <ul>
-          <li>Allow admins to input student performance-related data.</li>
-          <li>Predict student’s final readiness using AI models.</li>
-          <li>Visualize academic insights and performance trends.</li>
-          <li>Store student and prediction data securely in MySQL.</li>
-        </ul>
+            <section className="about-section">
+              <h2 className="section-title">Mission</h2>
+              <ul className="section-list">
+                <li>Enable <b>early identification</b> of academically weak students.</li>
+                <li>Provide <b>actionable insights</b> for teachers and administrators.</li>
+                <li>Encourage students to take responsibility for their <b>academic progress</b>.</li>
+                <li>
+                  Support institutions with <b>real-time data analytics</b> for better
+                  decision-making.
+                </li>
+              </ul>
+            </section>
 
-        {/* Architecture */}
-        <h2 className="fw-bold text-dark mt-5 mb-3">🏗 Architectural Overview</h2>
-        <div className="row g-4">
-          <div className="col-md-4">
-            <div className="card shadow-sm p-3">
-              <h5>Presentation Layer</h5>
-              <p>Responsive React + Bootstrap interface for input and result display.</p>
-            </div>
+            <section className="about-section">
+              <h2 className="section-title">Future Scope</h2>
+              <ul className="section-list">
+                <li>
+                  Integrating additional machine learning models for{" "}
+                  <b>higher prediction accuracy</b>.
+                </li>
+                <li>
+                  Expanding features to include <b>personalized learning recommendations</b>.
+                </li>
+                <li>
+                  Offering <b>institution-wide dashboards</b> to analyze trends across departments
+                  and classes.
+                </li>
+                <li>
+                  Supporting integration with <b>Learning Management Systems (LMS)</b> for seamless
+                  data flow.
+                </li>
+                <li>
+                  Leveraging <b>AI-powered interventions</b> to provide targeted support for
+                  struggling students.
+                </li>
+              </ul>
+            </section>
           </div>
-          <div className="col-md-4">
-            <div className="card shadow-sm p-3">
-              <h5>Application Layer</h5>
-              <p>Node.js + Express.js for API handling, ML prediction logic, and routing.</p>
-            </div>
-          </div>
-          <div className="col-md-4">
-            <div className="card shadow-sm p-3">
-              <h5>Data Layer</h5>
-              <p>MySQL database for storing student details, scores, and predictions.</p>
-            </div>
-          </div>
         </div>
-
-        {/* Tech Stack */}
-        <h2 className="fw-bold text-dark mt-5 mb-3">🛠 Tech Stack</h2>
-        <div className="row text-center g-4">
-          {[
-            { title: "Frontend", desc: "React + Bootstrap" },
-            { title: "Backend", desc: "Node.js + Express.js" },
-            { title: "Database", desc: "MySQL" },
-            { title: "Auth", desc: "JWT + Bcrypt" },
-          ].map((tech, i) => (
-            <div key={i} className="col-md-3">
-              <div className="card shadow-sm p-3">
-                <h6>{tech.title}</h6>
-                <p>{tech.desc}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Features */}
-        <h2 className="fw-bold text-dark mt-5 mb-3">✨ Key Features</h2>
-        <ul>
-          <li>Role-based access for Admin and Student.</li>
-          <li>Real-time predictions of student readiness.</li>
-          <li>Interactive performance dashboards.</li>
-          <li>Shortlisting feature for top-performing students.</li>
-        </ul>
-      </div>
-
-      {/* Footer */}
-      <footer className="bg-dark text-white text-center py-3 mt-5">
-        &copy; {new Date().getFullYear()} Student Performance Predictor | Powered by React & Node.js
-      </footer>
+      </main>
     </div>
   );
 }
