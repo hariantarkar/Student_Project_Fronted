@@ -1,123 +1,53 @@
-.border {
-  background-color: #f8f9fa; 
-  height: 100vh;
-  position: fixed; 
-  top: 0;
-  left: 0;
-  overflow-y: auto;
-}
-
-.border h5 {
-  font-weight: 700;
-  font-size: 1.25rem;
-}
-
-ul.list-unstyled {
-  margin-top: 1rem;
-}
-
-ul.list-unstyled li {
-  padding: 10px 15px;
-  font-weight: 500;
-  font-size: 1rem;
-  color: #333;
-  cursor: pointer;
-  border-radius: 6px;
-  transition: background-color 0.3s ease, color 0.3s ease;
-  user-select: none;
+/* Sidebar base */
+.sidebar {
+  width: 250px;
+  min-height: 100vh;
+  background-color: #f8f9fa;
+  border-right: 1px solid #ddd;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  transition: transform 0.3s ease;
 }
 
-ul.list-unstyled li svg {
-  min-width: 20px;
-  min-height: 20px;
-}
-
-ul.list-unstyled li:hover {
-  background-color: #007bff; 
-  color: white;
-}
-
-ul.list-unstyled li.text-danger {
-  color: #dc3545;
-}
-
-ul.list-unstyled li.text-danger:hover {
-  background-color: #dc3545;
-  color: white;
-}
-
-.dashboard.container {
-  margin-left: 250px; 
-  margin-top: 50px;
-  padding-bottom: 40px;
-  min-height: calc(100vh - 50px);
-}
-
-.card-hover {
-  padding: 25px;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: box-shadow 0.3s ease, transform 0.3s ease;
-  border-width: 2px !important;
-  user-select: none;
-}
-
-.card-hover:hover {
-  box-shadow: 0 8px 20px rgba(0, 123, 255, 0.3);
-  transform: translateY(-5px);
-}
-
-.card-hover h5 {
-  margin-bottom: 15px;
-  color: #222;
-}
-
-
-.card-hover button {
-  width: 100%;
-  font-weight: 600;
-  border-radius: 6px;
-  transition: background-color 0.3s ease;
-}
-
-.border-primary {
-  border-color: #007bff !important;
-}
-
-.border-primary button:hover {
-  background-color: #0056b3;
-  border-color: #0056b3;
-}
-
-.border-success {
-  border-color: #28a745 !important;
-}
-
-.border-success button:hover {
-  background-color: #1e7e34;
-  border-color: #1e7e34;
-}
-
-.border-warning {
-  border-color: #ffc107 !important;
-}
-
-.border-warning button:hover {
-  background-color: #d39e00;
-  border-color: #d39e00;
-}
-
+/* Mobile behavior */
 @media (max-width: 768px) {
-  .border {
-    position: relative;
-    width: 100%;
-    height: auto;
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    transform: translateX(-100%); /* hidden by default */
+    z-index: 1100;
   }
 
-  .dashboard.container {
-    margin-left: 0;
-    margin-top: 20px;
+  .sidebar.open {
+    transform: translateX(0); /* show when open */
   }
+
+  /* Overlay background */
+  .sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1000;
+  }
+}
+/* Remove underline and set default link style */
+.sidebar-link {
+  text-decoration: none !important;
+  color: inherit; /* keeps text same as parent (black/gray) */
+}
+
+/* Style when active (clicked/selected) */
+.sidebar-link.active {
+  color: green;        /* choose any highlight color */
+  font-weight: 600;   /* optional, to bold active section */
+}
+.sidebar ul {
+  list-style: none;
+  padding-left: 10px;
+  margin: 10px;
 }
