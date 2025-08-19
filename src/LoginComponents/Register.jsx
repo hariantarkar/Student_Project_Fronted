@@ -40,13 +40,28 @@ export default class Register extends Component {
         password,
         role,
       });
-      this.setState({ success: res.data.message, error: "", loading: false });
+      this.setState({
+    name: "",
+    email: "",
+    contact: "",
+    password: "",
+    role: "student",
+    success: res.data.message,
+    error: "",
+    loading: false,
+  });
+       setTimeout(() => {
+    this.setState({ success: "" });
+  }, 1000);
     } catch (err) {
       this.setState({
         error: err.response?.data?.message || "Registration failed",
         success: "",
         loading: false,
       });
+       setTimeout(() => {
+    this.setState({ success: "" });
+  }, 1000);
     }
   };
 

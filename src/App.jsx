@@ -10,6 +10,9 @@ import KeyFeature from "./HomeComponents/KeyFeature.jsx";
 import AboutPage from "./HomeComponents/AboutPage.jsx";
 import Contact from "./HomeComponents/Contact.jsx";
 
+//import AboutPage from "./HomeComponents/AboutPage.jsx";
+
+
 import Login from "./LoginComponents/Login.jsx";
 import Register from "./LoginComponents/Register.jsx";
 
@@ -54,6 +57,10 @@ export default class App extends React.Component {
             <Route path="/" element={<HomePage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/contact" element={<Contact />} />
+
+            {/* <Route path="/about" element={<AboutPage />}/> */}
+
+
 
 
             <Route path="/addCourse" element={<AddNewCourse />} />
