@@ -1,20 +1,17 @@
 import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import RegistrationService from "../services/RegistrationService";
-import "./Register.css"; // 👈 Import CSS
+import "./Contact.css";
 
-export default class Register extends Component {
+export default class Contact extends Component {
   constructor() {
     super();
     this.state = {
       name: "",
       email: "",
-      contact: "",
-      password: "",
-      role: "student",
+      subject: "",
+      message: "",
       error: "",
-      success: "",
-      loading: false,
+      success: ""
     };
   }
 
@@ -22,39 +19,32 @@ export default class Register extends Component {
     this.setState({ [e.target.name]: e.target.value, error: "", success: "" });
   };
 
-  handleSubmit = async (e) => {
+  handleSubmit = (e) => {
     e.preventDefault();
-    const { name, email, contact, password, role } = this.state;
+    const { name, email, subject, message } = this.state;
 
-    if (!name || !email || !contact || !password) {
+    if (!name || !email || !subject || !message) {
       this.setState({ error: "All fields are required" });
       return;
     }
 
-    try {
-      this.setState({ loading: true });
-      const res = await RegistrationService.registerUser({
-        name,
-        email,
-        contact,
-        password,
-        role,
-      });
-      this.setState({ success: res.data.message, error: "", loading: false });
-    } catch (err) {
-      this.setState({
-        error: err.response?.data?.message || "Registration failed",
-        success: "",
-        loading: false,
-      });
-    }
+    // ✅ Mock Success (replace with API call)
+    this.setState({
+      success: "Message sent successfully!",
+      error: "",
+      name: "",
+      email: "",
+      subject: "",
+      message: ""
+    });
   };
 
   render() {
     return (
-      <div className="register-container">
-        <div className="register-card">
-          <h3 className="text-center mb-4">Register</h3>
+      <div className="contact-container">
+        <div className="contact-card">
+          <h3 className="text-center">Contact Us</h3>
+
           {this.state.error && (
             <div className="alert alert-danger">{this.state.error}</div>
           )}
@@ -77,7 +67,7 @@ export default class Register extends Component {
             </div>
 
             <div className="mb-3">
-              <label className="form-label">Email</label>
+              <label className="form-label">Email Address</label>
               <input
                 type="email"
                 name="email"
@@ -90,37 +80,36 @@ export default class Register extends Component {
             </div>
 
             <div className="mb-3">
-              <label className="form-label">Contact</label>
+              <label className="form-label">Subject</label>
               <input
                 type="text"
-                name="contact"
+                name="subject"
                 className="form-control"
-                value={this.state.contact}
+                value={this.state.subject}
                 onChange={this.handleChange}
-                placeholder="Enter contact number"
+                placeholder="Enter subject"
                 required
               />
             </div>
 
             <div className="mb-3">
-              <label className="form-label">Password</label>
-              <input
-                type="password"
-                name="password"
+              <label className="form-label">Message</label>
+              <textarea
+                name="message"
                 className="form-control"
-                value={this.state.password}
+                rows="4"
+                value={this.state.message}
                 onChange={this.handleChange}
-                placeholder="Enter password"
+                placeholder="Write your message..."
                 required
-              />
+              ></textarea>
             </div>
 
             <button
               type="submit"
               className="btn btn-primary w-100"
-              disabled={this.state.loading}
             >
-              {this.state.loading ? "Registering..." : "Register"}
+              Send Message
             </button>
           </form>
         </div>
@@ -128,4 +117,3 @@ export default class Register extends Component {
     );
   }
 }
-
