@@ -41,9 +41,9 @@ const UnregisteredStudents = () => {
       {students.length === 0 ? (
         <p className="text-muted text-center">No unregistered students found.</p>
       ) : (
-        <div className="table-responsive">
-        <table className="table table-bordered table-striped table-hover shadow-sm">
-          <thead className="table-dark text-center">
+        <div className="table-responsive"style={{ maxHeight: "400px", overflowY: "auto" , overflowX: "auto" }} >
+        <table className="table table-bordered table-striped table-hover shadow-sm sticky-header">
+          <thead className="table-dark text-center"style={{ position: "sticky", top: 0, zIndex: 2 }}>
             <tr>
               <th>USER_ID</th>
               <th>Name</th>
