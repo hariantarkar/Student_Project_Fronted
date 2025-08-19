@@ -22,6 +22,7 @@ import UnregisteredStudents from "./StudentsComponent/UnregisteredStudents.jsx";
 import ViewApprovedStudents from "./StudentsComponent/ViewApprovedStudents.jsx";
 //import PendingStudentApproval from "./StudentsComponent/PendingStudentApproval.jsx";
 import StudentsTabs from "./StudentsComponent/StudentsTabs.jsx";
+import CourseTabs from "./CourseComponents/CourseTabs.jsx";
 
 import AdminDashboard from "./DashboardComponent/AdminDashboard.jsx";
 
@@ -43,8 +44,6 @@ export default class App extends React.Component {
             <Route path="/addCourse" element={<AddNewCourse />} />
 
 
-            <Route path="/addCourse" element={<AddNewCourse />} />
-
             <Route path="/viewCourses" element={<ViewCourses />} />
             <Route path="/addNewStudent" element={<AddNewStudent />} />
 
@@ -58,26 +57,50 @@ export default class App extends React.Component {
             <Route path="/admin/dashboard" element={localStorage.getItem("role") === "admin"
               ? <AdminDashboard /> : <HomePage />} />
 
-            {/* <Route path="/studentsTabs" element={<StudentsTabs />} /> */}
-            {/* <Route path="/unregisteredStudents" element={<UnregisteredStudents />} />
-              <Route path="/viewApprovedStudents" element={<ViewApprovedStudents />} />
-              <Route path="/viewAllStudents" element={<ViewAllStudent />} />
-            */}
 
-       <Route
-        path="/studentsTabs"
-        element={
+   <Route path="/admin/dashboard" element={<AdminDashboard />}>
+        {/* Students section */}
+        <Route path="Course" element={
+          <div style={{ display: "flex", flexDirection: "column", height: "100vh" }}>
+            <CourseTabs />
+            <div style={{ flex: 1, overflowY: "auto", marginTop: "20px" }}>
+              <Outlet />
+            </div>
+          </div>
+        }>
+          <Route path="addCourse" element={<AddNewCourse />} />
+          <Route path="viewCourses" element={<ViewCourses />} />
+        </Route>
+      </Route>
+
+
+
+
+
+
+
+
+
+
+
+   <Route path="/admin/dashboard" element={<AdminDashboard />}>
+        {/* Students section */}
+        <Route path="students" element={
           <div style={{ display: "flex", flexDirection: "column", height: "100vh" }}>
             <StudentsTabs />
             <div style={{ flex: 1, overflowY: "auto", marginTop: "20px" }}>
               <Outlet />
             </div>
           </div>
-        }
-      >
-        <Route path="unregisteredStudents" element={<UnregisteredStudents />} />
-        <Route path="viewApprovedStudents" element={<ViewApprovedStudents />} />
-        <Route path="viewAllStudents" element={<ViewAllStudent />} />
+        }>
+          {/* If you want only tabs first, omit the next line.
+             If you want a default tab to open, UNCOMMENT it. */}
+          {/* <Route index element={<Navigate to="unregisteredStudents" replace />} /> */}
+
+          <Route path="unregisteredStudents" element={<UnregisteredStudents />} />
+          <Route path="viewApprovedStudents" element={<ViewApprovedStudents />} />
+          <Route path="viewAllStudents" element={<ViewAllStudent />} />
+        </Route>
       </Route>
 
 
