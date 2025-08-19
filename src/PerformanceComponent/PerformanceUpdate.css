@@ -1,0 +1,16 @@
+@import "./PerformanceAdd.css"; 
+
+.btn-warning {
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  background: #ffc107;
+  border: none;
+  transition: background 0.3s ease, transform 0.1s ease;
+}
+
+.btn-warning:hover {
+  background: #e0a800;
+  transform: translateY(-2px);
+}

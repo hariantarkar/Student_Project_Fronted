@@ -1,119 +1,115 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Contact.css";
+import { addContact } from "../services/contactService";
 
-export default class Contact extends Component {
-  constructor() {
-    super();
-    this.state = {
-      name: "",
-      email: "",
-      subject: "",
-      message: "",
-      error: "",
-      success: ""
-    };
-  }
+export default function Contact() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
 
-  handleChange = (e) => {
-    this.setState({ [e.target.name]: e.target.value, error: "", success: "" });
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setError("");
+    setSuccess("");
   };
 
-  handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const { name, email, subject, message } = this.state;
+    const { name, email, subject, message } = formData;
 
     if (!name || !email || !subject || !message) {
-      this.setState({ error: "All fields are required" });
+      setError("All fields are required");
       return;
     }
 
-    // ✅ Mock Success (replace with API call)
-    this.setState({
-      success: "Message sent successfully!",
-      error: "",
-      name: "",
-      email: "",
-      subject: "",
-      message: ""
-    });
+    try {
+      const result = await addContact({ name, email, subject, message });
+
+      setSuccess(result.message || "Message sent successfully!");
+      setError("");
+      setFormData({ name: "", email: "", subject: "", message: "" });
+
+      // clear success after 2 sec
+      setTimeout(() => setSuccess(""), 2000);
+    } catch (err) {
+      setError(err.message || "Something went wrong");
+    }
   };
 
-  render() {
-    return (
-      <div className="contact-container">
-        <div className="contact-card">
-          <h3 className="text-center">Contact Us</h3>
+  return (
+    <div className="contact-container">
+      <div className="contact-card">
+        <h3 className="text-center">Contact Us</h3>
 
-          {this.state.error && (
-            <div className="alert alert-danger">{this.state.error}</div>
-          )}
-          {this.state.success && (
-            <div className="alert alert-success">{this.state.success}</div>
-          )}
+        {error && <div className="alert alert-danger">{error}</div>}
+        {success && <div className="alert alert-success">{success}</div>}
 
-          <form onSubmit={this.handleSubmit}>
-            <div className="mb-3">
-              <label className="form-label">Full Name</label>
-              <input
-                type="text"
-                name="name"
-                className="form-control"
-                value={this.state.name}
-                onChange={this.handleChange}
-                placeholder="Enter your name"
-                required
-              />
-            </div>
+        <form onSubmit={handleSubmit}>
+          <div className="mb-3">
+            <label className="form-label">Full Name</label>
+            <input
+              type="text"
+              name="name"
+              className="form-control"
+              value={formData.name}
+              onChange={handleChange}
+              placeholder="Enter your name"
+              required
+            />
+          </div>
 
-            <div className="mb-3">
-              <label className="form-label">Email Address</label>
-              <input
-                type="email"
-                name="email"
-                className="form-control"
-                value={this.state.email}
-                onChange={this.handleChange}
-                placeholder="Enter your email"
-                required
-              />
-            </div>
+          <div className="mb-3">
+            <label className="form-label">Email Address</label>
+            <input
+              type="email"
+              name="email"
+              className="form-control"
+              value={formData.email}
+              onChange={handleChange}
+              placeholder="Enter your email"
+              required
+            />
+          </div>
 
-            <div className="mb-3">
-              <label className="form-label">Subject</label>
-              <input
-                type="text"
-                name="subject"
-                className="form-control"
-                value={this.state.subject}
-                onChange={this.handleChange}
-                placeholder="Enter subject"
-                required
-              />
-            </div>
+          <div className="mb-3">
+            <label className="form-label">Subject</label>
+            <input
+              type="text"
+              name="subject"
+              className="form-control"
+              value={formData.subject}
+              onChange={handleChange}
+              placeholder="Enter subject"
+              required
+            />
+          </div>
 
-            <div className="mb-3">
-              <label className="form-label">Message</label>
-              <textarea
-                name="message"
-                className="form-control"
-                rows="4"
-                value={this.state.message}
-                onChange={this.handleChange}
-                placeholder="Write your message..."
-                required
-              ></textarea>
-            </div>
+          <div className="mb-3">
+            <label className="form-label">Message</label>
+            <textarea
+              name="message"
+              className="form-control"
+              rows="4"
+              value={formData.message}
+              onChange={handleChange}
+              placeholder="Write your message..."
+              maxLength={200}
+              required
+            ></textarea>
+          </div>
 
-            <button
-              type="submit"
-              className="btn btn-primary w-100"
-            >
-              Send Message
-            </button>
-          </form>
-        </div>
+          <button type="submit" className="btn btn-primary w-100">
+            Send Message
+          </button>
+        </form>
       </div>
-    );
-  }
+    </div>
+  );
 }

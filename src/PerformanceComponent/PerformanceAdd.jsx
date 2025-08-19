@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { addPerformance } from "../services/performanceService"; 
+import { addPerformance } from "../services/performanceService";
 import "./PerformanceAdd.css";
 
 export default function PerformanceAdd() {
@@ -10,7 +10,7 @@ export default function PerformanceAdd() {
     mcq_test: "",
     mock_interview_score: "",
   });
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState({text:"",type:""});
   const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
@@ -21,11 +21,11 @@ export default function PerformanceAdd() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setMessage("");
+    setMessage({text:"",type:""});
 
     try {
       const res = await addPerformance(formData);
-      setMessage(res.message || "Performance added successfully");
+      setMessage({text:res.message || "Performance added successfully",type:"success"});
       setFormData({
         sid: "",
         attendance_percentage: "",
@@ -35,14 +35,14 @@ export default function PerformanceAdd() {
       });
 
       setTimeout(() => {
-    setMessage("");
-  }, 3000);
+        setMessage("");
+      }, 2000);
     } catch (err) {
-      setMessage(err.message || "Error adding performance");
+      setMessage({text:err.message || "Error adding performance",type:"error"});
 
       setTimeout(() => {
-    setMessage("");
-  }, 3000);
+        setMessage("");
+      }, 2000);
     } finally {
       setLoading(false);
     }
@@ -51,39 +51,40 @@ export default function PerformanceAdd() {
   return (
     <div className="perf-container">
       <div className="perf-card">
+        {message.text && (<div className={`alert ${message.type}`}>{message.text}</div>)}
         <h3 className="text-center">Add Student Performance</h3>
 
-        {message && <div className="alert">{message}</div>}
+        
 
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
             <label className="form-label">Student ID</label>
-            <input type="number" name="sid" value={formData.sid} onChange={handleChange}
-              className="form-control" placeholder="Enter Student ID" required/>
+            <input type="text" name="sid" value={formData.sid} onChange={handleChange}
+              className="form-control" placeholder="Enter Student ID" required />
           </div>
 
           <div className="mb-3">
-            <label>Attendance (0-10)</label>
+            <label className="form-label">Attendance (0-10)</label>
             <input type="number" name="attendance_percentage" value={formData.attendance_percentage}
-              onChange={handleChange} className="form-control" min="0" max="10" required/>
+              onChange={handleChange} className="form-control" min="0" max="10" required />
           </div>
 
           <div className="mb-3">
-            <label>Machine Test (0-10)</label>
-            <input type="number" name="machine_test" value={formData.machine_test}onChange={handleChange}
-              className="form-control" min="0" max="10" required/>
+            <label className="form-label">Machine Test (0-10)</label>
+            <input type="number" name="machine_test" value={formData.machine_test} onChange={handleChange}
+              className="form-control" min="0" max="10" required />
           </div>
 
           <div className="mb-3">
-            <label>MCQ Test (0-10)</label>
+            <label className="form-label">MCQ Test (0-10)</label>
             <input type="number" name="mcq_test" value={formData.mcq_test} onChange={handleChange}
-              className="form-control" min="0" max="10" required/>
+              className="form-control" min="0" max="10" required />
           </div>
 
           <div className="mb-3">
-            <label>Mock Interview (0-10)</label>
+            <label className="form-label">Mock Interview (0-10)</label>
             <input type="number" name="mock_interview_score" value={formData.mock_interview_score} onChange={handleChange}
-              className="form-control" min="0" max="10" required/>
+              className="form-control" min="0" max="10" required />
           </div>
 
           <button type="submit" className="btn btn-success w-100" disabled={loading}>
