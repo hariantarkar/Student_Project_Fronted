@@ -9,7 +9,7 @@
 
 .contact-card {
   background: #fff;
-  border-radius: 12px;
+  border-radius: 20px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
   padding: 30px;
   width: 100%;
@@ -37,7 +37,7 @@
 }
 
 .contact-card .form-control:focus {
-  border-color: #007bff;
+  border-color: #ad2121;
   box-shadow: none;
 }
 
@@ -69,7 +69,6 @@
   }
 }
 
-/* ✅ Landscape Mode Fix */
 @media screen and (max-height: 500px) and (orientation: landscape) {
   .contact-container {
     min-height: auto;

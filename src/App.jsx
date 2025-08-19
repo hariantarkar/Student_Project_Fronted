@@ -2,7 +2,7 @@ import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 // import { BrowserRouter, Route, Routes, Outlet, Navigate } from "react-router-dom";
 import { BrowserRouter, Route, Routes, Outlet, Navigate } from "react-router-dom";
-
+import {jwtDecode} from "jwt-decode";
 
 import HomePage from "./HomeComponents/HomePage.jsx";
 import Navbar from "./HomeComponents/NavBars.jsx";
@@ -25,7 +25,21 @@ import ViewApprovedStudents from "./StudentsComponent/ViewApprovedStudents.jsx";
 import StudentsTabs from "./StudentsComponent/StudentsTabs.jsx";
 
 import AdminDashboard from "./DashboardComponent/AdminDashboard.jsx";
+import StudentdashBoard from "./DashboardComponent/StudentDashBoard.jsx"
 import PerformanceAdd from "./PerformanceComponent/PerformanceAdd.jsx";
+import PerformanceUpdate from "./PerformanceComponent/PerformanceUpdate.jsx";
+import PerformanceChart from "./PerformanceComponent/PerformanceChart.jsx";
+
+const token = localStorage.getItem("token");
+if (token) {
+  const decoded = jwtDecode(token);
+  if (decoded.exp * 1000 < Date.now()) {
+    localStorage.clear();
+    window.location.href = "/login";
+  }
+}
+
+
 
 
 export default class App extends React.Component {
@@ -58,7 +72,12 @@ export default class App extends React.Component {
             <Route path="/register" element={<Register />} />
             <Route path="/admin/dashboard" element={localStorage.getItem("role") === "admin"
               ? <AdminDashboard /> : <HomePage />} />
+              <Route path="/student/dashboard" element={localStorage.getItem("role") === "student"
+              ? <StudentdashBoard /> : <HomePage />} />
             <Route path="/performance/add" element={<PerformanceAdd />} />
+            <Route path="/performance/update" element={<PerformanceUpdate />} />
+            <Route path="/chart" element={<PerformanceChart />} />
+            <Route path="/contact" element={<Contact />} />
             {/* <Route path="/studentsTabs" element={<StudentsTabs />} /> */}
             {/* <Route path="/unregisteredStudents" element={<UnregisteredStudents />} />
               <Route path="/viewApprovedStudents" element={<ViewApprovedStudents />} />
