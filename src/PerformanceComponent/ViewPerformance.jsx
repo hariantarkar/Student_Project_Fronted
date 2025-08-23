@@ -52,9 +52,11 @@ export default function ViewPerformance() {
         />
       </div>
 
-      <div className="table-responsive">
-        <table className="table table-bordered text-center table-hover">
-          <thead className="table-dark">
+      <div className="table-responsive"
+            style={{ maxHeight: "400px", overflowY: "auto" }}>
+        <table className="table table-bordered text-center align-middle table-hover">
+          <thead className="table-dark"
+                style={{ position: "sticky", top: "0", zIndex: "2" }}>
             <tr>
               <th>SID</th>
               <th>Name</th>
