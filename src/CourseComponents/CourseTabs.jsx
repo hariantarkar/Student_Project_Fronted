@@ -6,7 +6,7 @@ import "./CourseTabs.css";
 
 const CourseTabs = () => {
   const { pathname } = useLocation();
-  const isRoot = pathname === "/admin/dashboard/Course"; // ✅ correct root
+  const isRoot = pathname === "/admin/dashboard/Course"; 
 
   return (
     <div style={{ display: "flex", flexDirection: "column", height: "100vh" }}>
@@ -25,7 +25,7 @@ const CourseTabs = () => {
       </div>
 
       <div style={{ flex: 1, overflowY: "auto", marginTop: "20px" }}>
-        {!isRoot && <Outlet />}  {/* show table only after a tab is clicked */}
+        {!isRoot && <Outlet />}  
       </div>
     </div>
   );

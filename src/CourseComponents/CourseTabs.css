@@ -1,11 +1,12 @@
 
 
-/* Card + title (keep your existing ones if you already have them) */
+
 .students-card { 
   background: #fff; 
   border-radius: 18px; 
   box-shadow: 0 12px 36px rgba(0,0,0,.08);
   padding: 28px 24px;
+  margin-top: 80px;
 }
 .tabs-title { 
   text-align: center; 
@@ -13,7 +14,6 @@
   margin-bottom: 18px; 
 }
 
-/* Tabs container */
 .students-container {
   display: flex;
   gap: 28px;
@@ -21,7 +21,7 @@
   flex-wrap: wrap;
 }
 
-/* Individual tab button (NavLink) */
+
 .student-box {
   display: flex;
   align-items: center;
@@ -31,8 +31,8 @@
   border: 2px solid #1b1f2320;
   border-radius: 14px;
   font-weight: 700;
-  text-decoration: none;        /* << no blue underline */
-  color: #1f2937;               /* text color */
+  text-decoration: none;        
+  color: #1f2937;               
   background: #ffffff;
   transition: box-shadow .2s ease, transform .2s ease, border-color .2s ease;
 }
@@ -42,13 +42,12 @@
   box-shadow: 0 10px 22px rgba(0,0,0,.08);
 }
 
-/* Active tab */
+
 .student-box.active {
   background: #eaf2ff;
   border-color: #5a8cff;
 }
 
-/* Placeholder shown only on /studentsTabs */
 .tabs-placeholder {
   margin-top: 20px;
   text-align: center;

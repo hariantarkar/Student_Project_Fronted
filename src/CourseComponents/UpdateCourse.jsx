@@ -17,10 +17,11 @@ export default class UpdateCourse extends React.Component {
   handleUpdate = () => {
     const { cid, name } = this.state;
     this.setState({ saving: true, error: null });
-
+    console.log("updating course...");
     updateCourse(cid, name)
       .then((res) => {
         const msg = res?.message || "Course updated successfully";
+        console.log("course is updated");
         this.props.onClose({ type: "success", text: msg });
       })
       .catch((err) => {
