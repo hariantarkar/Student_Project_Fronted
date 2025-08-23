@@ -4,6 +4,7 @@ const API_URL = "http://localhost:9999/";
 
 class LoginService {
   loginUser(credentials) {
+
     console.log("Sending credentials:", credentials);
     return axios
       .post(`${API_URL}login`, credentials, { withCredentials: true })

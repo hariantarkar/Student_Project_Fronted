@@ -12,6 +12,8 @@ import Contact from "./HomeComponents/Contact.jsx";
 import Overview from "./HomeComponents/OverviewPage.jsx"
 import AdminLogin from "./LoginComponents/AdminLogin.jsx";
 import StudentLogin from "./LoginComponents/StudentLogin.jsx";
+
+import Login from "./LoginComponents/Login.jsx";
 import Register from "./LoginComponents/Register.jsx";
 
 import ViewCourses from "./CourseComponents/ViewCourses.jsx";
@@ -61,16 +63,21 @@ export default class App extends React.Component {
           <Routes>
 
             <Route path="/" element={<HomePage />} />
+
             <Route path="/about" element={<AboutPage />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/overview" element={<Overview />} />
 
-            {/* <Route path="/about" element={<AboutPage />}/> */}
+
+           
 
 
 
 
             <Route path="/addCourse" element={<AddNewCourse />} />
+
+
+ 
 
 
             <Route path="/viewCourses" element={<ViewCourses />} />
