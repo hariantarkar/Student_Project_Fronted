@@ -12,7 +12,6 @@ import Overview from "./HomeComponents/OverviewPage.jsx"
 import AdminLogin from "./LoginComponents/AdminLogin.jsx";
 import StudentLogin from "./LoginComponents/StudentLogin.jsx";
 
-import Login from "./LoginComponents/Login.jsx";
 import Register from "./LoginComponents/Register.jsx";
 
 import ViewCourses from "./CourseComponents/ViewCourses.jsx";
