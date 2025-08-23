@@ -1,10 +1,9 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Login.css";
 import LoginService from "../services/LoginService";
 
-export default class Login extends Component {
+export default class AdminLogin extends Component {
   constructor() {
     super();
     this.state = {
@@ -30,19 +29,13 @@ export default class Login extends Component {
 
     try {
       this.setState({ loading: true });
-      const data = await LoginService.loginUser({ email, password });
+      const data = await LoginService.loginUser({ email, password, role: "admin" });
       console.log("Login success:", data);
 
       if (data.user.role === "admin") {
-        localStorage.setItem("token", data.token);
-        localStorage.setItem("role", "admin");
-        window.location.href = "/admin/dashboard";
-      } else if (data.user.role === "student") {
-        localStorage.setItem("token", data.token);
-        localStorage.setItem("role", "student");
-        window.location.href = "/student/dashboard";
+        window.location.href = "/admin/dashboard"; 
       } else {
-        window.location.href = "/";
+        this.setState({ error: "Unauthorized: Not an Admin", loading: false });
       }
     } catch (err) {
       this.setState({
@@ -57,7 +50,7 @@ export default class Login extends Component {
     return (
       <div className="login-container">
         <div className="login-card">
-          <h3 className="text-center">Login</h3>
+          <h3 className="text-center">Admin Login</h3>
 
           {this.state.error && (
             <div className="alert alert-danger">{this.state.error}</div>
@@ -66,26 +59,40 @@ export default class Login extends Component {
           <form onSubmit={this.handleSubmit}>
             <div className="mb-3">
               <label className="form-label">Username</label>
-              <input type="email" name="email" className="form-control" value={this.state.email}
-                onChange={this.handleChange} placeholder="Enter username" required/>
+              <input
+                type="email"
+                name="email"
+                className="form-control"
+                value={this.state.email}
+                onChange={this.handleChange}
+                placeholder="Enter username"
+                required
+              />
             </div>
 
             <div className="mb-3">
               <label className="form-label">Password</label>
-              <input type="password" name="password" className="form-control" value={this.state.password}
-                onChange={this.handleChange} placeholder="Enter password" required/>
+              <input
+                type="password"
+                name="password"
+                className="form-control"
+                value={this.state.password}
+                onChange={this.handleChange}
+                placeholder="Enter password"
+                required
+              />
             </div>
 
-            <button type="submit" className="btn btn-primary w-100" disabled={this.state.loading}>
-              {this.state.loading ? "Logging in..." : "Login"}</button>
+            <button
+              type="submit"
+              className="btn btn-primary w-100"
+              disabled={this.state.loading}
+            >
+              {this.state.loading ? "Logging in..." : "Login"}
+            </button>
           </form>
-
-          <div className="register-link">
-            <Link to="/register">Don't have an account? Register</Link>
         </div>
-      </div>
       </div>
     );
   }
-
 }

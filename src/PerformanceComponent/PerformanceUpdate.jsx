@@ -1,10 +1,14 @@
-import React, { useState } from "react";
-import { updatePerformance } from "../services/performanceService";
+import React, { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { updatePerformance, getPerformanceBySid } from "../services/PerformanceService";
 import "./PerformanceUpdate.css";
 
 export default function PerformanceUpdate() {
+  const { sid } = useParams();
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
-    sid: "",
+    sid: sid || "",
     attendance_percentage: "",
     machine_test: "",
     mcq_test: "",
@@ -14,6 +18,28 @@ export default function PerformanceUpdate() {
   const [message, setMessage] = useState({ text: "", type: "" });
   const [loading, setLoading] = useState(false);
 
+  // ✅ Load student data when page opens
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getPerformanceBySid(sid);
+        if (data) {
+          setFormData({
+            sid: data.sid,
+            attendance_percentage: data.attendance_percentage || "",
+            machine_test: data.machine_test || "",
+            mcq_test: data.mcq_test || "",
+            mock_interview_score: data.mock_interview_score || "",
+          });
+        }
+      } catch (err) {
+        console.error("Error fetching student performance:", err);
+      }
+    };
+    fetchData();
+  }, [sid]);
+
+  
   const handleChange = (e) => {
     const { name, value, type } = e.target;
     setFormData({
@@ -23,6 +49,7 @@ export default function PerformanceUpdate() {
     setMessage({ text: "", type: "" });
   };
 
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -30,27 +57,18 @@ export default function PerformanceUpdate() {
 
     try {
       const res = await updatePerformance(formData);
-
       setMessage({
         text: res.message || "Performance updated successfully",
         type: "success",
       });
-      setFormData({
-        sid: "",
-        attendance_percentage: "",
-        machine_test: "",
-        mcq_test: "",
-        mock_interview_score: "",
-      });
 
-      setTimeout(() => setMessage({ text: "", type: "" }), 2000);
+      setTimeout(() => navigate("/admin/dashboard/performance/view"), 1000);
+
     } catch (err) {
       setMessage({
         text: err.message || "Error updating performance",
         type: "error",
       });
-
-      setTimeout(() => setMessage({ text: "", type: "" }), 2000);
     } finally {
       setLoading(false);
     }
@@ -63,22 +81,9 @@ export default function PerformanceUpdate() {
           <div className={`alert ${message.type}`}>{message.text}</div>
         )}
 
-        <h3 className="text-center">Update Student Performance</h3>
+        <h3 className="text-center mb-3">Update Student Performance</h3>
 
         <form onSubmit={handleSubmit}>
-          <div className="mb-3">
-            <label className="form-label">Student ID</label>
-            <input
-              type="text"
-              name="sid"
-              value={formData.sid}
-              onChange={handleChange}
-              className="form-control"
-              placeholder="Enter Student ID"
-              required
-            />
-          </div>
-
           <div className="mb-3">
             <label className="form-label">Attendance (0-10)</label>
             <input
@@ -137,11 +142,13 @@ export default function PerformanceUpdate() {
 
           <button
             type="submit"
-            className="btn btn-warning w-100"
+            className="btn btn-warning w-100 mb-3"
             disabled={loading}
           >
             {loading ? "Updating..." : "Update Performance"}
           </button>
+
+  
         </form>
       </div>
     </div>
