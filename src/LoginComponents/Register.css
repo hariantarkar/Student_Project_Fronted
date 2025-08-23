@@ -5,19 +5,19 @@
   min-height: 100vh;
   background: linear-gradient(135deg, #8fd493, #e2aea2);
   background-attachment: fixed;
-
   padding: 20px;
 }
 
 .register-card {
   background: #fff;
-  border-radius: 12px;
+  border-radius: 20px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
   padding: 30px;
   width: 100%;
   max-width: 400px;
   animation: fadeIn 0.3s ease-in-out;
   margin-top: 60px;
+  
 }
 
 .register-card h3 {
@@ -39,7 +39,7 @@
 }
 
 .register-card .form-control:focus {
-  border-color: #007bff;
+  border-color: #cd1818;
   box-shadow: none;
 }
 

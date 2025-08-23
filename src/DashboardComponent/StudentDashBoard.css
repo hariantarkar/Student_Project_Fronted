@@ -1,0 +1,121 @@
+:root {
+  --navbar-height: 56px;
+  --sidebar-bg: #1f539b;
+  --sidebar-text: #f9fafb;
+  --sidebar-hover: #3b82f6;
+  --logout-color: #ece6e6;
+}
+
+/* 🔹 Layout wrapper */
+.student-dashboard {
+  display: flex;
+  min-height: 100vh;
+  margin-top: var(--navbar-height); /* pushes below navbar if you have one */
+}
+
+/* 🔹 Sidebar */
+.sidebar {
+  background-color: var(--sidebar-bg);
+  width: 250px;
+  min-height: calc(100vh - var(--navbar-height));
+  position: fixed;
+  top: var(--navbar-height);
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 20px;
+  color: var(--sidebar-text);
+  transition: all 0.3s ease;
+  box-shadow: 4px 0 12px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar h5 {
+  font-weight: 700;
+  font-size: 1.3rem;
+  color: var(--sidebar-text);
+  margin: 20px 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* 🔹 Sidebar menu */
+.sidebar ul {
+  margin-top: 1rem;
+  padding-left: 0;
+}
+
+.sidebar li {
+  list-style: none;
+  margin-bottom: 8px;
+}
+
+.sidebar a {
+  display: flex;
+  align-items: center;
+  padding: 12px 18px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--sidebar-text);
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.sidebar a:hover {
+  background-color: var(--sidebar-hover);
+  color: #fff;
+}
+
+.sidebar a.active {
+  background-color: var(--sidebar-hover);
+  color: #fff;
+}
+
+/* 🔹 Logout section */
+.logout-section {
+  margin-top: auto;
+}
+
+.logout-btn {
+  list-style: none;
+  padding: 12px 18px;
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--logout-color);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+  background-color: rgba(192, 35, 35, 0.2);
+}
+
+/* 🔹 Main content */
+.main-content {
+  margin-left: 250px;
+  padding: 20px;
+  flex: 1;
+  background: #f4f6f9;
+  min-height: calc(100vh - var(--navbar-height));
+  transition: margin-left 0.3s ease;
+}
+
+/* 🔹 Responsive (mobile) */
+@media (max-width: 768px) {
+  .sidebar {
+    position: relative;
+    width: 100%;
+    top: 0;
+    min-height: auto;
+    box-shadow: none;
+  }
+
+  .main-content {
+    margin-left: 0;
+    /* ⚡ Added fix so content is visible below the sidebar */
+    margin-top: 20px;
+  }
+}

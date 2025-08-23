@@ -7,13 +7,12 @@ export default function HomePage() {
       <main className="flex-fill d-flex align-items-center justify-content-center hero">
         <div className="container">
           <div className="hero-card mx-auto">
-            {/* <h1 className="hero-title">Welcome ! </h1> */}
             <h1 className="hero-title">Welcome ! <br></br>Student Performance Prediction System </h1>
             <p className="hero-sub">
               <b>Analyze student data to forecast academic performance with accuracy.</b>
             </p>
             <div className="d-flex justify-content-center">
-              <a href="/keyfeature
+              <a href="/overview
               " className="btn btn-cta">
                 Get Started
               </a>

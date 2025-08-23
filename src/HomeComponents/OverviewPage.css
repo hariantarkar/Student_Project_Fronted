@@ -1,0 +1,46 @@
+.keyfeature-page {
+  max-width: 1200px;
+}
+.about-section {
+  max-width: 1000px;   
+  margin: 0 auto;      
+  padding: 0 20px;     
+}
+.about-section h2 {
+  font-weight: bold;
+  color: #0b1220;
+}
+
+.about-section p {
+  font-size: 1.05rem;
+  color: #596770;
+  line-height: 1.6;
+  text-align: justify; 
+  margin-bottom: 1.5rem;
+}
+
+.team-section {
+  text-align: center;
+}
+
+.team-card {
+  background: linear-gradient(135deg, #007bff, #6f42c1);
+  color: white;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.team-card h4 {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.team-card p {
+  margin: 0.25rem 0;
+}
+
+.team-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+}

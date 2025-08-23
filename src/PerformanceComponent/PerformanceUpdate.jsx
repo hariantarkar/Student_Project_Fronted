@@ -1,11 +1,12 @@
-import React, { useState } from "react";
-import { addPerformance } from "../services/PerformanceService";
-import { useParams} from "react-router-dom";   
-import "./PerformanceAdd.css";
+import React, { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { updatePerformance, getPerformanceBySid } from "../services/PerformanceService";
+import "./PerformanceUpdate.css";
 
-export default function PerformanceAdd() {
+export default function PerformanceUpdate() {
   const { sid } = useParams();
-  
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     sid: sid || "",
     attendance_percentage: "",
@@ -13,46 +14,61 @@ export default function PerformanceAdd() {
     mcq_test: "",
     mock_interview_score: "",
   });
+
   const [message, setMessage] = useState({ text: "", type: "" });
   const [loading, setLoading] = useState(false);
 
+  // ✅ Load student data when page opens
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getPerformanceBySid(sid);
+        if (data) {
+          setFormData({
+            sid: data.sid,
+            attendance_percentage: data.attendance_percentage || "",
+            machine_test: data.machine_test || "",
+            mcq_test: data.mcq_test || "",
+            mock_interview_score: data.mock_interview_score || "",
+          });
+        }
+      } catch (err) {
+        console.error("Error fetching student performance:", err);
+      }
+    };
+    fetchData();
+  }, [sid]);
+
+  
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-    setMessage("");
+    const { name, value, type } = e.target;
+    setFormData({
+      ...formData,
+      [name]: type === "number" && value !== "" ? Number(value) : value,
+    });
+    setMessage({ text: "", type: "" });
   };
 
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setMessage({ text: "", type: "" });
 
     try {
-      const res = await addPerformance(formData);
+      const res = await updatePerformance(formData);
       setMessage({
-        text: res.message || "Performance added successfully",
+        text: res.message || "Performance updated successfully",
         type: "success",
       });
 
-      setFormData({
-        sid: "",
-        attendance_percentage: "",
-        machine_test: "",
-        mcq_test: "",
-        mock_interview_score: "",
-      });
+      setTimeout(() => navigate("/admin/dashboard/performance/view"), 1000);
 
-      setTimeout(() => {
-        setMessage("");
-      }, 2000);
     } catch (err) {
       setMessage({
-        text: err.message || "Error adding performance",
+        text: err.message || "Error updating performance",
         type: "error",
       });
-
-      setTimeout(() => {
-        setMessage("");
-      }, 2000);
     } finally {
       setLoading(false);
     }
@@ -64,7 +80,8 @@ export default function PerformanceAdd() {
         {message.text && (
           <div className={`alert ${message.type}`}>{message.text}</div>
         )}
-        <h3 className="text-center">Add Student Performance</h3>
+
+        <h3 className="text-center mb-3">Update Student Performance</h3>
 
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
@@ -125,11 +142,13 @@ export default function PerformanceAdd() {
 
           <button
             type="submit"
-            className="btn btn-success w-100 mb-3"
+            className="btn btn-warning w-100 mb-3"
             disabled={loading}
           >
-            {loading ? "Submitting..." : "Add Performance"}
+            {loading ? "Updating..." : "Update Performance"}
           </button>
+
+  
         </form>
       </div>
     </div>

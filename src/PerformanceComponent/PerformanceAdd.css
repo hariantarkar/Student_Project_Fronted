@@ -3,10 +3,8 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-
   background: linear-gradient(135deg, #ffb88c, #de6262);
   background-attachment: fixed;
-
   padding: 20px;
 }
 
@@ -38,12 +36,12 @@
 .form-control {
   border-radius: 8px;
   padding: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid #c0b0b0;
   transition: border 0.2s ease;
 }
 
 .form-control:focus {
-  border-color: #007bff;
+  border-color: #ae2c2c;
   outline: none;
   box-shadow: none;
 }
