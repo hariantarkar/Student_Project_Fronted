@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { NavLink, Outlet } from "react-router-dom";
@@ -21,6 +22,7 @@ export default function AdminDashboard() {
 
   return (
     <div className="d-flex admin-container">
+
       <div className={`sidebar ${open ? "open" : ""}`}>
         <h5 className="p-3 border-bottom">Admin</h5>
         <ul>
@@ -30,7 +32,11 @@ export default function AdminDashboard() {
               className={({ isActive }) =>
                 "sidebar-link d-flex align-items-center " + (isActive ? "active" : "")
               }
+
+              onClick={() => setOpen(false)} 
+
               onClick={() => setOpen(false)}
+
             >
               <Book className="me-2" /> Course
             </NavLink>
@@ -42,7 +48,11 @@ export default function AdminDashboard() {
               className={({ isActive }) =>
                 "sidebar-link d-flex align-items-center " + (isActive ? "active" : "")
               }
+
+              onClick={() => setOpen(false)} 
+
               onClick={() => setOpen(false)}
+
             >
               <People className="me-2" /> Students
             </NavLink>
@@ -68,11 +78,20 @@ export default function AdminDashboard() {
         </div>
       </div>
 
+
+ 
+
       {open && (
         <div className="sidebar-overlay" onClick={() => setOpen(false)}></div>
       )}
 
+
+      
       <div className="flex-grow-1 p-3 main-content">
+      
+
+     <div className="flex-grow-1 p-3 main-content">
+
         <button
           className="btn btn-light d-md-none mb-3"
           onClick={() => setOpen(!open)}

@@ -1,6 +1,5 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-// import { BrowserRouter, Route, Routes, Outlet, Navigate } from "react-router-dom";
 import { BrowserRouter, Route, Routes, Outlet, Navigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 

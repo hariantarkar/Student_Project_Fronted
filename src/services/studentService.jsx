@@ -1,20 +1,3 @@
-// api/studentApi.js (or wherever your API calls are)
-// export const addStudent = async (student) => {
-//   const response = await fetch("http://localhost:9999/addStudent", {
-//     method: "POST",
-//     headers: { "Content-Type": "application/json" },
-//     body: JSON.stringify(student),
-//   });
-
-//   if (!response.ok) {
-//     const errorData = await response.json();
-//     throw new Error(errorData.message || "Failed to add student");
-//   }
-
-//   // ✅ This return is missing in your current code
-//   return await response.json();
-// };
-
 
 
 export const getStudents = async () => {
@@ -22,7 +5,6 @@ export const getStudents = async () => {
   const result = await response.json();
   return result.data;
 };
-
 export const deleteStudent = async (sid) => {
   const response = await fetch(`http://localhost:9999/deleteStudent/${sid}`, {
     method: "DELETE",
@@ -39,15 +21,12 @@ export const getUnregisteredStudents = async () => {
       throw new Error("Failed to fetch unregistered students");
     }
     const data = await response.json();
-    return data.data; // return only array part
+    return data.data; 
   } catch (err) {
     console.error("Error fetching unregistered students:", err);
     throw err;
   }
 };
-
-
-
 
 export const getUnregisteredUsers = async () => {
     const res = await fetch("http://localhost:9999/unregistered");
@@ -61,7 +40,6 @@ export const getApprovedUsers = async () => {
   return response.json();
 };
 
-// Approve a user
 export const approveUser = async (uid) => {
     const res = await fetch(`http://localhost:9999/approve-user/${uid}`, {
         method: "PUT",
@@ -81,7 +59,7 @@ export const addStudent = async (studentData) => {
         const errorData = await res.json();
         throw new Error(errorData.message || "Failed to add student");
     }
-    return res.json(); // contains backend message
+    return res.json();
 };
 
 

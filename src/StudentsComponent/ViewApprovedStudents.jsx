@@ -19,7 +19,7 @@ const ViewApprovedStudents = () => {
   const fetchApproved = async () => {
     try {
       setLoading(true);
-      const data = await getApprovedUsers();   // backend already excludes students in "students" table
+      const data = await getApprovedUsers();  
       setApprovedStudents(data);
     } catch (err) {
       setError(err.message || "Failed to load approved students");
@@ -47,20 +47,19 @@ const ViewApprovedStudents = () => {
       setSubmitting(true);
       const res = await addStudent({ ...selectedStudent, cid: course.trim() });
 
-      setMessage(res?.message || "✅ Student added successfully");
+      setMessage(res?.message || " Student added successfully");
       setIsSuccess(true);
       setSubmitting(false);
 
-      // Wait 2 seconds, then refresh list & go back to table view
       timeoutRef.current = setTimeout(async () => {
         await fetchApproved();
-        setSelectedStudent(null);  // hides the form, shows list
+        setSelectedStudent(null); 
         setCourse("");
         setMessage("");
       }, 2000);
     } catch (err) {
       setSubmitting(false);
-      setMessage(err?.message || "❌ Failed to add student");
+      setMessage(err?.message || " Failed to add student");
       setIsSuccess(false);
       timeoutRef.current = setTimeout(() => setMessage(""), 3000);
     }
@@ -78,8 +77,6 @@ const ViewApprovedStudents = () => {
           {message}
         </div>
       )}
-
-      {/* Show LIST only when no student is selected */}
       {!selectedStudent && (
         approvedStudents.length ? (
            <div className="table-responsive"style={{ maxHeight: "400px", overflowY: "auto" , overflowX: "auto" }}>
