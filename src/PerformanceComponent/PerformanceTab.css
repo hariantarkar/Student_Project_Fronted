@@ -1,0 +1,51 @@
+.performance-card {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.08);
+  padding: 28px 24px;
+}
+
+.tabs-title {
+  text-align: center;
+  font-weight: 800;
+  margin-bottom: 18px;
+}
+
+.performance-container {
+  display: flex;
+  gap: 28px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.performance-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 280px;
+  padding: 26px 30px;
+  border: 2px solid #1b1f2320;
+  border-radius: 14px;
+  font-weight: 700;
+  text-decoration: none; 
+  color: #1f2937; 
+  background: #ffffff;
+  transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+}
+
+.performance-box:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.08);
+}
+
+.performance-box.active {
+  background: #eaf2ff;
+  border-color: #5a8cff;
+}
+
+.tabs-placeholder {
+  margin-top: 20px;
+  text-align: center;
+  color: #6b7280;
+  font-size: 0.95rem;
+}

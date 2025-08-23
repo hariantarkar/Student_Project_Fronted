@@ -8,10 +8,8 @@ export default function Navbar() {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-dark">
       <div className="container-fluid">
-        {/* <span className="navbar-brand"><i>🎯 STUDENT PREDICTION</i></span> */}
         <span className="navbar-brand app-title">
-  🎯 <span className="highlight"><i>Student</i></span> <i>Predictor</i>
-</span>
+        🎯 <span className="highlight"><i>Student</i></span> <i>Predictor</i></span>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
           aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
@@ -30,7 +28,22 @@ export default function Navbar() {
             <li className="nav-item">
               <NavLink className="nav-link" to="/contact">Contact</NavLink>
             </li>
-            <NavLink className="nav-link login-link" to="/login">Login</NavLink>
+            <li className="nav-item dropdown">
+              <span className="nav-link  login-link" id="loginDropdown" role="button"
+                data-bs-toggle="dropdown" aria-expanded="false">Login</span>
+              <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="loginDropdown">
+                <li>
+                  <NavLink className="dropdown-item" to="/login/admin">
+                    Admin Login
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink className="dropdown-item" to="/login/student">
+                    Student Login
+                  </NavLink>
+                </li>
+              </ul>
+            </li>
           </ul>
         </div>
       </div>

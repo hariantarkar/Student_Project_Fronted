@@ -41,27 +41,27 @@ export default class Register extends Component {
         role,
       });
       this.setState({
-    name: "",
-    email: "",
-    contact: "",
-    password: "",
-    role: "student",
-    success: res.data.message,
-    error: "",
-    loading: false,
-  });
-       setTimeout(() => {
-    this.setState({ success: "" });
-  }, 1000);
+        name: "",
+        email: "",
+        contact: "",
+        password: "",
+        role: "student",
+        success: res.data.message,
+        error: "",
+        loading: false,
+      });
+      setTimeout(() => {
+        this.setState({ success: "" });
+      }, 1000);
     } catch (err) {
       this.setState({
         error: err.response?.data?.message || "Registration failed",
         success: "",
         loading: false,
       });
-       setTimeout(() => {
-    this.setState({ success: "" });
-  }, 1000);
+      setTimeout(() => {
+        this.setState({ success: "" });
+      }, 1000);
     }
   };
 
@@ -129,7 +129,13 @@ export default class Register extends Component {
                 required
               />
             </div>
-
+            {/* <div className="mb-3">
+            <label className="form-label">Role</label>
+            <select name="role" className="form-select" value={this.state.role} onChange={this.handleChange}>
+              <option value="student">student</option>
+              <option value="admin">admin</option>
+            </select>
+          </div> */}
             <button
               type="submit"
               className="btn btn-primary w-100"

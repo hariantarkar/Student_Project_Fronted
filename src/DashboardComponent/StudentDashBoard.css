@@ -1,102 +1,121 @@
 :root {
-  --navbar-height: 56px; /* must match your navbar height */
+  --navbar-height: 56px;
+  --sidebar-bg: #1f539b;
+  --sidebar-text: #f9fafb;
+  --sidebar-hover: #3b82f6;
+  --logout-color: #ece6e6;
 }
 
-/* 🔹 Wrapper (pushes below navbar) */
+/* 🔹 Layout wrapper */
 .student-dashboard {
   display: flex;
-  min-height: calc(100vh - var(--navbar-height));
-  margin-top: var(--navbar-height);
+  min-height: 100vh;
+  margin-top: var(--navbar-height); /* pushes below navbar if you have one */
 }
 
 /* 🔹 Sidebar */
 .sidebar {
-  background-color: #eaecee;
+  background-color: var(--sidebar-bg);
   width: 250px;
-  height: calc(100vh - var(--navbar-height));
+  min-height: calc(100vh - var(--navbar-height));
   position: fixed;
-  top: var(--navbar-height); /* starts below navbar */
+  top: var(--navbar-height);
   left: 0;
-  overflow-y: auto;
-  border-right: 1px solid #ddd;
-  box-shadow: 2px 0 6px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 20px;
+  color: var(--sidebar-text);
+  transition: all 0.3s ease;
+  box-shadow: 4px 0 12px rgba(0, 0, 0, 0.1);
 }
 
 .sidebar h5 {
   font-weight: 700;
-  font-size: 1.25rem;
-  margin-bottom: 0;
-  margin: 20px;
+  font-size: 1.3rem;
+  color: var(--sidebar-text);
+  margin: 20px 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
+/* 🔹 Sidebar menu */
 .sidebar ul {
   margin-top: 1rem;
   padding-left: 0;
 }
 
 .sidebar li {
-  padding: 10px 15px;
-  font-weight: 500;
-  font-size: 1rem;
-  color: #333;
-  cursor: pointer;
-  border-radius: 6px;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  list-style: none;
+  margin-bottom: 8px;
+}
+
+.sidebar a {
   display: flex;
   align-items: center;
-  margin-bottom: 10px;
+  padding: 12px 18px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--sidebar-text);
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.3s ease;
 }
 
-.sidebar li svg {
-  min-width: 20px;
-  min-height: 20px;
-}
-
-.sidebar li:hover {
-  background-color: #007bff;
+.sidebar a:hover {
+  background-color: var(--sidebar-hover);
   color: #fff;
 }
 
-.sidebar li.text-danger {
-  color: #dc3545;
-}
-
-.sidebar li.text-danger:hover {
-  background-color: #dc3545;
+.sidebar a.active {
+  background-color: var(--sidebar-hover);
   color: #fff;
 }
 
-/* 🔹 Responsive: Sidebar full width on mobile */
-@media (max-width: 768px) {
-  .sidebar {
-    position: relative;
-    width: 100%;
-    height: auto;
-    top: 0;
-  }
-}
-
-/* Logout at bottom */
+/* 🔹 Logout section */
 .logout-section {
   margin-top: auto;
 }
 
-/* Logout style */
 .logout-btn {
   list-style: none;
-  padding: 10px 15px;
-  font-weight: 500;
+  padding: 12px 18px;
+  font-weight: 600;
   font-size: 1rem;
-  color: #dc3545;
+  color: var(--logout-color);
   cursor: pointer;
   display: flex;
   align-items: center;
-  border-radius: 6px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
 }
 
-/* ❌ No hover background for logout */
 .logout-btn:hover {
-  color: #dc3545;
-  background-color: transparent;
+  background-color: rgba(192, 35, 35, 0.2);
 }
 
+/* 🔹 Main content */
+.main-content {
+  margin-left: 250px;
+  padding: 20px;
+  flex: 1;
+  background: #f4f6f9;
+  min-height: calc(100vh - var(--navbar-height));
+  transition: margin-left 0.3s ease;
+}
+
+/* 🔹 Responsive (mobile) */
+@media (max-width: 768px) {
+  .sidebar {
+    position: relative;
+    width: 100%;
+    top: 0;
+    min-height: auto;
+    box-shadow: none;
+  }
+
+  .main-content {
+    margin-left: 0;
+    /* ⚡ Added fix so content is visible below the sidebar */
+    margin-top: 20px;
+  }
+}

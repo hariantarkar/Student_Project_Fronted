@@ -36,7 +36,6 @@ export default function Contact() {
       setError("");
       setFormData({ name: "", email: "", subject: "", message: "" });
 
-      // clear success after 2 sec
       setTimeout(() => setSuccess(""), 2000);
     } catch (err) {
       setError(err.message || "Something went wrong");
