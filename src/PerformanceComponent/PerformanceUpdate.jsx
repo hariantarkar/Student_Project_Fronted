@@ -18,11 +18,10 @@ export default function PerformanceUpdate() {
   const [message, setMessage] = useState({ text: "", type: "" });
   const [loading, setLoading] = useState(false);
 
-  // ✅ Load student data when page opens
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await getPerformanceBySid(sid);
+        const data = await getPerformanceBySid(sid  );
         if (data) {
           setFormData({
             sid: data.sid,

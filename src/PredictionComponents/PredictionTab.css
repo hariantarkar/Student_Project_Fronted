@@ -1,16 +1,12 @@
-.performance-card {
+.prediction-card {
   background: #fff;
   border-radius: 18px;
   box-shadow: 0 12px 36px rgba(0, 0, 0, 0.08);
   padding: 10px 20px;
-  margin-top: 0;         
-  width: 100%;           
+  margin-top: 60px;
   max-height: 130px;  
-  overflow: hidden;
-  padding: 28px 24px;
-  margin-top: 70px;
+  overflow: hidden;   
 }
-
 
 .tabs-title {
   text-align: center;
@@ -18,7 +14,7 @@
   margin-bottom: 18px;
 }
 
-.performance-container {
+.prediction-container {
   display: flex;
   gap: 28px;
   justify-content: center;
@@ -26,7 +22,7 @@
   align-items: stretch;
 }
 
-.performance-box {
+.prediction-box {
   flex: 1 1 calc(50% - 28px);
   min-width: 150px;
   max-width: 200px;
@@ -37,26 +33,21 @@
   align-items: center;     
   justify-content: center; 
   height: 40px;           
-  background-color: rgb(220, 237, 235);
+  background-color: rgba(235, 106, 32, 0.929);
   border-radius: 16px;
   text-decoration: none;
   font-weight: 500;
-  transition: box-shadow 0.2s ease, transform 0.2s ease;
+  color: rgb(53, 60, 199);
 }
 
-.performance-box:hover {
+.prediction-box:hover {
   transform: translateY(-1px);
   box-shadow: 0 10px 22px rgba(0, 0, 0, 0.08);
 }
 
-.performance-box.active {
-  background: #6587bf;
-  color: #fff;
-}
-
 .tabs-placeholder {
   margin-top: 20px;
-  text-align: center; 
+  text-align: center;
   color: #6b7280;
   font-size: 0.95rem;
 }
