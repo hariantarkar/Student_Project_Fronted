@@ -1,12 +1,13 @@
 
 
 
-.students-card { 
+.course-card { 
   background: #fff; 
   border-radius: 18px; 
   box-shadow: 0 12px 36px rgba(0,0,0,.08);
   padding: 28px 24px;
   margin-top: 80px;
+  height: 150px;
 }
 .tabs-title { 
   text-align: center; 
@@ -14,7 +15,7 @@
   margin-bottom: 18px; 
 }
 
-.students-container {
+.course-container {
   display: flex;
   gap: 28px;
   justify-content: center;
@@ -22,11 +23,12 @@
 }
 
 
-.student-box {
+.course-box {
   display: flex;
   align-items: center;
   justify-content: center;
   min-width: 280px;
+  height: 50px;
   padding: 26px 30px;
   border: 2px solid #1b1f2320;
   border-radius: 14px;
@@ -37,13 +39,13 @@
   transition: box-shadow .2s ease, transform .2s ease, border-color .2s ease;
 }
 
-.student-box:hover {
+.course-box:hover {
   transform: translateY(-1px);
   box-shadow: 0 10px 22px rgba(0,0,0,.08);
 }
 
 
-.student-box.active {
+.course-box.active {
   background: #eaf2ff;
   border-color: #5a8cff;
 }

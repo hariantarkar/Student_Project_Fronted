@@ -62,7 +62,41 @@ export const addStudent = async (studentData) => {
     return res.json();
 };
 
+export const updateStudent = async (sid, name, email, contact, uid, cid) => {
+  const response = await fetch("http://localhost:9999/updateStudent", {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ sid, name, email, contact, uid, cid }),
+  });
 
+  let data = {};
+  try {
+    data = await response.json();
+  } catch (err) {
+    console.warn("No JSON response from backend");
+  }
 
+  if (!response.ok) {
+    throw new Error(data.message || "Failed to update student");
+  }
+  return data;
+};
+export const getStudentById = async (sid) => {
+  const response = await fetch(`http://localhost:9999/students/${sid}`, {
+    method: "GET",
+    headers: { "Content-Type": "application/json" },
+  });
 
+  let data = {};
+  try {
+    data = await response.json();
+  } catch (err) {
+    console.warn("No JSON response from backend");
+  }
 
+  if (!response.ok) {
+    throw new Error(data.message || "Failed to fetch student");
+  }
+
+  return data; 
+};

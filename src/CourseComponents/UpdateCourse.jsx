@@ -1,5 +1,6 @@
 import React from "react";
 import { updateCourse } from "../services/courseService";
+import { UpdateCourseValid } from "../Validations/AddNewCourseValid";
 
 export default class UpdateCourse extends React.Component {
   constructor(props) {
@@ -23,6 +24,9 @@ export default class UpdateCourse extends React.Component {
         const msg = res?.message || "Course updated successfully";
         console.log("course is updated");
         this.props.onClose({ type: "success", text: msg });
+         setTimeout(() => {
+      this.props.onClose();
+    }, 1000);
       })
       .catch((err) => {
         this.setState({ saving: false, error: err.message || "Failed to update course" });
@@ -51,7 +55,9 @@ export default class UpdateCourse extends React.Component {
                 className="form-control"
                 value={name}
                 onChange={this.handleChange}
+                onKeyUp={() => UpdateCourseValid(name)}
               />
+              <span id="s"></span>
             </div>
 
             <div className="d-flex gap-2">

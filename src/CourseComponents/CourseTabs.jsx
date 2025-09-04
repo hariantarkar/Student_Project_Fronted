@@ -10,15 +10,15 @@ const CourseTabs = () => {
 
   return (
     <div style={{ display: "flex", flexDirection: "column", height: "100vh" }}>
-      <div className="students-card">
+      <div className="course-card">
         <h2 className="tabs-title">Course Management</h2>
 
-        <div className="students-container">
-          <NavLink to="addCourse" end className={({isActive}) => `student-box ${isActive ? "active" : ""}`}>
+        <div className="course-container">
+          <NavLink to="addCourse" end className={({isActive}) => `course-box ${isActive ? "active" : ""}`}>
             Add New Course
           </NavLink>
 
-          <NavLink to="viewCourses" end className={({isActive}) => `student-box ${isActive ? "active" : ""}`}>
+          <NavLink to="viewCourses" end className={({isActive}) => `course-box ${isActive ? "active" : ""}`}>
             All Courses
           </NavLink>
         </div>

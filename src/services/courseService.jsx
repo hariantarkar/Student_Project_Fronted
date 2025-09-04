@@ -17,16 +17,16 @@ export const saveCourse = async (name) => {
   return data.message;
 };
 
-
 export const getAllCourses = async () => {
   const response = await fetch("http://localhost:9999/viewCourses");
-  const data = await response.json();
   if (!response.ok) throw new Error("Failed to fetch courses");
-  return data; 
+  const result = await response.json();
+  return result.data; 
 };
 
+
+
 export const updateCourse = async (cid, name) => {
-  console.log("hello1");
   const response = await fetch("http://localhost:9999/updateCourse", {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
