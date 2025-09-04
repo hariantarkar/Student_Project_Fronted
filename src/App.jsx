@@ -1,6 +1,7 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Route, Routes, Outlet, Navigate } from "react-router-dom";
+import Cookies from "js-cookie";
 import { jwtDecode } from "jwt-decode";
 
 import HomePage from "./HomeComponents/HomePage.jsx";
@@ -32,16 +33,20 @@ import PerformanceUpdate from "./PerformanceComponent/PerformanceUpdate.jsx";
 import PerformanceChart from "./PerformanceComponent/PerformanceChart.jsx";
 
 import StudentDashboard from "./DashboardComponent/StudentDashBoard.jsx"
-import Profile from "./DashboardComponent/Profile.jsx";
-import Courses from "./DashboardComponent/Course.jsx";
+import StudentProfile from "./DashboardComponent/Profile.jsx";
+import StudentCourses from "./DashboardComponent/Course.jsx";
 import Performance from "./DashboardComponent/Performance.jsx";
-import Prediction from "./DashboardComponent/Prediction.jsx";
+import LatestPrediction from "./DashboardComponent/Prediction.jsx";
 
-const token = localStorage.getItem("token");
+import PredictionTabs from "./PredictionComponents/PredictionTab.jsx";
+import ViewPrediction from "./PredictionComponents/ViewPrediction.jsx";
+
+
+const token = Cookies.get("token");
 if (token) {
   const decoded = jwtDecode(token);
   if (decoded.exp * 1000 < Date.now()) {
-    localStorage.clear();
+    Cookies.remove("token");
     window.location.href = "/login";
   }
 }
@@ -108,15 +113,32 @@ export default class App extends React.Component {
                 <Route path="view" element={<ViewPerformance />} />
 
                 <Route path="update/:sid" element={<PerformanceUpdate />} />
+                <Route path="chart/:sid" element={<PerformanceChart />} />
               </Route>
             </Route>
 
-            <Route path="chart" element={<PerformanceChart />} />
+            <Route path="/login/student" element={<StudentLogin />} />
             <Route path="/student/dashboard" element={<StudentDashboard />}>
-              <Route path="profile" element={<Profile />} />
-              <Route path="courses" element={<Courses />} />
+              <Route path="profile" element={<StudentProfile />} />
+              <Route path="courses" element={<StudentCourses />} />
               <Route path="performance" element={<Performance />} />
-              <Route path="prediction" element={<Prediction />} />
+              <Route path="prediction/:sid" element={<LatestPrediction />} />
+            </Route>
+
+            <Route path="/admin/dashboard" element={<AdminDashboard />}>
+              <Route
+                path="prediction"
+                element={
+                  <div style={{ display: "flex", flexDirection: "column", height: "100vh" }}>
+                    <PredictionTabs />
+                    <div style={{ flex: 1, overflowY: "auto", marginTop: "20px" }}>
+                      <Outlet />
+                    </div>
+                  </div>
+                }>
+                <Route path="all" element={<ViewPrediction />} />
+                {/* <Route path=":sid" element={<PredictionChart />} /> */}
+              </Route>
             </Route>
           </Routes>
         </BrowserRouter>

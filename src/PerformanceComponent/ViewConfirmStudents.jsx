@@ -34,12 +34,12 @@ export default function ViewConfirmedStudents() {
   };
 
   return (
-    <div className="container mt-4">
+    <div className="container mt-0">
       <h3 className="mb-3 text-center">Confirmed Students (For Performance)</h3>
 
       {error && <p className="text-danger">{error}</p>}
 
-      {/* Search Bar */}
+
       <div className="mb-3">
         <input
           type="text"
@@ -57,24 +57,22 @@ export default function ViewConfirmedStudents() {
         <table className="table table-bordered text-center table-hover">
           <thead className="table-dark" style={{ position: "sticky", top: 0 }}>
             <tr>
-              <th>SID</th>
+              <th>SR NO</th>
               <th>Name</th>
               <th>Email</th>
-              <th>Contact</th>
-              <th>User ID</th>
+              {/* <th>Contact</th> */}
               <th>Course</th>
               <th>Action</th>
             </tr>
           </thead>
           <tbody>
             {filteredStudents.length > 0 ? (
-              filteredStudents.map((s) => (
+              filteredStudents.map((s,index) => (
                 <tr key={s.sid}>
-                  <td>{s.sid}</td>
+                  <td>{index+1}</td>
                   <td>{s.name}</td>
                   <td>{s.email}</td>
-                  <td>{s.contact}</td>
-                  <td>{s.uid}</td>
+                  {/* <td>{s.contact}</td> */}
                   <td>{s.course_name}</td>
                   <td>
                     <button

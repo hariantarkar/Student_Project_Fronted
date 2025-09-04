@@ -1,12 +1,6 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import {
-  Book,
-  GraphUp,
-  Speedometer,
-  PersonCircle,
-  BoxArrowRight
-} from "react-bootstrap-icons";
+import {Book,GraphUp,Speedometer,PersonCircle,BoxArrowRight} from "react-bootstrap-icons";
 import { NavLink, Outlet } from "react-router-dom";
 import axios from "axios";
 import "./studentDashboard.css";
@@ -25,7 +19,6 @@ export default function StudentDashboard() {
 
   return (
     <div className="student-dashboard d-flex">
-      {/* Sidebar */}
       <div className="sidebar d-flex flex-column">
         <h5 className="p-3 border-bottom">Student</h5>
         <ul className="list-unstyled ps-3 flex-grow-1">
