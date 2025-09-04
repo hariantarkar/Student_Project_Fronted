@@ -1,5 +1,6 @@
- import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { getApprovedUsers, addStudent } from "../services/studentService";
+import { getAllCourses } from "../services/courseService"; 
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const ViewApprovedStudents = () => {
@@ -10,16 +11,19 @@ const ViewApprovedStudents = () => {
   const [selectedStudent, setSelectedStudent] = useState(null);
   const [course, setCourse] = useState("");
 
+  const [courses, setCourses] = useState([]);
+
   const [message, setMessage] = useState("");
   const [isSuccess, setIsSuccess] = useState(false);
   const [submitting, setSubmitting] = useState(false);
 
   const timeoutRef = useRef(null);
 
+  // Fetch approved students
   const fetchApproved = async () => {
     try {
       setLoading(true);
-      const data = await getApprovedUsers();  
+      const data = await getApprovedUsers();
       setApprovedStudents(data);
     } catch (err) {
       setError(err.message || "Failed to load approved students");
@@ -28,8 +32,19 @@ const ViewApprovedStudents = () => {
     }
   };
 
+  // Fetch courses
+  const fetchCourses = async () => {
+    try {
+      const data = await getAllCourses(); 
+      setCourses(data);
+    } catch (err) {
+      console.error("Error fetching courses:", err);
+    }
+  };
+
   useEffect(() => {
     fetchApproved();
+    fetchCourses(); 
     return () => {
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
     };
@@ -38,7 +53,7 @@ const ViewApprovedStudents = () => {
   const handleAddStudent = async (e) => {
     e.preventDefault();
     if (!course.trim()) {
-      setMessage("⚠ Please enter course ID or name");
+      setMessage("⚠ Please select a course");
       setIsSuccess(false);
       return;
     }
@@ -53,7 +68,7 @@ const ViewApprovedStudents = () => {
 
       timeoutRef.current = setTimeout(async () => {
         await fetchApproved();
-        setSelectedStudent(null); 
+        setSelectedStudent(null);
         setCourse("");
         setMessage("");
       }, 2000);
@@ -70,54 +85,62 @@ const ViewApprovedStudents = () => {
 
   return (
     <div className="container mt-4">
-      <h2 className="mb-4 text-center">Approved Students</h2>
+      <h2 className="mb-4 text-center text-black">Approved Students</h2>
 
       {message && (
         <div className={`alert ${isSuccess ? "alert-success" : "alert-danger"}`}>
           {message}
         </div>
       )}
+
       {!selectedStudent && (
         approvedStudents.length ? (
-           <div className="table-responsive"style={{ maxHeight: "400px", overflowY: "auto" , overflowX: "auto" }}>
-          <table className="table table-bordered table-striped table-hover shadow-sm sticky-header">
-            <thead className="table-dark text-center"style={{ position: "sticky", top: 0, zIndex: 2 }}>
-              <tr>
-                <th>USER ID</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Contact</th>
-                <th>Add Student</th>
-              </tr>
-            </thead>
-            <tbody>
-              {approvedStudents.map((student) => (
-                <tr key={student.uid}>
-                  <td className=" text-center">{student.uid}</td>
-                  <td>{student.name}</td>
-                  <td>{student.email}</td>
-                  <td>{student.contact}</td>
-                  <td>
-                    <button
-                      className="btn btn-primary btn-sm"
-                      onClick={() => {
-                        setSelectedStudent(student);
-                        setCourse("");
-                        setMessage("");
-                      }}
-                    >
-                      Add Student
-                    </button>
-                  </td>
+          <div
+            className="table-responsive"
+            style={{ maxHeight: "400px", overflowY: "auto", overflowX: "auto" }}
+          >
+            <table className="table table-bordered table-striped table-hover shadow-sm sticky-header">
+              <thead
+                className="table-dark text-center"
+                style={{ position: "sticky", top: 0, zIndex: 2 }}
+              >
+                <tr>
+                  <th>USER ID</th>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Contact</th>
+                  <th>Add Student</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {approvedStudents.map((student) => (
+                  <tr key={student.uid}>
+                    <td className="text-center">{student.uid}</td>
+                    <td>{student.name}</td>
+                    <td>{student.email}</td>
+                    <td>{student.contact}</td>
+                    <td>
+                      <button
+                        className="btn btn-primary btn-sm"
+                        onClick={() => {
+                          setSelectedStudent(student);
+                          setCourse("");
+                          setMessage("");
+                        }}
+                      >
+                        Add Student
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         ) : (
           <p className="text-muted text-center">No approved students yet.</p>
         )
-      )}      
+      )}
+
       {selectedStudent && (
         <div className="card p-4 shadow">
           <h4 className="text-center mb-4">Add Student</h4>
@@ -143,13 +166,19 @@ const ViewApprovedStudents = () => {
             </div>
 
             <div className="mb-3">
-              <label className="form-label">Course ID </label>
-              <input
-                className="form-control"
+              <label className="form-label">Select Course</label>
+              <select
+                className="form-select"
                 value={course}
                 onChange={(e) => setCourse(e.target.value)}
-                placeholder="Enter course id or name"
-              />
+              >
+                <option value="">-- Select Course --</option>
+                {courses.map((c) => (
+                  <option key={c.cid} value={c.cid}>
+                    {c.name}
+                  </option>
+                ))}
+              </select>
             </div>
 
             <button
@@ -178,9 +207,5 @@ const ViewApprovedStudents = () => {
     </div>
   );
 };
-export default ViewApprovedStudents; 
 
-
-
-                             
-
+export default ViewApprovedStudents;

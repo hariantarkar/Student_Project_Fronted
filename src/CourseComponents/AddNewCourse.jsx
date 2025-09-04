@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { saveCourse } from "../services/courseService";
-
+import { validateNewCourse } from "../Validations/AddNewCourseValid";
 export default class AddNewCourse extends Component {
   constructor(props) {
     super(props);
@@ -39,7 +39,7 @@ export default class AddNewCourse extends Component {
     return (
       <div
         className="container"
-        style={{ backgroundColor: "gray", color: "white", width: "50%" }}
+        style={{ backgroundColor: "success", color: "white", width: "50%" }}
       >
         <h3 className="text-center mb-4">Add New Course</h3>
         {this.state.message && (
@@ -57,7 +57,8 @@ export default class AddNewCourse extends Component {
               value={this.state.courseName}
               onChange={this.handleChange}
               placeholder="Enter course name"
-            />
+              onKeyUp={() =>validateNewCourse(this.state.courseName)}
+            /><span id="s"></span>
           </div>
           <button type="submit" className="btn btn-primary">
             Add New Course

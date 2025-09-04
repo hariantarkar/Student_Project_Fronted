@@ -16,6 +16,10 @@ export default class DeleteCourse extends React.Component {
           type: "success",
           text: res?.message || "Course deleted successfully",
         });
+         setTimeout(() => {
+      onClose(); 
+    }, 1000);
+        
       })
       .catch((err) => {
         onClose({

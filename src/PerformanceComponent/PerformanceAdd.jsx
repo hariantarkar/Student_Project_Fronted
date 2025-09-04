@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { addPerformance } from "../services/PerformanceService";
-import { useParams} from "react-router-dom";   
+import { useParams } from "react-router-dom";   
 import "./PerformanceAdd.css";
-
+import { validateScore } from "../Validations/PerformanceAddValid";  
 export default function PerformanceAdd() {
   const { sid } = useParams();
   
@@ -19,6 +19,7 @@ export default function PerformanceAdd() {
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
     setMessage("");
+    validateScore(e.target.value, `${e.target.name}_err`, e.target.name);
   };
 
   const handleSubmit = async (e) => {
@@ -79,6 +80,7 @@ export default function PerformanceAdd() {
               max="10"
               required
             />
+            <span id="attendance_percentage_err"></span>
           </div>
 
           <div className="mb-3">
@@ -93,6 +95,7 @@ export default function PerformanceAdd() {
               max="10"
               required
             />
+            <span id="machine_test_err"></span>
           </div>
 
           <div className="mb-3">
@@ -107,6 +110,7 @@ export default function PerformanceAdd() {
               max="10"
               required
             />
+            <span id="mcq_test_err"></span>
           </div>
 
           <div className="mb-3">
@@ -121,6 +125,7 @@ export default function PerformanceAdd() {
               max="10"
               required
             />
+            <span id="mock_interview_score_err"></span>
           </div>
 
           <button

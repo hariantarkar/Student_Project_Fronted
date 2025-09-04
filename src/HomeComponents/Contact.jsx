@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Contact.css";
 import { addContact } from "../services/contactService";
+import { FullNameValid,validateEmail,SubjectValid ,TextMessageValid } from "../Validations/ContactUsValid";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -61,7 +62,7 @@ export default function Contact() {
               onChange={handleChange}
               placeholder="Enter your name"
               required
-            />
+            onKeyUp={() =>FullNameValid(formData.name)}  /><span id="s"></span>
           </div>
 
           <div className="mb-3">
@@ -74,7 +75,8 @@ export default function Contact() {
               onChange={handleChange}
               placeholder="Enter your email"
               required
-            />
+            onKeyUp={(e) => validateEmail(e)} />
+            <span id="s"></span>
           </div>
 
           <div className="mb-3">
@@ -87,7 +89,7 @@ export default function Contact() {
               onChange={handleChange}
               placeholder="Enter subject"
               required
-            />
+             onKeyUp={() =>SubjectValid(formData.subject)}  /><span id="sub"></span>
           </div>
 
           <div className="mb-3">
@@ -100,8 +102,9 @@ export default function Contact() {
               onChange={handleChange}
               placeholder="Write your message..."
               maxLength={200}
-              required
+              required  onKeyUp={(e) => TextMessageValid(e.target.value)}
             ></textarea>
+            <span id="msgBox"></span>
           </div>
 
           <button type="submit" className="btn btn-primary w-100">
