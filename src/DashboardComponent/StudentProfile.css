@@ -1,0 +1,32 @@
+.profile-page {
+  padding: 2rem;
+  max-width: 600px;
+  margin: auto;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.profile-title {
+  display: flex;
+  align-items: center;
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  color: #1f539b;
+}
+
+.profile-card {
+  background-color: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
+  font-size: 1.1rem;
+}
+
+.profile-card p {
+  margin-bottom: 0.8rem;
+}
+
+.loading-text,
+.error-text {
+  font-size: 1.1rem;
+  color: #555;
+}

@@ -39,8 +39,8 @@ export default function ViewPerformance() {
   };
 
   return (
-    <div className="container mt-4">
-      <h3 className="mb-3 text-center">Students Performance</h3>
+    <div className="container mt-0">
+      <h3 className="mb-2 text-center">Students Performance</h3>
       {error && <p className="text-danger">{error}</p>}
       <div className="mb-3 text-end">
         <input
@@ -58,10 +58,10 @@ export default function ViewPerformance() {
           <thead className="table-dark"
                 style={{ position: "sticky", top: "0", zIndex: "2" }}>
             <tr>
-              <th>SID</th>
+              <th>SR NO</th>
               <th>Name</th>
               <th>Email</th>
-              <th>Contact</th>
+              {/* <th>Contact</th> */}
               <th>Course</th>
               <th>Attendance</th>
               <th>Machine Test</th>
@@ -69,17 +69,19 @@ export default function ViewPerformance() {
               <th>Mock Interview</th>
               <th>Final Score</th>
               <th>Percentage</th>
+              <th>Date</th>
               <th>Action</th>
+              <th>View</th>
             </tr>
           </thead>
           <tbody>
             {filteredData.length > 0 ? (
-              filteredData.map((p) => (
+              filteredData.map((p,index) => (
                 <tr key={p.per_id}>
-                  <td>{p.sid}</td>
+                  <td>{index+1}</td>
                   <td>{p.name}</td>
                   <td>{p.email}</td>
-                  <td>{p.contact}</td>
+                  {/* <td>{p.contact}</td> */}
                   <td>{p.course_name}</td>
                   <td>{p.attendance_percentage}</td>
                   <td>{p.machine_test}</td>
@@ -87,6 +89,11 @@ export default function ViewPerformance() {
                   <td>{p.mock_interview_score}</td>
                   <td>{p.final_score}</td>
                   <td>{p.percentage}%</td>
+                  <td>{new Date(p.created_at).toLocaleString("en-IN", {
+                    timeZone: "Asia/Kolkata",dateStyle: "short",
+                    timeStyle: "medium",})}
+                  </td>
+
                   <td>
                     <button
                       className="btn btn-warning btn-sm"
@@ -97,6 +104,17 @@ export default function ViewPerformance() {
                       Update
                     </button>
                   </td>
+
+                  <td>
+  <button
+    className="btn btn-success btn-sm"
+    onClick={() =>
+      navigate(`/admin/dashboard/performance/chart/${p.sid}`)
+    }
+  >
+    View
+  </button>
+</td>
                 </tr>
               ))
             ) : (
