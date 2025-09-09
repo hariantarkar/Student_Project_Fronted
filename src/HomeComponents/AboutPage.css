@@ -14,7 +14,6 @@
 .about-card {
   background: #ffffff;
   border-radius: 20px;
-  /* box-shadow: 0 12px 30px rgba(2, 6, 23, 0.18); */
   padding: var(--card-padding);
   max-width: var(--card-max-width); 
   width: 100%; 

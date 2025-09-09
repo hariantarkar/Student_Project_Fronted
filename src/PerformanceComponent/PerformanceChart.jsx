@@ -1,14 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getAllPerformance } from "../services/PerformanceService";
-import {
-  PieChart,
-  Pie,
-  Cell,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-} from "recharts";
+import {PieChart,Pie,Cell,Tooltip,Legend,ResponsiveContainer,} from "recharts";
 
 export default function PerformanceChart() {
   const { sid } = useParams();
@@ -59,29 +52,22 @@ export default function PerformanceChart() {
 
   return (
     <div className="container mt-3 text-center">
-      <h3>
-        Student {sid} - Performance
-        <small className="text-muted" style={{ marginLeft: "10px" }}>
-          {formattedDate}
-        </small>
+      <h3>{selected.name} - Performance
+      <small className="text-muted" style={{ marginLeft: "10px" }}>{formattedDate}</small>
       </h3>
 
       <div className="mb-3">
         <label className="me-2 fw-bold">Select Attempt:</label>
-        <select
-          value={selected.per_id}
-          onChange={(e) =>
-            setSelected(
-              performances.find((p) => p.per_id === Number(e.target.value))
-            )
-          }
-        >
-          {performances.map((p) => (
-            <option key={p.per_id} value={p.per_id}>
-              Attempt  ({new Date(p.created_at).toLocaleDateString()})
-            </option>
-          ))}
-        </select>
+        <select value={selected.per_id} onChange={(e) =>setSelected(
+        performances.find((p) => p.per_id === Number(e.target.value)))}>
+  
+        {performances.map((p, index) => (
+        <option key={p.per_id} value={p.per_id}>
+            Attempt {index + 1} ({new Date(p.created_at).toLocaleDateString()})
+        </option>
+  ))}
+</select>
+
       </div>
 
       <ResponsiveContainer width="100%" height={400}>
@@ -101,10 +87,7 @@ export default function PerformanceChart() {
               <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
             ))}
           </Pie>
-          <Tooltip
-            formatter={(value) =>
-              `${total ? ((value / total) * 100).toFixed(0) : 0}%`
-            }
+          <Tooltip formatter={(value) => `${total ? ((value / total) * 100).toFixed(0) : 0}%`}
           />
           <Legend verticalAlign="bottom" height={36} />
         </PieChart>

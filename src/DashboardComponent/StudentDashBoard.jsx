@@ -1,11 +1,26 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import {Book,GraphUp,Speedometer,PersonCircle,BoxArrowRight} from "react-bootstrap-icons";
+import { Book, GraphUp, Speedometer, PersonCircle, BoxArrowRight } from "react-bootstrap-icons";
 import { NavLink, Outlet } from "react-router-dom";
 import axios from "axios";
+import Cookies from "js-cookie";
+import {jwtDecode} from "jwt-decode";
 import "./studentDashboard.css";
 
 export default function StudentDashboard() {
+  const token = Cookies.get("token");
+  let studentId = null;
+
+  if (token) {
+    try {
+      const decoded = jwtDecode(token);
+      studentId = decoded.sid; // use sid from JWT
+      console.log(studentId);
+    } catch (err) {
+      console.error("Invalid token:", err);
+    }
+  }
+
   const handleLogout = async () => {
     if (window.confirm("Are you sure you want to logout?")) {
       try {
@@ -44,11 +59,9 @@ export default function StudentDashboard() {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/student/dashboard/prediction"
-              className={({ isActive }) => "d-flex align-items-center " + (isActive ? "active" : "")}
-            >
+            <NavLink to={`/student/dashboard/prediction`}>
               <GraphUp className="me-2" /> Prediction Result
-            </NavLink>
+            </NavLink>  
           </li>
         </ul>
 

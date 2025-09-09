@@ -11,11 +11,11 @@ const PredictionTabs = () => {
       <div className="prediction-card">
         <h2 className="tabs-title">Prediction Management</h2>
         <div className="prediction-container">
-          <NavLink
-            to="all"
-            className={({ isActive }) => `prediction-box ${isActive ? "active" : ""}`}
-          >
+          <NavLink to="all" className={({ isActive }) => `prediction-box ${isActive ? "active" : ""}`}>
             View Predictions
+          </NavLink>
+          <NavLink to="shortlisted" className={({ isActive }) => `prediction-box ${isActive ? "active" : ""}`}>
+            Shortlisted
           </NavLink>
         </div>
       </div>

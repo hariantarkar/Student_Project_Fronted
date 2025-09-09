@@ -80,54 +80,26 @@ export default class Register extends Component {
           <form onSubmit={this.handleSubmit}>
             <div className="mb-3">
               <label className="form-label">Full Name</label>
-              <input
-                type="text"
-                name="name"
-                className="form-control"
-                value={this.state.name}
-                onChange={this.handleChange}
-                placeholder="Enter your name"
-                required
-              />
+              <input type="text" name="name" className="form-control" value={this.state.name}
+                onChange={this.handleChange} placeholder="Enter your name" required/>
             </div>
 
             <div className="mb-3">
               <label className="form-label">Email</label>
-              <input
-                type="email"
-                name="email"
-                className="form-control"
-                value={this.state.email}
-                onChange={this.handleChange}
-                placeholder="Enter your email"
-                required
-              />
+              <input type="email" name="email" className="form-control" value={this.state.email}
+                onChange={this.handleChange} placeholder="Enter your email" required/>
             </div>
 
             <div className="mb-3">
               <label className="form-label">Contact</label>
-              <input
-                type="text"
-                name="contact"
-                className="form-control"
-                value={this.state.contact}
-                onChange={this.handleChange}
-                placeholder="Enter contact number"
-                required
-              />
+              <input type="text" name="contact" className="form-control" value={this.state.contact}
+                onChange={this.handleChange} placeholder="Enter contact number" required/>
             </div>
 
             <div className="mb-3">
               <label className="form-label">Password</label>
-              <input
-                type="password"
-                name="password"
-                className="form-control"
-                value={this.state.password}
-                onChange={this.handleChange}
-                placeholder="Enter password"
-                required
-              />
+              <input type="password" name="password" className="form-control" value={this.state.password}
+                onChange={this.handleChange} placeholder="Enter password" required/>
             </div>
             {/* <div className="mb-3">
             <label className="form-label">Role</label>
@@ -136,11 +108,8 @@ export default class Register extends Component {
               <option value="admin">admin</option>
             </select>
           </div> */}
-            <button
-              type="submit"
-              className="btn btn-primary w-100"
-              disabled={this.state.loading}
-            >
+            <button type="submit" className="btn btn-primary w-100"
+              disabled={this.state.loading}>
               {this.state.loading ? "Registering..." : "Register"}
             </button>
           </form>
