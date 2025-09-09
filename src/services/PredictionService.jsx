@@ -16,7 +16,7 @@ export const getAllPredictions = async () => {
 export const getLatestPrediction = async (sid) => {
   try {
     const res = await axios.get(`${API_URL}/${sid}`, {
-      withCredentials: true, // include cookies
+      withCredentials: true, 
     });
     return res.data;
   } catch (err) {

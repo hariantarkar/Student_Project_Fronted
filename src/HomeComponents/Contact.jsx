@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+
+
+import React, { useState } from "react";  
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Contact.css";
 import { addContact } from "../services/contactService";
-import { FullNameValid,validateEmail,SubjectValid ,TextMessageValid } from "../Validations/ContactUsValid";
+import { FullNameValid, validateEmail, SubjectValid, TextMessageValid } from "../Validations/ContactUsValid";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -30,16 +32,34 @@ export default function Contact() {
       return;
     }
 
+    const isNameValid = FullNameValid(name); 
+    const isEmailValid = validateEmail({ target: { value: email, style: {} } }); 
+    const isSubjectValid = SubjectValid(subject);
+    const isMessageValid = TextMessageValid(message);
+
+    if (!isNameValid || !isEmailValid || !isSubjectValid || !isMessageValid) {
+      setError("Please fix the errors before sending");
+      return;
+    }
+
     try {
       const result = await addContact({ name, email, subject, message });
 
-      setSuccess(result.message || "Message sent successfully!");
+  
+      if (result && result.message === "Email already exists") {
+        setError("Email already exists. Please use a different email.");
+        setSuccess("");
+        return;
+      }
+
+    
+      setSuccess("Thanks for contacting us. Team will contact you.");
       setError("");
       setFormData({ name: "", email: "", subject: "", message: "" });
 
-      setTimeout(() => setSuccess(""), 2000);
     } catch (err) {
       setError(err.message || "Something went wrong");
+      setSuccess("");
     }
   };
 
@@ -49,7 +69,6 @@ export default function Contact() {
         <h3 className="text-center">Contact Us</h3>
 
         {error && <div className="alert alert-danger">{error}</div>}
-        {success && <div className="alert alert-success">{success}</div>}
 
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
@@ -62,7 +81,9 @@ export default function Contact() {
               onChange={handleChange}
               placeholder="Enter your name"
               required
-            onKeyUp={() =>FullNameValid(formData.name)}  /><span id="s"></span>
+              onKeyUp={() => FullNameValid(formData.name)}
+            />
+            <span id="s"></span>
           </div>
 
           <div className="mb-3">
@@ -75,7 +96,8 @@ export default function Contact() {
               onChange={handleChange}
               placeholder="Enter your email"
               required
-            onKeyUp={(e) => validateEmail(e)} />
+              onKeyUp={(e) => validateEmail(e)}
+            />
             <span id="s"></span>
           </div>
 
@@ -89,7 +111,9 @@ export default function Contact() {
               onChange={handleChange}
               placeholder="Enter subject"
               required
-             onKeyUp={() =>SubjectValid(formData.subject)}  /><span id="sub"></span>
+              onKeyUp={() => SubjectValid(formData.subject)}
+            />
+            <span id="sub"></span>
           </div>
 
           <div className="mb-3">
@@ -102,7 +126,8 @@ export default function Contact() {
               onChange={handleChange}
               placeholder="Write your message..."
               maxLength={200}
-              required  onKeyUp={(e) => TextMessageValid(e.target.value)}
+              required
+              onKeyUp={(e) => TextMessageValid(e.target.value)}
             ></textarea>
             <span id="msgBox"></span>
           </div>
@@ -112,6 +137,41 @@ export default function Contact() {
           </button>
         </form>
       </div>
+
+      
+      {success && (
+        <div
+          className="modal fade show"
+          style={{ display: "block", background: "rgba(0,0,0,0.5)" }}
+          tabIndex="-1"
+        >
+          <div className="modal-dialog">
+            <div className="modal-content">
+              <div className="modal-header bg-success text-white">
+                <h5 className="modal-title">Success</h5>
+                <button
+                  type="button"
+                  className="btn-close btn-close-white"
+                  onClick={() => setSuccess("")}
+                ></button>
+              </div>
+              <div className="modal-body">
+                <p>{success}</p>
+              </div>
+              <div className="modal-footer">
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  onClick={() => setSuccess("")}
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
+

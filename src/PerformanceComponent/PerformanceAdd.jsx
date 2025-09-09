@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { addPerformance } from "../services/PerformanceService";
-import { useParams } from "react-router-dom";   
+import { useParams ,useNavigate } from "react-router-dom";   
 import "./PerformanceAdd.css";
 import { validateScore } from "../Validations/PerformanceAddValid";  
+
 export default function PerformanceAdd() {
-  const { sid } = useParams();
-  
+  const { sid } = useParams(); 
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     sid: sid || "",
     attendance_percentage: "",
@@ -13,12 +14,14 @@ export default function PerformanceAdd() {
     mcq_test: "",
     mock_interview_score: "",
   });
+
   const [message, setMessage] = useState({ text: "", type: "" });
   const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-    setMessage("");
+    setMessage({ text: "", type: "" });
+
     validateScore(e.target.value, `${e.target.name}_err`, e.target.name);
   };
 
@@ -26,6 +29,11 @@ export default function PerformanceAdd() {
     e.preventDefault();
     setLoading(true);
     setMessage({ text: "", type: "" });
+    if (!formData.sid) {
+      setMessage({ text: "Student ID missing.", type: "error" });
+      setLoading(false);
+      return;
+    }
 
     try {
       const res = await addPerformance(formData);
@@ -35,25 +43,20 @@ export default function PerformanceAdd() {
       });
 
       setFormData({
-        sid: "",
+        sid: sid || "",
         attendance_percentage: "",
         machine_test: "",
         mcq_test: "",
         mock_interview_score: "",
       });
 
-      setTimeout(() => {
-        setMessage("");
-      }, 2000);
+      setTimeout(() => setMessage({ text: "", type: "" }), 2000);
     } catch (err) {
       setMessage({
-        text: err.message || "Error adding performance",
+        text: err.response?.data?.message || err.message || "Error adding performance",
         type: "error",
       });
-
-      setTimeout(() => {
-        setMessage("");
-      }, 2000);
+      setTimeout(() => setMessage({ text: "", type: "" }), 2000);
     } finally {
       setLoading(false);
     }
@@ -62,9 +65,7 @@ export default function PerformanceAdd() {
   return (
     <div className="perf-container">
       <div className="perf-card">
-        {message.text && (
-          <div className={`alert ${message.type}`}>{message.text}</div>
-        )}
+        {message.text && <div className={`alert ${message.type}`}>{message.text}</div>}
         <h3 className="text-center">Add Student Performance</h3>
 
         <form onSubmit={handleSubmit}>
@@ -135,8 +136,16 @@ export default function PerformanceAdd() {
           >
             {loading ? "Submitting..." : "Add Performance"}
           </button>
+           <button
+            type="button"
+            className="btn btn-secondary w-100"
+            onClick={() => navigate("/admin/dashboard/performance/students")}
+          >
+            Cancel
+          </button>
         </form>
       </div>
     </div>
   );
 }
+

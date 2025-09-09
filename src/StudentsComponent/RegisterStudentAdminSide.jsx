@@ -1,7 +1,8 @@
-import React, { Component } from "react"; 
+
+import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import RegistrationService from "../services/RegistrationService";
-import "./Register.css";
+import "./RegisterStudentAdminSide.css";
 
 import { FullNameValid, validateEmailValue, PhoneValid, Passwordvalid } from "../Validations/RegisterNewStudentValid"; // adjust path
 
@@ -28,6 +29,7 @@ export default class Register extends Component {
     e.preventDefault();
     const { name, email, contact, password, role } = this.state;
 
+  
     const isNameValid = FullNameValid(name);
     const isEmailValid = validateEmailValue(email);
     const isPhoneValid = PhoneValid(contact);
@@ -52,19 +54,17 @@ export default class Register extends Component {
         password,
         role,
       });
-
-    
       this.setState({
         name: "",
         email: "",
         contact: "",
         password: "",
         role: "student",
-        success: "Registration successful! Please wait for admin approval before login.",
+        success: res.data.message,
         error: "",
         loading: false,
       });
-
+      setTimeout(() => this.setState({ success: "" }), 1000);
     } catch (err) {
       this.setState({
         error: err.response?.data?.message || "Registration failed",
@@ -78,9 +78,10 @@ export default class Register extends Component {
     return (
       <div className="register-container">
         <div className="register-card">
-          <h3 className="text-center mb-4">Register</h3>
+          <h3 className="text-center mb-4">Student Details</h3>
 
           {this.state.error && <div className="alert alert-danger">{this.state.error}</div>}
+          {this.state.success && <div className="alert alert-success">{this.state.success}</div>}
 
           <form onSubmit={this.handleSubmit}>
             <div className="mb-3">
@@ -148,40 +149,6 @@ export default class Register extends Component {
             </button>
           </form>
         </div>
-
-     
-        {this.state.success && (
-          <div
-            className="modal fade show"
-            style={{ display: "block", background: "rgba(0,0,0,0.5)" }}
-            tabIndex="-1"
-          >
-            <div className="modal-dialog">
-              <div className="modal-content">
-                <div className="modal-header bg-success text-white">
-                  <h5 className="modal-title">Success</h5>
-                  <button
-                    type="button"
-                    className="btn-close btn-close-white"
-                    onClick={() => this.setState({ success: "" })}
-                  ></button>
-                </div>
-                <div className="modal-body">
-                  <p>{this.state.success}</p>
-                </div>
-                <div className="modal-footer">
-                  <button
-                    type="button"
-                    className="btn btn-secondary"
-                    onClick={() => this.setState({ success: "" })}
-                  >
-                    Close
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
       </div>
     );
   }

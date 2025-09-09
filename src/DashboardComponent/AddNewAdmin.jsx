@@ -1,11 +1,10 @@
-import React, { Component } from "react"; 
+import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import RegistrationService from "../services/RegistrationService";
-import "./Register.css";
 
-import { FullNameValid, validateEmailValue, PhoneValid, Passwordvalid } from "../Validations/RegisterNewStudentValid"; // adjust path
+import { FullNameValid, validateEmailValue, PhoneValid, Passwordvalid } from "../Validations/RegisterNewStudentValid"; 
 
-export default class Register extends Component {
+export default class AddNewAdmin extends Component {
   constructor() {
     super();
     this.state = {
@@ -13,7 +12,7 @@ export default class Register extends Component {
       email: "",
       contact: "",
       password: "",
-      role: "student",
+      role: "admin", 
       error: "",
       success: "",
       loading: false,
@@ -40,31 +39,30 @@ export default class Register extends Component {
 
     if (!isNameValid || !isEmailValid || !isPhoneValid || !isPasswordValid) {
       this.setState({ error: "Please fix validation errors before submitting" });
-      return; 
+      return;
     }
 
     try {
       this.setState({ loading: true });
-      const res = await RegistrationService.registerUser({
+
+      await RegistrationService.registerUser({
         name,
         email,
         contact,
         password,
-        role,
+        role, 
       });
 
-    
       this.setState({
         name: "",
         email: "",
         contact: "",
         password: "",
-        role: "student",
-        success: "Registration successful! Please wait for admin approval before login.",
+        role: "admin",
+        success: "Admin registered successfully!",
         error: "",
         loading: false,
       });
-
     } catch (err) {
       this.setState({
         error: err.response?.data?.message || "Registration failed",
@@ -78,9 +76,11 @@ export default class Register extends Component {
     return (
       <div className="register-container">
         <div className="register-card">
-          <h3 className="text-center mb-4">Register</h3>
+          <h3 className="text-center mb-4"> New Admin Details </h3>
 
-          {this.state.error && <div className="alert alert-danger">{this.state.error}</div>}
+          {this.state.error && (
+            <div className="alert alert-danger">{this.state.error}</div>
+          )}
 
           <form onSubmit={this.handleSubmit}>
             <div className="mb-3">
@@ -91,7 +91,7 @@ export default class Register extends Component {
                 className="form-control"
                 value={this.state.name}
                 onChange={this.handleChange}
-                placeholder="Enter your name"
+                placeholder="Enter full name"
                 required
                 onKeyUp={() => FullNameValid(this.state.name)}
               />
@@ -106,7 +106,7 @@ export default class Register extends Component {
                 className="form-control"
                 value={this.state.email}
                 onChange={this.handleChange}
-                placeholder="Enter your email"
+                placeholder="Enter email"
                 required
                 onKeyUp={() => validateEmailValue(this.state.email)}
               />
@@ -143,13 +143,17 @@ export default class Register extends Component {
               <span id="passwordMessage"></span>
             </div>
 
-            <button type="submit" className="btn btn-primary w-100" disabled={this.state.loading}>
-              {this.state.loading ? "Registering..." : "Register"}
+            <button
+              type="submit"
+              className="btn btn-primary w-100"
+              disabled={this.state.loading}
+            >
+              {this.state.loading ? "Registering..." : "Add Admin"}
             </button>
           </form>
         </div>
 
-     
+
         {this.state.success && (
           <div
             className="modal fade show"

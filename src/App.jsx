@@ -12,7 +12,7 @@ import Contact from "./HomeComponents/Contact.jsx";
 import Overview from "./HomeComponents/OverviewPage.jsx"
 import AdminLogin from "./LoginComponents/AdminLogin.jsx";
 import StudentLogin from "./LoginComponents/StudentLogin.jsx";
-
+import RegisterStudentAdminSide from "./StudentsComponent/RegisterStudentAdminSide.jsx"
 import Register from "./LoginComponents/Register.jsx";
 
 import AdminDashboard from "./DashboardComponent/AdminDashboard.jsx";
@@ -41,6 +41,9 @@ import LatestPrediction from "./DashboardComponent/Prediction.jsx";
 import PredictionTabs from "./PredictionComponents/PredictionTab.jsx";
 import ViewPrediction from "./PredictionComponents/ViewPrediction.jsx";
 
+import ViewEnquiry from "./NewEnquiry/ViewEnquiry.jsx"
+
+import AddNewAdmin from "./DashboardComponent/AddNewAdmin.jsx";
 
 const token = Cookies.get("token");
 if (token) {
@@ -68,6 +71,12 @@ export default class App extends React.Component {
             <Route path="/login/admin" element={<AdminLogin />} />
             <Route path="/admin/dashboard/*" element={<AdminDashboard />} />
 
+
+
+
+
+
+
             <Route path="/admin/dashboard" element={<AdminDashboard />}>
               <Route path="Course" element={
                 <div style={{ display: "flex", flexDirection: "column", height: "100vh" }}>
@@ -91,6 +100,7 @@ export default class App extends React.Component {
                   </div>
                 </div>
               }>
+                <Route path="RegisterStudentAdminSide" element={<RegisterStudentAdminSide />} />
                 <Route path="unregisteredStudents" element={<UnregisteredStudents />} />
                 <Route path="viewApprovedStudents" element={<ViewApprovedStudents />} />
                 <Route path="viewAllStudents" element={<ViewAllStudent />} />
@@ -137,9 +147,34 @@ export default class App extends React.Component {
                   </div>
                 }>
                 <Route path="all" element={<ViewPrediction />} />
-                {/* <Route path=":sid" element={<PredictionChart />} /> */}
+
               </Route>
             </Route>
+
+            <Route path="/admin/dashboard" element={<AdminDashboard />}>
+              <Route
+                path="enquiry"
+                element={
+                  <div style={{ display: "flex", flexDirection: "column", height: "100vh" }}>
+
+                    <div style={{ flex: 1, overflowY: "auto", marginTop: "20px" }}>
+                      <Outlet />
+                    </div>
+                  </div>
+                }
+              >
+                <Route path="" element={<ViewEnquiry />} />
+              </Route>
+            </Route>
+            <Route path="/admin/dashboard" element={<AdminDashboard />}>
+              <Route
+                path="AddNewAdmin"
+                element={<AddNewAdmin />}
+              />
+            </Route>
+
+
+
           </Routes>
         </BrowserRouter>
       </>
