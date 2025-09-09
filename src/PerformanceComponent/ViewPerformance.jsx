@@ -43,13 +43,9 @@ export default function ViewPerformance() {
       <h3 className="mb-2 text-center">Students Performance</h3>
       {error && <p className="text-danger">{error}</p>}
       <div className="mb-3 text-end">
-        <input
-          type="text"
-          className="form-control w-100 d-inline-block"
-          placeholder="Search by name, email, or course"
-          value={search}
-          onChange={handleSearch}
-        />
+        <input type="text" className="form-control w-100 d-inline-block"
+          placeholder="Search by name, email, or course" value={search}
+          onChange={handleSearch}/>
       </div>
 
       <div className="table-responsive"
@@ -61,7 +57,6 @@ export default function ViewPerformance() {
               <th>SR NO</th>
               <th>Name</th>
               <th>Email</th>
-              {/* <th>Contact</th> */}
               <th>Course</th>
               <th>Attendance</th>
               <th>Machine Test</th>
@@ -81,7 +76,6 @@ export default function ViewPerformance() {
                   <td>{index+1}</td>
                   <td>{p.name}</td>
                   <td>{p.email}</td>
-                  {/* <td>{p.contact}</td> */}
                   <td>{p.course_name}</td>
                   <td>{p.attendance_percentage}</td>
                   <td>{p.machine_test}</td>
@@ -106,15 +100,11 @@ export default function ViewPerformance() {
                   </td>
 
                   <td>
-  <button
-    className="btn btn-success btn-sm"
-    onClick={() =>
-      navigate(`/admin/dashboard/performance/chart/${p.sid}`)
-    }
-  >
-    View
-  </button>
-</td>
+              <button className="btn btn-success btn-sm" onClick={() =>
+                  navigate(`/admin/dashboard/performance/chart/${p.sid}`)}>
+                  View
+              </button>
+                  </td>
                 </tr>
               ))
             ) : (

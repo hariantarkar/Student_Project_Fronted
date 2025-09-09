@@ -12,10 +12,7 @@ export default function HomePage() {
               <b>Analyze student data to forecast academic performance with accuracy.</b>
             </p>
             <div className="d-flex justify-content-center">
-              <a href="/overview
-              " className="btn btn-cta">
-                Get Started
-              </a>
+              <a href="/overview" className="btn btn-cta">Get Started</a>
             </div>
           </div>
         </div>

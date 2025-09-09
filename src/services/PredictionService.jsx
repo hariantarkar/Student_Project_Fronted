@@ -11,16 +11,16 @@ export const getAllPredictions = async () => {
   }
 };
 
+export const getLatestPrediction = async () => {
+  const res = await axios.get(`${API_URL}/latest`, { withCredentials: true });
+  return res.data;
+};
 
-
-export const getLatestPrediction = async (sid) => {
+export const getShortlistedPredictions = async () => {
   try {
-    const res = await axios.get(`${API_URL}/${sid}`, {
-      withCredentials: true, // include cookies
-    });
+    const res = await axios.get(`${API_URL}/shortlisted`, { withCredentials: true });
     return res.data;
-  } catch (err) {
-    console.error("Error fetching latest prediction:", err);
-    throw err.response?.data || { error: "Server error" };
+  } catch (error) {
+    throw error.response?.data || { message: "Server error" };
   }
 };

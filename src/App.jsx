@@ -40,7 +40,7 @@ import LatestPrediction from "./DashboardComponent/Prediction.jsx";
 
 import PredictionTabs from "./PredictionComponents/PredictionTab.jsx";
 import ViewPrediction from "./PredictionComponents/ViewPrediction.jsx";
-
+import Shortlisted from "./PredictionComponents/ShortListedStudent.jsx";
 
 const token = Cookies.get("token");
 if (token) {
@@ -122,7 +122,7 @@ export default class App extends React.Component {
               <Route path="profile" element={<StudentProfile />} />
               <Route path="courses" element={<StudentCourses />} />
               <Route path="performance" element={<Performance />} />
-              <Route path="prediction/:sid" element={<LatestPrediction />} />
+              <Route path="prediction" element={<LatestPrediction />} />
             </Route>
 
             <Route path="/admin/dashboard" element={<AdminDashboard />}>
@@ -137,7 +137,7 @@ export default class App extends React.Component {
                   </div>
                 }>
                 <Route path="all" element={<ViewPrediction />} />
-                {/* <Route path=":sid" element={<PredictionChart />} /> */}
+                <Route path="shortlisted" element={<Shortlisted />} />
               </Route>
             </Route>
           </Routes>
@@ -146,4 +146,3 @@ export default class App extends React.Component {
     );
   }
 }
-
