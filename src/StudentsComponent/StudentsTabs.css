@@ -1,4 +1,4 @@
-
+/* 
 .students-card { 
   background: #fff; 
   border-radius: 18px; 
@@ -39,8 +39,6 @@
   transform: translateY(-1px);
   box-shadow: 0 10px 22px rgba(0,0,0,.08);
 }
-
-/* Active tab */
 .student-box.active {
   background: #eaf2ff;
   border-color: #5a8cff;
@@ -50,4 +48,84 @@
   text-align: center;
   color: #6b7280;
   font-size: 0.95rem;
+} */
+
+
+.students-card { 
+  background: #fff; 
+  border-radius: 18px; 
+  box-shadow: 0 12px 36px rgba(0,0,0,.08);
+  padding: 28px 24px;
+  height: 150px;
+  margin-top: 80px;
+}
+
+.tabs-title { 
+  text-align: center; 
+  font-weight: 800; 
+  margin-bottom: 25px; 
+}
+
+.students-container {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;   /* allows wrapping on smaller screens */
+}
+
+.student-box {
+  flex: 1 1 220px;        /* base size 220px, grows/shrinks */
+  max-width: 300px;       /* prevent extra wide buttons */
+  height: 60px;
+  padding: 20px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #1b1f2320;
+  border-radius: 14px;
+  font-weight: 700;
+  text-decoration: none;       
+  color: #1f2937;               
+  background: #ffffff;
+  transition: box-shadow .2s ease, transform .2s ease, border-color .2s ease;
+}
+
+.student-box:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px rgba(0,0,0,.08);
+}
+
+/* Active tab */
+.student-box.active {
+  background: #eaf2ff;
+  border-color: #5a8cff;
+}
+
+.tabs-placeholder {
+  margin-top: 20px;
+  text-align: center;
+  color: #6b7280;
+  font-size: 0.95rem;
+}
+
+/* ✅ Tablet (2 per row) */
+@media (max-width: 768px) {
+  .student-box {
+    flex: 1 1 45%;   /* 2 buttons per row */
+    max-width: 100%;
+    font-size: 0.9rem;   /* slightly smaller font */
+    padding: 16px 20px;  /* reduced padding */
+    height: 55px;
+  }
+}
+
+/* ✅ Mobile (1 per row) */
+@media (max-width: 480px) {
+  .student-box {
+    flex: 1 1 100%;  /* full width */
+    max-width: 100%;
+    font-size: 0.85rem;  /* smaller font */
+    padding: 14px 16px;  /* tighter padding */
+    height: 50px;
+  }
 }

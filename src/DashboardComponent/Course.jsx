@@ -1,13 +1,3 @@
-// import React from "react";
-
-// export default function Courses() {
-//   return (
-//     <div>
-//       <h2>My Courses</h2>
-//       <p>List of enrolled courses will appear here.</p>
-//     </div>
-//   );
-// }
 
 
 import React, { useEffect, useState } from "react";
@@ -37,7 +27,7 @@ export default function StudentCourses() {
   if (courses.length === 0) return <p>No enrolled courses found.</p>;
 
   return (
-    <div className="card shadow p-4">
+    <div className="card shadow p-4 mt-5">
       <h3 className="mb-3">My Courses</h3>
       <ul className="list-group">
         {courses.map((c) => (

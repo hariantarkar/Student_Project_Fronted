@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Login.css";
 import LoginService from "../services/LoginService";
+import { validateEmail, Passwordvalid } from "../Validations/StudentLoginValid"; 
 
 export default class StudentLogin extends Component {
   constructor() {
@@ -60,14 +61,32 @@ export default class StudentLogin extends Component {
           <form onSubmit={this.handleSubmit}>
             <div className="mb-3">
               <label className="form-label">Username</label>
-              <input type="email" name="email" className="form-control" value={this.state.email}
-                onChange={this.handleChange} placeholder="Enter username" required/>
+              <input
+                type="email"
+                name="email"
+                className="form-control"
+                value={this.state.email}
+                onChange={this.handleChange}
+                placeholder="Enter user email"
+                required
+                onKeyUp={(e) => validateEmail(e)}   
+              />
+              <span id="s"></span>
             </div>
 
             <div className="mb-3">
               <label className="form-label">Password</label>
-              <input type="password" name="password" className="form-control" value={this.state.password}
-                onChange={this.handleChange} placeholder="Enter password" required/>
+              <input
+                type="password"
+                name="password"
+                className="form-control"
+                value={this.state.password}
+                onChange={this.handleChange}
+                placeholder="Enter password"
+                required
+                onKeyUp={(e) => Passwordvalid(e.target.value)}  
+              />
+              <span id="passwordMessage"></span>
             </div>
 
             <button type="submit" className="btn btn-primary w-100" disabled={this.state.loading}>

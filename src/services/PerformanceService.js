@@ -40,11 +40,6 @@ export const getAllPerformance = async () => {
   }
 };
 
-// export const getPerformanceBySid = async (sid) => {
-//   const res = await axios.get(`${API_URL}/${sid}`,{
-//   withCredentials: true});
-//   return res.data[0]; 
-// };
 
 export const getPerformanceBySid = async (sid) => {
   const res = await axios.get(`${API_URL}/${sid}`, {

@@ -1,3 +1,4 @@
+
 import React from "react";
 import { getStudents, deleteStudent } from "../services/studentService.jsx";
 import UpdateStudent from "../StudentsComponent/Updateatudent.jsx";
@@ -9,9 +10,9 @@ export default class ViewAllStudent extends React.Component {
       students: [],
       error: "",
       currentRange: { start: 0, end: 5 },
-      ranges: [],
       pageSize: 5,
-      editingStudent: null, 
+      currentPage: 1,
+      editingStudent: null,
     };
   }
 
@@ -23,29 +24,34 @@ export default class ViewAllStudent extends React.Component {
     try {
       const data = await getStudents();
       const students = data || [];
-      this.setState((prev) => ({
+      this.setState({
         students,
         error: "",
-        ranges: this.generateRanges(students.length, prev.pageSize),
-        currentRange: { start: 0, end: Math.min(prev.pageSize, students.length) },
-      }));
+        currentRange: { start: 0, end: Math.min(this.state.pageSize, students.length) },
+        currentPage: 1,
+      });
     } catch (err) {
       console.error(err);
       this.setState({ error: err.message, students: [] });
     }
   };
 
-  generateRanges = (total, pageSize) => {
-    let ranges = [];
-    for (let i = 0; i < total; i += pageSize) {
-      const start = i + 1;
-      const end = Math.min(i + pageSize, total);
-      ranges.push(`${start}-${end}`);
+  generatePageSizes = (total) => {
+    const steps = [5, 10, 20, 50, 100];
+    let sizes = [];
+
+    steps.forEach((size) => {
+      if (size < total) sizes.push(size);
+    });
+
+    let next = steps[steps.length - 1];
+    while (next < total) {
+      next *= 2;
+      if (next < total) sizes.push(next);
     }
-    if (total > pageSize) {
-      ranges.push(`1-${total}`);
-    }
-    return ranges;
+
+    sizes.push(total); // Always add "All"
+    return sizes;
   };
 
   handleDelete = async (sid) => {
@@ -59,17 +65,19 @@ export default class ViewAllStudent extends React.Component {
     }
   };
 
-  handlePageChange = (range) => {
-    const [startStr, endStr] = range.split("-");
-    let start = parseInt(startStr, 10) - 1;
-    let end = parseInt(endStr, 10);
+  handlePageChange = (page) => {
+    const { pageSize, students } = this.state;
+    const totalPages = Math.ceil(students.length / pageSize);
 
-    const fullRange = `1-${this.state.students.length}`;
-    if (range === fullRange) {
-      this.setState({ currentRange: { start: 0, end: this.state.students.length } });
-    } else {
-      this.setState({ currentRange: { start, end } });
-    }
+    if (page < 1 || page > totalPages) return;
+
+    const start = (page - 1) * pageSize;
+    const end = Math.min(start + pageSize, students.length);
+
+    this.setState({
+      currentPage: page,
+      currentRange: { start, end },
+    });
   };
 
   handlePageSizeChange = (newSize) => {
@@ -78,7 +86,7 @@ export default class ViewAllStudent extends React.Component {
 
     this.setState({
       pageSize,
-      ranges: this.generateRanges(students.length, pageSize),
+      currentPage: 1,
       currentRange: { start: 0, end: Math.min(pageSize, students.length) },
     });
   };
@@ -86,18 +94,22 @@ export default class ViewAllStudent extends React.Component {
   handleUpdateClick = (student) => {
     this.setState({ editingStudent: student });
   };
+
   handleCloseUpdate = () => {
     this.setState({ editingStudent: null });
     this.fetchStudents();
   };
 
   render() {
-    const { students, error, currentRange, ranges, pageSize, editingStudent } = this.state;
+    const { students, error, currentRange, pageSize, currentPage, editingStudent } = this.state;
+    const totalPages = Math.ceil(students.length / pageSize);
     const paginatedStudents = students.slice(currentRange.start, currentRange.end);
 
     return (
-      <div className="container mt-4" style={{ backgroundColor: "teal", color: "white" }}>
-        <h3 className="mb-3 text-center text-white">All Students</h3>
+      <div className="container mt-4">
+        <h2 className="text-center mb-4 p-2 rounded" style={{ backgroundColor: "#00796b", color: "white" }}>
+          All Students
+        </h2>
 
         <div className="card p-3">
           {error && <p className="text-danger">{error}</p>}
@@ -110,11 +122,10 @@ export default class ViewAllStudent extends React.Component {
                 <table className="table table-bordered text-center align-middle table-hover">
                   <thead className="table-dark" style={{ position: "sticky", top: "0", zIndex: "2" }}>
                     <tr>
-                      <th>SID</th>
+                      <th>SR.No</th> 
                       <th>Name</th>
                       <th>Email</th>
                       <th>Contact</th>
-                      <th>User_ID</th>
                       <th>Course Name</th>
                       <th>Delete</th>
                       <th>Update</th>
@@ -122,35 +133,30 @@ export default class ViewAllStudent extends React.Component {
                   </thead>
                   <tbody>
                     {paginatedStudents.length > 0 ? (
-                      paginatedStudents.map((s) => (
+                      paginatedStudents.map((s, index) => (
                         <tr key={s.sid}>
-                          <td>{s.sid}</td>
+                          <td>{currentRange.start + index + 1}</td> 
                           <td>{s.name}</td>
                           <td>{s.email}</td>
                           <td>{s.contact}</td>
-                          <td>{s.uid}</td>
                           <td>{s.course_name}</td>
                           <td>
-                            <button
-                              className="btn btn-danger btn-sm"
-                              onClick={() => this.handleDelete(s.sid)}
-                            >
+                            <button className="btn btn-danger btn-sm" onClick={() => this.handleDelete(s.sid)}>
                               Delete
                             </button>
                           </td>
                           <td>
-                            <button
-                              className="btn btn-warning btn-sm"
-                              onClick={() => this.handleUpdateClick(s)}
-                            >
+                            <button className="btn btn-warning btn-sm" onClick={() => this.handleUpdateClick(s)}>
                               Update
                             </button>
                           </td>
+                        
+
                         </tr>
                       ))
                     ) : (
                       <tr>
-                        <td colSpan="8" className="text-center">
+                        <td colSpan="7" className="text-center">
                           No students data found
                         </td>
                       </tr>
@@ -159,8 +165,8 @@ export default class ViewAllStudent extends React.Component {
                 </table>
               </div>
 
-    
-              <div className="d-flex justify-content-end align-items-center gap-4 mt-2">
+             
+              <div className="d-flex justify-content-between align-items-center mt-3">
                 <div className="d-flex align-items-center">
                   <label className="text-dark fw-bold mb-0 me-2">Show</label>
                   <select
@@ -168,27 +174,52 @@ export default class ViewAllStudent extends React.Component {
                     value={pageSize}
                     onChange={(e) => this.handlePageSizeChange(e.target.value)}
                   >
-                    <option value={5}>5</option>
-                    <option value={10}>10</option>
-                    <option value={20}>20</option>
-                    <option value={50}>50</option>
-                    <option value={students.length}>All</option>
+                    {this.generatePageSizes(students.length).map((size) => (
+                      <option key={size} value={size}>
+                        {size === students.length ? "All" : size}
+                      </option>
+                    ))}
                   </select>
                   <label className="text-dark fw-bold mb-0 ms-2">entries</label>
                 </div>
 
-                {pageSize !== students.length && ranges.length > 1 && (
-                  <select
-                    className="form-select w-auto"
-                    onChange={(e) => this.handlePageChange(e.target.value)}
+                <div className="d-flex align-items-center gap-2">
+                  <button
+                    className="btn btn-dark"
+                    onClick={() => this.handlePageChange(currentPage - 1)}
+                    disabled={currentPage === 1}
                   >
-                    {ranges.map((r, idx) => (
-                      <option key={idx} value={r}>
-                        {r}
+                    ← Preview
+                  </button>
+                  <span className="border px-3 py-2 rounded bg-white text-dark fw-bold">
+                     {currentPage}
+                  </span>
+                  <button
+                    className="btn btn-dark"
+                    onClick={() => this.handlePageChange(currentPage + 1)}
+                    disabled={currentPage === totalPages}
+                  >
+                    Next →
+                  </button>
+                </div>
+
+                <div>
+                  <label className="fw-bold text-dark me-2">Total</label>
+                  <select
+                    className="form-select d-inline-block w-auto"
+                    onChange={(e) => this.handlePageChange(parseInt(e.target.value))}
+                    value=""
+                  >
+                    <option value="" disabled>
+                      Total Page ({totalPages})
+                    </option>
+                    {Array.from({ length: totalPages }, (_, i) => (
+                      <option key={i + 1} value={i + 1}>
+                        {i + 1}
                       </option>
                     ))}
                   </select>
-                )}
+                </div>
               </div>
             </>
           )}
@@ -197,3 +228,4 @@ export default class ViewAllStudent extends React.Component {
     );
   }
 }
+

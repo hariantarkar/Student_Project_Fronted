@@ -33,6 +33,9 @@ export default function Performance() {
   if (performances.length === 0 || !selected)
     return <p className="text-center">Loading...</p>;
 
+
+  
+
   const chartDataRaw = [
     { name: "Attendance", value: Number(selected.attendance_percentage) || 0 },
     { name: "Machine Test", value: Number(selected.machine_test) || 0 },
@@ -41,6 +44,9 @@ export default function Performance() {
   ];
 
   const total = chartDataRaw.reduce((sum, entry) => sum + entry.value, 0);
+
+
+ 
 
   const chartDataPercentage = chartDataRaw.map((entry) => ({
     name: entry.name,
@@ -58,6 +64,7 @@ export default function Performance() {
         <small className="text-muted ms-2">{formattedDate}</small>
       </h3>
 
+
       <div className="mb-4 text-center">
         <label className="me-2 fw-bold">Select Attempt:</label>
         <select className="form-select d-inline-block w-auto" value={selected.per_id}
@@ -73,6 +80,9 @@ export default function Performance() {
       </div>
 
       <div className="row">
+
+      
+
         <div className="col-md-8">
           <ResponsiveContainer width="100%" height={400}>
             <PieChart>
@@ -98,6 +108,7 @@ export default function Performance() {
             </PieChart>
           </ResponsiveContainer>
         </div>
+
 
         <div className="col-md-4 d-flex flex-column justify-content-center">
           <div className="card shadow-sm p-3">

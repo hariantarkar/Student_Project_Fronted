@@ -1,50 +1,36 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { getAllCourses } from "../services/courseService";
-import UpdateCourse from "./UpdateCourse";
-import DeleteCourse from "./DeleteCourse";
+import { getAllContacts } from "../services/contactService";
 
-export default class ViewAllCourses extends React.Component {
+export default class ViewEnquiry extends React.Component {
   state = {
-    courses: [],
-    mode: null,
-    selectedCourse: null,
+    contacts: [],
     loading: true,
     notice: null,
     currentPage: 1,
     pageSize: 5,
     totalPages: 0,
-    totalSelectValue: "" 
+    totalSelectValue: ""
   };
 
   componentDidMount() {
-    this.loadCourses();
+    this.loadContacts();
   }
 
-  loadCourses = () => {
+  loadContacts = () => {
     this.setState({ loading: true });
-    getAllCourses()
+    getAllContacts()
       .then((res) => {
-        const rows = Array.isArray(res) ? res : res.data || [];
+        const rows = res.data || [];
         const totalPages = Math.max(1, Math.ceil(rows.length / this.state.pageSize));
-        this.setState({ courses: rows, loading: false, totalPages, totalSelectValue: "" });
+        this.setState({ contacts: rows, loading: false, totalPages, totalSelectValue: "" });
       })
       .catch((err) => {
         this.setState({
           loading: false,
-          notice: { type: "danger", text: err.message || "Failed to load courses" }
+          notice: { type: "danger", text: err.message || "Failed to load contacts" }
         });
       });
-  };
-
-  openUpdate = (course) => this.setState({ mode: "update", selectedCourse: course });
-  openDelete = (course) => this.setState({ mode: "delete", selectedCourse: course });
-
-  handleClose = (notice) => {
-    this.setState(
-      { mode: null, selectedCourse: null, notice: notice || null },
-      this.loadCourses
-    );
   };
 
   handlePageChange = (page) => {
@@ -55,7 +41,7 @@ export default class ViewAllCourses extends React.Component {
 
   handlePageSizeChange = (e) => {
     const pageSize = parseInt(e.target.value, 10) || 5;
-    const totalPages = Math.max(1, Math.ceil(this.state.courses.length / pageSize));
+    const totalPages = Math.max(1, Math.ceil(this.state.contacts.length / pageSize));
     this.setState({ pageSize, currentPage: 1, totalPages, totalSelectValue: "" });
   };
 
@@ -70,92 +56,85 @@ export default class ViewAllCourses extends React.Component {
   generatePageSizes = (total) => {
     const steps = [5, 10, 20, 50, 100];
     let sizes = [];
-    steps.forEach((size) => {
-      if (size < total) sizes.push(size);
-    });
+    steps.forEach((size) => { if (size < total) sizes.push(size); });
     let next = steps[steps.length - 1];
-    while (next < total) {
-      next *= 2;
-      if (next < total) sizes.push(next);
-    }
+    while (next < total) { next *= 2; if (next < total) sizes.push(next); }
     sizes.push(total);
     return sizes;
   };
 
   renderList() {
-    const { courses, loading, currentPage, pageSize, totalPages, totalSelectValue } = this.state;
+    const { contacts, loading, currentPage, pageSize, totalPages, totalSelectValue } = this.state;
     const startIndex = (currentPage - 1) * pageSize;
-    const paginatedCourses = courses.slice(startIndex, startIndex + pageSize);
+    const paginatedContacts = contacts.slice(startIndex, startIndex + pageSize);
 
     return (
-      <div className="container mt-4" style={{ backgroundColor: "teal", color: "white", maxWidth: 900 }}>
-        <h3 className="text-center mb-4 text-white">All Courses</h3>
+      <div
+        className="container mt-6"
+        style={{ backgroundColor: "teal", color: "white", maxWidth: "100%", overflowX: "auto" }}
+      >
+        <h3 className="text-center mb-4 text-white">All Enquiries</h3>
 
         {loading && <div className="text-center py-3">Loading…</div>}
 
         {!loading && (
           <>
-            <table className="table table-bordered table-hover" style={{ backgroundColor: "teal", color: "white" }}>
-              <thead className="text-center align-middle">
+            
+            <table
+              className="table table-bordered table-hover text-center align-middle"
+              style={{ backgroundColor: "teal", color: "white", minWidth: "1000px" }}
+            >
+              <thead>
                 <tr>
-                  <th>S.No</th> 
-                  <th style={{ width: "40%" }}>Course Name</th>
-                  <th>Update</th>
-                  <th>Delete</th>
+                  <th>S.No</th>
+                  <th style={{ width: "20%" }}>Name</th>
+                  <th style={{ width: "20%" }}>Email</th>
+                  <th style={{ width: "20%" }}>Subject</th>
+                  <th style={{ width: "40%" }}>Message</th>
                 </tr>
               </thead>
-              <tbody className="text-center align-middle">
-                {paginatedCourses.length === 0 && (
-                  <tr><td colSpan="4" className="py-4">No courses found</td></tr>
+              <tbody>
+                {paginatedContacts.length === 0 && (
+                  <tr>
+                    <td colSpan="5" className="py-4">No Enquiries found</td>
+                  </tr>
                 )}
-                {paginatedCourses.map((c, index) => (
-                  <tr key={c.cid}>
+                {paginatedContacts.map((c, index) => (
+                  <tr
+                    key={c.id}
+                    style={{
+                      backgroundColor: index % 2 === 0 ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.1)"
+                    }}
+                  >
                     <td>{startIndex + index + 1}</td>
                     <td>{c.name}</td>
-                    <td>
-  <button
-    className="btn btn-warning btn-sm text-center  py-1"
-    style={{ width: 80, height: 35 }}
-    onClick={() => this.openUpdate(c)}
-  >
-    Update
-  </button>
-</td>
-<td>
-  <button
-    className="btn btn-danger btn-sm"
-    style={{ width: 80, height: 35 }}
-    onClick={() => this.openDelete(c)}
-  >
-    Delete
-  </button>
-</td>
+                    <td>{c.email}</td>
+                    <td>{c.subject}</td>
+                    <td style={{ wordWrap: "break-word", whiteSpace: "normal" }}>{c.message}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
 
-            
-            <div className="d-flex justify-content-between align-items-center mt-3">
-             
-              <div className="d-flex align-items-center">
+         
+            <div className="d-flex justify-content-between align-items-center mt-3 flex-wrap">
+              <div className="d-flex align-items-center mb-2">
                 <label className="me-2">Show</label>
                 <select
                   className="form-select form-select-sm w-auto"
                   value={pageSize}
                   onChange={this.handlePageSizeChange}
                 >
-                  {this.generatePageSizes(courses.length).map((size) => (
+                  {this.generatePageSizes(contacts.length).map((size) => (
                     <option key={size} value={size}>
-                      {size === courses.length ? "All" : size}
+                      {size === contacts.length ? "All" : size}
                     </option>
                   ))}
                 </select>
                 <label className="ms-2">entries</label>
               </div>
 
-              
-              <div className="d-flex align-items-center gap-2">
+              <div className="d-flex align-items-center gap-2 mb-2">
                 <button
                   className="btn btn-dark btn-sm"
                   onClick={() => this.handlePageChange(currentPage - 1)}
@@ -177,16 +156,15 @@ export default class ViewAllCourses extends React.Component {
                 </button>
               </div>
 
-          
-              <div>
-                <label className="me-2">Total Page</label>
+              <div className="mb-2">
+                <label className="me-2">Total</label>
                 <select
                   className="form-select form-select-sm d-inline-block w-auto"
                   onChange={this.handleTotalSelectChange}
                   value={totalSelectValue}
                 >
                   <option value="" disabled>
-                      ({totalPages})
+                    Total Page ({totalPages})
                   </option>
                   {Array.from({ length: totalPages }, (_, i) => (
                     <option key={i + 1} value={i + 1}>
@@ -203,7 +181,7 @@ export default class ViewAllCourses extends React.Component {
   }
 
   render() {
-    const { mode, selectedCourse, notice } = this.state;
+    const { notice } = this.state;
 
     return (
       <>
@@ -212,22 +190,7 @@ export default class ViewAllCourses extends React.Component {
             {notice.text}
           </div>
         )}
-
-        {mode === "update" && selectedCourse ? (
-          <UpdateCourse
-            course={selectedCourse}
-            onClose={(result) => {
-              if (result?.type === "success") {
-                alert(result.text);
-              }
-              this.handleClose(result);
-            }}
-          />
-        ) : mode === "delete" && selectedCourse ? (
-          <DeleteCourse course={selectedCourse} onClose={this.handleClose} />
-        ) : (
-          this.renderList()
-        )}
+        {this.renderList()}
       </>
     );
   }
