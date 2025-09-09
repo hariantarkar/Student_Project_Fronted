@@ -1,13 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getStudentPerformance } from "../services/PerformanceService";
-import {
-  PieChart,
-  Pie,
-  Cell,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-} from "recharts";
+import {PieChart,Pie,Cell,Tooltip,Legend,ResponsiveContainer,} from "recharts";
 
 export default function Performance() {
   const [performances, setPerformances] = useState([]);
@@ -40,7 +33,9 @@ export default function Performance() {
   if (performances.length === 0 || !selected)
     return <p className="text-center">Loading...</p>;
 
+
   
+
   const chartDataRaw = [
     { name: "Attendance", value: Number(selected.attendance_percentage) || 0 },
     { name: "Machine Test", value: Number(selected.machine_test) || 0 },
@@ -50,7 +45,9 @@ export default function Performance() {
 
   const total = chartDataRaw.reduce((sum, entry) => sum + entry.value, 0);
 
+
  
+
   const chartDataPercentage = chartDataRaw.map((entry) => ({
     name: entry.name,
     value: total > 0 ? Number(((entry.value / total) * 100).toFixed(1)) : 0,
@@ -63,23 +60,17 @@ export default function Performance() {
 
   return (
     <div className="container mt-4">
-      <h3 className="mb-3 text-center">
-        Your Performance
+      <h3 className="mb-3 text-center">Your Performance
         <small className="text-muted ms-2">{formattedDate}</small>
       </h3>
 
-    
+
       <div className="mb-4 text-center">
         <label className="me-2 fw-bold">Select Attempt:</label>
-        <select
-          className="form-select d-inline-block w-auto"
-          value={selected.per_id}
-          onChange={(e) =>
-            setSelected(
-              performances.find((p) => p.per_id === Number(e.target.value))
-            )
-          }
-        >
+        <select className="form-select d-inline-block w-auto" value={selected.per_id}
+          onChange={(e) => setSelected(
+              performances.find((p) => p.per_id === Number(e.target.value)))
+          }>
           {performances.map((p, idx) => (
             <option key={p.per_id} value={p.per_id}>
               Attempt {idx + 1} ({new Date(p.created_at).toLocaleDateString()})
@@ -89,7 +80,9 @@ export default function Performance() {
       </div>
 
       <div className="row">
+
       
+
         <div className="col-md-8">
           <ResponsiveContainer width="100%" height={400}>
             <PieChart>
@@ -116,7 +109,7 @@ export default function Performance() {
           </ResponsiveContainer>
         </div>
 
-        
+
         <div className="col-md-4 d-flex flex-column justify-content-center">
           <div className="card shadow-sm p-3">
             <h5 className="fw-bold mb-3">Marks Summary</h5>

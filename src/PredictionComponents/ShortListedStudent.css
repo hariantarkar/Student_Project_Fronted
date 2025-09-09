@@ -1,0 +1,127 @@
+.shortlisted-card {
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  margin: 25px auto;
+  max-width: 1000px;
+  overflow-x: auto;
+}
+
+.shortlisted-card h3 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #2c3e50;
+  text-align: center;
+  border-bottom: 2px solid #3498db;
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+.shortlisted-table {
+  width: 100%;
+  border-collapse: collapse; 
+  font-size: 0.95rem;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.shortlisted-table thead {
+  background: linear-gradient(90deg, #3498db, #2ecc71);
+  color: #fff;
+}
+
+.shortlisted-table th {
+  padding: 4px 4px;
+  text-align: left;
+  border: 1px solid #ddd;
+  font-size: 1rem; 
+}
+.shortlisted-table td {
+  padding: 10px 14px;
+  text-align: left;
+  border: 1px solid #ddd;
+  font-size: 1rem; 
+}
+
+.shortlisted-table th {
+  font-weight: 600;
+  text-transform: capitalize;
+  letter-spacing: 0.4px;
+}
+
+.shortlisted-table tbody tr:nth-child(even) {
+  background-color: #f9fcff;
+}
+
+.shortlisted-table tbody tr:hover {
+  background-color: #eef9f3;
+  transition: background 0.25s ease;
+}
+
+.shortlisted-table td {
+  color: #444;
+  vertical-align: middle;
+}
+
+.error-text {
+  text-align: center;
+  margin-top: 12px;
+  font-size: 1rem;
+  color: #e74c3c;
+  font-weight: 500;
+}
+.pagination {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.pagination button {
+  padding: 6px 12px;
+  border: 1px solid #3498db;
+  background: #fff;
+  color: #3498db;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+
+.pagination button:hover:not(:disabled) {
+  background: #3498db;
+  color: #fff;
+}
+
+.pagination button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.pagination .active {
+  background: #3498db;
+  color: #fff;
+  font-weight: bold;
+}
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.search-bar {
+  padding: 8px 12px;
+  border: 1px solid #3498db;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  outline: none;
+  transition: all 0.2s;
+}
+
+.search-bar:focus {
+  border-color: #2ecc71;
+  box-shadow: 0 0 5px rgba(46, 204, 113, 0.5);
+}

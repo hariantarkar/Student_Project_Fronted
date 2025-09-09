@@ -6,14 +6,12 @@
   --logout-color: #ece6e6;
 }
 
-/* 🔹 Layout wrapper */
 .student-dashboard {
   display: flex;
   min-height: 100vh;
-  margin-top: var(--navbar-height); /* pushes below navbar if you have one */
+  margin-top: var(--navbar-height); 
 }
 
-/* 🔹 Sidebar */
 .sidebar {
   background-color: var(--sidebar-bg);
   width: 250px;
@@ -38,7 +36,6 @@
   letter-spacing: 0.5px;
 }
 
-/* 🔹 Sidebar menu */
 .sidebar ul {
   margin-top: 1rem;
   padding-left: 0;
@@ -71,7 +68,6 @@
   color: #fff;
 }
 
-/* 🔹 Logout section */
 .logout-section {
   margin-top: auto;
 }
@@ -93,7 +89,6 @@
   background-color: rgba(192, 35, 35, 0.2);
 }
 
-/* 🔹 Main content */
 .main-content {
   margin-left: 250px;
   padding: 20px;
@@ -103,7 +98,6 @@
   transition: margin-left 0.3s ease;
 }
 
-/* 🔹 Responsive (mobile) */
 @media (max-width: 768px) {
   .sidebar {
     position: relative;
@@ -115,7 +109,6 @@
 
   .main-content {
     margin-left: 0;
-    /* ⚡ Added fix so content is visible below the sidebar */
     margin-top: 20px;
   }
 }

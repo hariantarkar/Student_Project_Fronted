@@ -1,48 +1,46 @@
-// import React from "react";
-
-// export default function Prediction() {
-//   return (
-//     <div>
-//       <h2>Prediction Result</h2>
-//       <p>Your predicted performance will appear here.</p>
-//     </div>
-//   );
-// }
-
-
-
 import React, { useEffect, useState } from "react";
-import { getLatestPrediction } from "../services/predictionService";
+import { getLatestPrediction } from "../services/PredictionService";
 
-export default function LatestPrediction({ sid }) {
+export default function LatestPrediction() {
   const [prediction, setPrediction] = useState(null);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState("");
 
   useEffect(() => {
-    if (!sid) return;
-    const fetchPrediction = async () => {
-      try {
-        const data = await getLatestPrediction(sid);
-        setPrediction(data);
-      } catch (err) {
-        setError(err.error || "Failed to load prediction");
-      }
-    };
-    fetchPrediction();
-  }, [sid]);
+  const fetchPrediction = async () => {
+    try {
+      const res = await getLatestPrediction();
+      if (res.success) setPrediction(res.data);
+      else setError("No prediction found");
+    } catch (err) {
+      setError(err.message || "Failed to fetch prediction");
+    }
+  };
+  fetchPrediction();
+}, []);
 
-  if (error) return <p style={{ color: "red" }}>{error}</p>;
-  if (!prediction) return <p>Loading latest prediction...</p>;
+  if (error) return <div className="alert alert-danger">{error}</div>;
+  if (!prediction) return <div className="text-center">Loading prediction...</div>;
 
   return (
-    <div className="card p-3 shadow-sm">
-      <h5 className="mb-3">Latest Prediction</h5>
-      <p><strong>Name:</strong> {prediction.name}</p>
-      <p><strong>Email:</strong> {prediction.email}</p>
-      <p><strong>Readiness Level:</strong> {prediction.readiness_level}</p>
-      <p><strong>Shortlisted:</strong> {prediction.shortlisted ? "Yes" : "No"}</p>
-      <p><strong>Suggestion:</strong> {prediction.suggestion}</p>
-      <p><small>Generated At: {new Date(prediction.created_at).toLocaleString()}</small></p>
+    <div className="container mt-4">
+      <h3 className="mb-3">Latest Prediction</h3>
+      <div className="card p-3 shadow">
+        <p>
+          <strong>Predicted At:</strong> {new Date(prediction.created_at).toLocaleString()}
+        </p>
+        <p>
+          <strong>Readiness Level:</strong> {prediction.readiness_level}
+        </p>
+        <p>
+          <strong>Shortlisted:</strong>{" "}
+          {prediction.shortlisted
+            ? "You Are Eligible For Placement"
+            : "You Are Not Eligible For Placement"}
+        </p>
+        <p>
+          <strong>Suggestion:</strong> {prediction.suggestion}
+        </p>
+      </div>
     </div>
   );
 }

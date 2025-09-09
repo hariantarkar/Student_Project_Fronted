@@ -60,6 +60,7 @@ export default class AdminLogin extends Component {
           <form onSubmit={this.handleSubmit}>
             <div className="mb-3">
               <label className="form-label">Username</label>
+
               <input
                 type="email"
                 name="email"
@@ -73,10 +74,17 @@ export default class AdminLogin extends Component {
 
               
 
+
+              <input type="email" name="email" className="form-control" value={this.state.email}
+                onChange={this.handleChange} placeholder="Enter user email"
+                required onKeyUp={(e) => validateEmail(e)}/>
+              <span id="s"></span>
+
             </div>
 
             <div className="mb-3">
               <label className="form-label">Password</label>
+
 
               <input
                 type="password"
@@ -90,6 +98,12 @@ export default class AdminLogin extends Component {
               <span id="passwordMessage"></span>
 
               
+
+              <input type="password" name="password" className="form-control" value={this.state.password}
+                onChange={this.handleChange} placeholder="Enter password"
+                required onKeyUp={(e) => Passwordvalid(e.target.value)}/>
+              <span id="passwordMessage"></span>
+
             </div>
 
             <button type="submit" className="btn btn-primary w-100" disabled={this.state.loading}>

@@ -41,13 +41,9 @@ export default function ViewConfirmedStudents() {
 
 
       <div className="mb-3">
-        <input
-          type="text"
-          className="form-control"
-          placeholder="Search by name or course..."
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-        />
+        <input type="text" className="form-control"
+          placeholder="Search by name or course..." value={search}
+          onChange={(e) => setSearch(e.target.value)}/>
       </div>
 
       <div
@@ -60,7 +56,6 @@ export default function ViewConfirmedStudents() {
               <th>SR NO</th>
               <th>Name</th>
               <th>Email</th>
-              {/* <th>Contact</th> */}
               <th>Course</th>
               <th>Action</th>
             </tr>
@@ -72,11 +67,9 @@ export default function ViewConfirmedStudents() {
                   <td>{index+1}</td>
                   <td>{s.name}</td>
                   <td>{s.email}</td>
-                  {/* <td>{s.contact}</td> */}
                   <td>{s.course_name}</td>
                   <td>
-                    <button
-                      className="btn btn-primary btn-sm"
+                    <button className="btn btn-primary btn-sm"
                       onClick={() => navigate(`../add/${s.sid}`)}
                     >
                       Add Performance

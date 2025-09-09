@@ -71,69 +71,38 @@ export default function PerformanceAdd() {
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
             <label className="form-label">Attendance (0-10)</label>
-            <input
-              type="number"
-              name="attendance_percentage"
-              value={formData.attendance_percentage}
-              onChange={handleChange}
-              className="form-control"
-              min="0"
-              max="10"
-              required
-            />
+            <input type="number" name="attendance_percentage" value={formData.attendance_percentage}
+              onChange={handleChange} className="form-control"
+              min="0" max="10" required/>
             <span id="attendance_percentage_err"></span>
           </div>
 
           <div className="mb-3">
             <label className="form-label">Machine Test (0-10)</label>
-            <input
-              type="number"
-              name="machine_test"
-              value={formData.machine_test}
-              onChange={handleChange}
-              className="form-control"
-              min="0"
-              max="10"
-              required
-            />
+            <input type="number" name="machine_test" value={formData.machine_test}
+              onChange={handleChange} className="form-control"
+              min="0" max="10" required/>
             <span id="machine_test_err"></span>
           </div>
 
           <div className="mb-3">
             <label className="form-label">MCQ Test (0-10)</label>
-            <input
-              type="number"
-              name="mcq_test"
-              value={formData.mcq_test}
-              onChange={handleChange}
-              className="form-control"
-              min="0"
-              max="10"
-              required
-            />
+            <input type="number" name="mcq_test" value={formData.mcq_test}
+              onChange={handleChange} className="form-control"
+              min="0" max="10" required/>
             <span id="mcq_test_err"></span>
           </div>
 
           <div className="mb-3">
             <label className="form-label">Mock Interview (0-10)</label>
-            <input
-              type="number"
-              name="mock_interview_score"
-              value={formData.mock_interview_score}
-              onChange={handleChange}
-              className="form-control"
-              min="0"
-              max="10"
-              required
-            />
+            <input type="number" name="mock_interview_score" value={formData.mock_interview_score}
+              onChange={handleChange} className="form-control"
+              min="0" max="10" required/>
             <span id="mock_interview_score_err"></span>
           </div>
 
-          <button
-            type="submit"
-            className="btn btn-success w-100 mb-3"
-            disabled={loading}
-          >
+          <button type="submit" className="btn btn-success w-100 mb-3"
+            disabled={loading}>
             {loading ? "Submitting..." : "Add Performance"}
           </button>
            <button
