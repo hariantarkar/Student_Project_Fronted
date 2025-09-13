@@ -1,5 +1,4 @@
 
-
 import React, { useState } from "react";  
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Contact.css";
@@ -73,7 +72,6 @@ export default function Contact() {
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
             <label className="form-label">Full Name</label>
-
             <input
               type="text"
               name="name"
@@ -85,16 +83,10 @@ export default function Contact() {
               onKeyUp={() => FullNameValid(formData.name)}
             />
             <span id="s"></span>
-
-            <input type="text" name="name" className="form-control" value={formData.name}
-              onChange={handleChange} placeholder="Enter your name" required
-            onKeyUp={() =>FullNameValid(formData.name)}  /><span id="s"></span>
-
           </div>
 
           <div className="mb-3">
             <label className="form-label">Email Address</label>
-
             <input
               type="email"
               name="email"
@@ -106,16 +98,10 @@ export default function Contact() {
               onKeyUp={(e) => validateEmail(e)}
             />
             <span id="s"></span>
-
-            <input type="email" name="email" className="form-control" value={formData.email}
-              onChange={handleChange} placeholder="Enter your email" required
-            onKeyUp={(e) => validateEmail(e)} /><span id="s"></span>
-
           </div>
 
           <div className="mb-3">
             <label className="form-label">Subject</label>
-
             <input
               type="text"
               name="subject"
@@ -127,16 +113,10 @@ export default function Contact() {
               onKeyUp={() => SubjectValid(formData.subject)}
             />
             <span id="sub"></span>
-
-            <input type="text" name="subject" className="form-control" value={formData.subject}
-              onChange={handleChange} placeholder="Enter subject" required
-             onKeyUp={() =>SubjectValid(formData.subject)}  /><span id="sub"></span>
-
           </div>
 
           <div className="mb-3">
             <label className="form-label">Message</label>
-
             <textarea
               name="message"
               className="form-control"
@@ -148,11 +128,6 @@ export default function Contact() {
               required
               onKeyUp={(e) => TextMessageValid(e.target.value)}
             ></textarea>
-
-            <textarea name="message" className="form-control" rows="4" value={formData.message}
-              onChange={handleChange} placeholder="Write your message..." maxLength={200}
-              required  onKeyUp={(e) => TextMessageValid(e.target.value)}></textarea>
-
             <span id="msgBox"></span>
           </div>
 
