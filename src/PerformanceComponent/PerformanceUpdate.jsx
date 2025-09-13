@@ -235,7 +235,11 @@ export default function PerformanceUpdate() {
 
     setMessage({ text: "", type: "" });
 
+<<<<<<< Updated upstream
     // validation
+=======
+    
+>>>>>>> Stashed changes
     validateScore(value, `${name}_err`, name);
   };
 
@@ -283,6 +287,14 @@ export default function PerformanceUpdate() {
               max="10"
             />
             <span id="attendance_percentage_err"></span>
+<<<<<<< Updated upstream
+=======
+
+            {/* <input type="number" name="attendance_percentage" value={formData.attendance_percentage}
+              onChange={handleChange} className="form-control"
+              min="0" max="10"required/> */}
+
+>>>>>>> Stashed changes
           </div>
 
           <div className="mb-3">
@@ -297,6 +309,14 @@ export default function PerformanceUpdate() {
               max="10"
             />
             <span id="machine_test_err"></span>
+<<<<<<< Updated upstream
+=======
+
+            {/* <input type="number" name="machine_test" value={formData.machine_test}
+              onChange={handleChange} className="form-control"
+              min="0" max="10" required/> */}
+
+>>>>>>> Stashed changes
           </div>
 
           <div className="mb-3">
@@ -311,6 +331,14 @@ export default function PerformanceUpdate() {
               max="10"
             />
             <span id="mcq_test_err"></span>
+<<<<<<< Updated upstream
+=======
+
+            {/* <input type="number" name="mcq_test" value={formData.mcq_test}
+              onChange={handleChange} className="form-control"
+              min="0" max="10" required/> */}
+
+>>>>>>> Stashed changes
           </div>
 
           <div className="mb-3">
@@ -325,6 +353,14 @@ export default function PerformanceUpdate() {
               max="10"
             />
             <span id="mock_interview_score_err"></span>
+<<<<<<< Updated upstream
+=======
+
+            {/* <input type="number" name="mock_interview_score" value={formData.mock_interview_score}
+              onChange={handleChange} className="form-control"
+              min="0" max="10" required/> */}
+
+>>>>>>> Stashed changes
           </div>
 
           <button

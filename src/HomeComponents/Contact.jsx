@@ -1,4 +1,7 @@
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 import React, { useState } from "react";  
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Contact.css";
@@ -173,4 +176,3 @@ export default function Contact() {
     </div>
   );
 }
-

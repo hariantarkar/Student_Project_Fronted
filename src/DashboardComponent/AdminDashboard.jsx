@@ -1,8 +1,15 @@
+<<<<<<< Updated upstream
 
 import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { NavLink, Outlet } from "react-router-dom";
 import { Book, People, Speedometer, GraphUp, Person, BoxArrowRight } from "react-bootstrap-icons";
+=======
+import React, { useState, useEffect } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { NavLink, Outlet } from "react-router-dom";
+import { Book, People, Speedometer, GraphUp, BoxArrowRight, List,Person } from "react-bootstrap-icons";
+>>>>>>> Stashed changes
 
 import LoginService from "../services/LoginService";
 import "./adminDashboard.css";
@@ -18,6 +25,10 @@ export default function AdminDashboard() {
     const checkAuth = async () => {
       try {
         const res = await LoginService.getAdminDashboard(); 
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
         setAdminName(res?.name || "Admin");
       } catch (err) {
         console.error("Failed to fetch admin details:", err);
@@ -59,6 +70,7 @@ export default function AdminDashboard() {
 
   return (
     <div className="d-flex admin-container">
+<<<<<<< Updated upstream
       {/* Sidebar */}
       <div className="sidebar">
         <h5 className="p-3 border-bottom">Welcome {adminName} </h5>
@@ -71,36 +83,70 @@ export default function AdminDashboard() {
                 "sidebar-link d-flex align-items-center " + (isActive ? "active" : "")
               }
             >
+=======
+
+      <div className="sidebar">
+        <h5 className="p-3 border-bottom">Welcome {adminName} ..!</h5>
+
+        <ul>
+         
+          <li>
+
+            <NavLink to="/admin/dashboard/Course" className={({ isActive }) =>
+                "sidebar-link d-flex align-items-center " + (isActive ? "active" : "")}>
+
+>>>>>>> Stashed changes
               <Book className="me-2" /> Course
             </NavLink>
           </li>
           <li>
+<<<<<<< Updated upstream
             <NavLink
               to="/admin/dashboard/students"
               className={({ isActive }) =>
                 "sidebar-link d-flex align-items-center " + (isActive ? "active" : "")
               }
             >
+=======
+
+            <NavLink to="/admin/dashboard/students" className={({ isActive }) =>
+                "sidebar-link d-flex align-items-center " + (isActive ? "active" : "")}>
+
+>>>>>>> Stashed changes
               <People className="me-2" /> Students
             </NavLink>
           </li>
           <li>
+<<<<<<< Updated upstream
             <NavLink
               to="/admin/dashboard/performance"
               className={({ isActive }) =>
                 "sidebar-link d-flex align-items-center " + (isActive ? "active" : "")
               }
             >
+=======
+
+            <NavLink to="/admin/dashboard/performance" className={({ isActive }) =>
+                "sidebar-link d-flex align-items-center " + (isActive ? "active" : "")}>
+
+>>>>>>> Stashed changes
               <Speedometer className="me-2" /> Performance
             </NavLink>
           </li>
           <li>
+<<<<<<< Updated upstream
             <NavLink
               to="/admin/dashboard/prediction"
               className={({ isActive }) =>
                 "sidebar-link d-flex align-items-center " + (isActive ? "active" : "")
               }
             >
+=======
+
+            <NavLink to="/admin/dashboard/prediction" className={({ isActive }) =>
+                "sidebar-link d-flex align-items-center " + (isActive ? "active" : "")}>
+
+>>>>>>> Stashed changes
               <GraphUp className="me-2" /> Prediction
             </NavLink>
           </li>
@@ -174,4 +220,7 @@ export default function AdminDashboard() {
   );
 }
 
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
