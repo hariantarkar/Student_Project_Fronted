@@ -28,11 +28,14 @@ export default function StudentProfile() {
   }
 
   return (
+    
+    <div className="container mt-5">
     <div className="card shadow p-4">
       <h3 className="mb-3">My Profile</h3>
       <p><strong>Name:</strong> {profile.name}</p>
       <p><strong>Email:</strong> {profile.email}</p>
       <p><strong>Contact:</strong> {profile.contact}</p>
+    </div>
     </div>
   );
 }

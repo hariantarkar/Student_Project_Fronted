@@ -19,9 +19,9 @@ export const getLatestPrediction = async () => {
 export const getShortlistedPredictions = async () => {
   try {
 
-    const res = await axios.get(`${API_URL}/${sid}`, {
-      withCredentials: true, 
-    });
+    // const res = await axios.get(`${API_URL}/${sid}`, {
+    //   withCredentials: true, 
+    // });
 
     const res = await axios.get(`${API_URL}/shortlisted`, { withCredentials: true });
 

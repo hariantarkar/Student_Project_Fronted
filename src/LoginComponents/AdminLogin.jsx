@@ -74,11 +74,11 @@ export default class AdminLogin extends Component {
 
               
 
-
+{/* 
               <input type="email" name="email" className="form-control" value={this.state.email}
                 onChange={this.handleChange} placeholder="Enter user email"
                 required onKeyUp={(e) => validateEmail(e)}/>
-              <span id="s"></span>
+              <span id="s"></span> */}
 
             </div>
 
@@ -99,10 +99,10 @@ export default class AdminLogin extends Component {
 
               
 
-              <input type="password" name="password" className="form-control" value={this.state.password}
+              {/* <input type="password" name="password" className="form-control" value={this.state.password}
                 onChange={this.handleChange} placeholder="Enter password"
                 required onKeyUp={(e) => Passwordvalid(e.target.value)}/>
-              <span id="passwordMessage"></span>
+              <span id="passwordMessage"></span> */}
 
             </div>
 
