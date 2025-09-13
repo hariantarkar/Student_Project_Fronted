@@ -28,7 +28,10 @@ export default function StudentProfile() {
   }
 
   return (
+<<<<<<< Updated upstream
     
+=======
+>>>>>>> Stashed changes
     <div className="container mt-5">
     <div className="card shadow p-4">
       <h3 className="mb-3">My Profile</h3>

@@ -74,8 +74,13 @@ export default class AdminLogin extends Component {
 
               
 
+<<<<<<< Updated upstream
 {/* 
               <input type="email" name="email" className="form-control" value={this.state.email}
+=======
+
+              {/* <input type="email" name="email" className="form-control" value={this.state.email}
+>>>>>>> Stashed changes
                 onChange={this.handleChange} placeholder="Enter user email"
                 required onKeyUp={(e) => validateEmail(e)}/>
               <span id="s"></span> */}

@@ -46,13 +46,13 @@ export default class Register extends Component {
 
     try {
       this.setState({ loading: true });
-      const res = await RegistrationService.registerUser({
+      //const res = await RegistrationService.registerUser({
         name,
         email,
         contact,
         password,
         role,
-      });
+     // });
 
     
       this.setState({

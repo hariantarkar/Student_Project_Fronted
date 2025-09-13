@@ -23,7 +23,7 @@ export const getShortlistedPredictions = async () => {
     //   withCredentials: true, 
     // });
 
-    const res = await axios.get(`${API_URL}/shortlisted`, { withCredentials: true });
+     const res = await axios.get(`${API_URL}/shortlisted`, { withCredentials: true });
 
     return res.data;
   } catch (error) {

@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 
 
 // import React, { useState, useEffect } from "react";
@@ -175,11 +176,17 @@
 
 
 
+=======
+>>>>>>> Stashed changes
 import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { NavLink, Outlet } from "react-router-dom";
 import { Book, GraphUp, Speedometer, PersonCircle, BoxArrowRight } from "react-bootstrap-icons";
+<<<<<<< Updated upstream
 import axios from "axios";
+=======
+//import axios from "axios";
+>>>>>>> Stashed changes
 import Cookies from "js-cookie";
 import { jwtDecode } from "jwt-decode";
 import LoginService from "../services/LoginService";
@@ -290,8 +297,11 @@ export default function StudentDashboard() {
             >
               <GraphUp className="me-2" /> Prediction Result
             </NavLink>
+<<<<<<< Updated upstream
 
             
+=======
+>>>>>>> Stashed changes
           </li>
         </ul>
 
