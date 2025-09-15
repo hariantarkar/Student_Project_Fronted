@@ -1,7 +1,3 @@
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
 import React, { useState } from "react";  
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Contact.css";
@@ -47,14 +43,12 @@ export default function Contact() {
     try {
       const result = await addContact({ name, email, subject, message });
 
-  
       if (result && result.message === "Email already exists") {
         setError("Email already exists. Please use a different email.");
         setSuccess("");
         return;
       }
 
-    
       setSuccess("Thanks for contacting us. Team will contact you.");
       setError("");
       setFormData({ name: "", email: "", subject: "", message: "" });
@@ -69,68 +63,39 @@ export default function Contact() {
     <div className="contact-container">
       <div className="contact-card">
         <h3 className="text-center">Contact Us</h3>
-
         {error && <div className="alert alert-danger">{error}</div>}
 
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
             <label className="form-label">Full Name</label>
-            <input
-              type="text"
-              name="name"
-              className="form-control"
-              value={formData.name}
-              onChange={handleChange}
-              placeholder="Enter your name"
-              required
-              onKeyUp={() => FullNameValid(formData.name)}
-            />
+            <input type="text" name="name" className="form-control"
+              value={formData.name} onChange={handleChange} placeholder="Enter your name"
+              required onKeyUp={() => FullNameValid(formData.name)}/>
             <span id="s"></span>
           </div>
 
           <div className="mb-3">
             <label className="form-label">Email Address</label>
-            <input
-              type="email"
-              name="email"
-              className="form-control"
-              value={formData.email}
-              onChange={handleChange}
-              placeholder="Enter your email"
-              required
-              onKeyUp={(e) => validateEmail(e)}
-            />
+            <input type="email" name="email" className="form-control"
+              value={formData.email} onChange={handleChange} placeholder="Enter your email"
+              required onKeyUp={(e) => validateEmail(e)}/>
             <span id="s"></span>
           </div>
 
           <div className="mb-3">
             <label className="form-label">Subject</label>
-            <input
-              type="text"
-              name="subject"
-              className="form-control"
-              value={formData.subject}
-              onChange={handleChange}
-              placeholder="Enter subject"
-              required
-              onKeyUp={() => SubjectValid(formData.subject)}
-            />
+            <input type="text" name="subject" className="form-control"
+              value={formData.subject} onChange={handleChange} placeholder="Enter subject"
+              required onKeyUp={() => SubjectValid(formData.subject)}/>
             <span id="sub"></span>
           </div>
 
           <div className="mb-3">
             <label className="form-label">Message</label>
-            <textarea
-              name="message"
-              className="form-control"
-              rows="4"
-              value={formData.message}
-              onChange={handleChange}
-              placeholder="Write your message..."
-              maxLength={200}
-              required
-              onKeyUp={(e) => TextMessageValid(e.target.value)}
-            ></textarea>
+            <textarea name="message" className="form-control" rows="4"
+              value={formData.message} onChange={handleChange} placeholder="Write your message..."
+              maxLength={200} required
+              onKeyUp={(e) => TextMessageValid(e.target.value)}></textarea>
             <span id="msgBox"></span>
           </div>
 
@@ -142,30 +107,21 @@ export default function Contact() {
 
       
       {success && (
-        <div
-          className="modal fade show"
-          style={{ display: "block", background: "rgba(0,0,0,0.5)" }}
-          tabIndex="-1"
-        >
+        <div className="modal fade show" style={{ display: "block", background: "rgba(0,0,0,0.5)" }}
+          tabIndex="-1">
           <div className="modal-dialog">
             <div className="modal-content">
               <div className="modal-header bg-success text-white">
                 <h5 className="modal-title">Success</h5>
-                <button
-                  type="button"
-                  className="btn-close btn-close-white"
-                  onClick={() => setSuccess("")}
-                ></button>
+                <button type="button" className="btn-close btn-close-white"
+                  onClick={() => setSuccess("")}></button>
               </div>
               <div className="modal-body">
                 <p>{success}</p>
               </div>
               <div className="modal-footer">
-                <button
-                  type="button"
-                  className="btn btn-secondary"
-                  onClick={() => setSuccess("")}
-                >
+                <button type="button" className="btn btn-secondary"
+                  onClick={() => setSuccess("")}>
                   Close
                 </button>
               </div>

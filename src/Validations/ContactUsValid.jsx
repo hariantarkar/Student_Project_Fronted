@@ -1,4 +1,3 @@
-
 export function FullNameValid(str)
 {
     str = str.toLowerCase();

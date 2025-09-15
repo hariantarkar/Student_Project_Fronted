@@ -19,13 +19,12 @@ export default class ViewEnquiry extends React.Component {
 
   loadContacts = () => {
     this.setState({ loading: true });
-    getAllContacts()
-      .then((res) => {
+    getAllContacts().then((res) => {
         const rows = res.data || [];
         const totalPages = Math.max(1, Math.ceil(rows.length / this.state.pageSize));
         this.setState({ contacts: rows, loading: false, totalPages, totalSelectValue: "" });
-      })
-      .catch((err) => {
+
+      }).catch((err) => {
         this.setState({
           loading: false,
           notice: { type: "danger", text: err.message || "Failed to load contacts" }
@@ -69,21 +68,14 @@ export default class ViewEnquiry extends React.Component {
     const paginatedContacts = contacts.slice(startIndex, startIndex + pageSize);
 
     return (
-      <div
-        className="container mt-6"
-        style={{ backgroundColor: "teal", color: "white", maxWidth: "100%", overflowX: "auto" }}
-      >
+      <div className="container mt-6" style={{ backgroundColor: "teal", color: "white", maxWidth: "100%", overflowX: "auto" }}>
         <h3 className="text-center mb-4 text-white">All Enquiries</h3>
-
         {loading && <div className="text-center py-3">Loading…</div>}
 
         {!loading && (
           <>
-            
-            <table
-              className="table table-bordered table-hover text-center align-middle"
-              style={{ backgroundColor: "teal", color: "white", minWidth: "1000px" }}
-            >
+            <table className="table table-bordered table-hover text-center align-middle"
+              style={{ backgroundColor: "teal", color: "white", minWidth: "1000px" }}>
               <thead>
                 <tr>
                   <th>S.No</th>
@@ -100,12 +92,7 @@ export default class ViewEnquiry extends React.Component {
                   </tr>
                 )}
                 {paginatedContacts.map((c, index) => (
-                  <tr
-                    key={c.id}
-                    style={{
-                      backgroundColor: index % 2 === 0 ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.1)"
-                    }}
-                  >
+                  <tr key={c.id} style={{ backgroundColor: index % 2 === 0 ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.1)"}}>
                     <td>{startIndex + index + 1}</td>
                     <td>{c.name}</td>
                     <td>{c.email}</td>
@@ -120,11 +107,8 @@ export default class ViewEnquiry extends React.Component {
             <div className="d-flex justify-content-between align-items-center mt-3 flex-wrap">
               <div className="d-flex align-items-center mb-2">
                 <label className="me-2">Show</label>
-                <select
-                  className="form-select form-select-sm w-auto"
-                  value={pageSize}
-                  onChange={this.handlePageSizeChange}
-                >
+                <select className="form-select form-select-sm w-auto"
+                  value={pageSize} onChange={this.handlePageSizeChange}>
                   {this.generatePageSizes(contacts.length).map((size) => (
                     <option key={size} value={size}>
                       {size === contacts.length ? "All" : size}
@@ -135,11 +119,9 @@ export default class ViewEnquiry extends React.Component {
               </div>
 
               <div className="d-flex align-items-center gap-2 mb-2">
-                <button
-                  className="btn btn-dark btn-sm"
+                <button className="btn btn-dark btn-sm"
                   onClick={() => this.handlePageChange(currentPage - 1)}
-                  disabled={currentPage === 1}
-                >
+                  disabled={currentPage === 1}>
                   ← Prev
                 </button>
 
@@ -147,29 +129,22 @@ export default class ViewEnquiry extends React.Component {
                    {currentPage}
                 </span>
 
-                <button
-                  className="btn btn-dark btn-sm"
+                <button className="btn btn-dark btn-sm"
                   onClick={() => this.handlePageChange(currentPage + 1)}
-                  disabled={currentPage === totalPages}
-                >
+                  disabled={currentPage === totalPages}>
                   Next →
                 </button>
               </div>
 
               <div className="mb-2">
                 <label className="me-2">Total</label>
-                <select
-                  className="form-select form-select-sm d-inline-block w-auto"
-                  onChange={this.handleTotalSelectChange}
-                  value={totalSelectValue}
-                >
+                <select className="form-select form-select-sm d-inline-block w-auto"
+                  onChange={this.handleTotalSelectChange} value={totalSelectValue}>
                   <option value="" disabled>
                     Total Page ({totalPages})
                   </option>
                   {Array.from({ length: totalPages }, (_, i) => (
-                    <option key={i + 1} value={i + 1}>
-                      {i + 1}
-                    </option>
+                    <option key={i + 1} value={i + 1}>{i + 1}</option>
                   ))}
                 </select>
               </div>

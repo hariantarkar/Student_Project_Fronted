@@ -12,16 +12,13 @@ const PerformanceTabs = () => {
         <h2 className="tabs-title">Performance Management</h2>
 
         <div className="performance-container">
-          <NavLink to="students" className={({ isActive }) =>
-              `performance-box ${isActive ? "active" : ""}`}>
+          <NavLink to="students" className={({ isActive }) => `performance-box ${isActive ? "active" : ""}`}>
             Add Performance
           </NavLink>
 
-          <NavLink to="view" className={({ isActive }) =>
-              `performance-box ${isActive ? "active" : ""}`}>
+          <NavLink to="view" className={({ isActive }) => `performance-box ${isActive ? "active" : ""}`}>
             View Performance
           </NavLink>
-
         </div>
       </div>
 

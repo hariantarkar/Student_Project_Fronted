@@ -37,8 +37,7 @@ export default class AddNewCourse extends Component {
 
   render() {
     return (
-      <div
-        className="container"
+      <div className="container"
         style={{ backgroundColor: "success", color: "white", width: "50%" }}
       >
         <h3 className="text-center mb-4">Add New Course</h3>
@@ -50,12 +49,8 @@ export default class AddNewCourse extends Component {
             <label htmlFor="courseName" className="form-label">
               Course Name
             </label>
-            <input
-              type="text"
-              id="courseName"
-              className="form-control"
-              value={this.state.courseName}
-              onChange={this.handleChange}
+            <input type="text" id="courseName" className="form-control"
+              value={this.state.courseName} onChange={this.handleChange}
               placeholder="Enter course name"
               onKeyUp={() =>validateNewCourse(this.state.courseName)}
             /><span id="s"></span>

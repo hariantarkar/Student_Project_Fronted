@@ -79,68 +79,39 @@ export default class Register extends Component {
       <div className="register-container">
         <div className="register-card">
           <h3 className="text-center mb-4">Student Details</h3>
-
           {this.state.error && <div className="alert alert-danger">{this.state.error}</div>}
           {this.state.success && <div className="alert alert-success">{this.state.success}</div>}
 
           <form onSubmit={this.handleSubmit}>
             <div className="mb-3">
               <label className="form-label">Full Name</label>
-              <input
-                type="text"
-                name="name"
-                className="form-control"
-                value={this.state.name}
-                onChange={this.handleChange}
-                placeholder="Enter your name"
-                required
-                onKeyUp={() => FullNameValid(this.state.name)}
-              />
+              <input type="text" name="name" className="form-control"
+                value={this.state.name} onChange={this.handleChange} placeholder="Enter your name" required
+                onKeyUp={() => FullNameValid(this.state.name)}/>
               <span id="s"></span>
             </div>
 
             <div className="mb-3">
               <label className="form-label">Email</label>
-              <input
-                type="email"
-                name="email"
-                className="form-control"
-                value={this.state.email}
-                onChange={this.handleChange}
-                placeholder="Enter your email"
-                required
-                onKeyUp={() => validateEmailValue(this.state.email)}
-              />
+              <input type="email" name="email" className="form-control"
+                value={this.state.email} onChange={this.handleChange} placeholder="Enter your email" required
+                onKeyUp={() => validateEmailValue(this.state.email)}/>
               <span id="s"></span>
             </div>
 
             <div className="mb-3">
               <label className="form-label">Contact</label>
-              <input
-                type="text"
-                name="contact"
-                className="form-control"
-                value={this.state.contact}
-                onChange={this.handleChange}
-                placeholder="Enter contact number"
-                required
-                onKeyUp={() => PhoneValid(this.state.contact)}
-              />
+              <input type="text" name="contact" className="form-control"
+                value={this.state.contact} onChange={this.handleChange} placeholder="Enter contact number" required
+                onKeyUp={() => PhoneValid(this.state.contact)}/>
               <span id="p"></span>
             </div>
 
             <div className="mb-3">
               <label className="form-label">Password</label>
-              <input
-                type="password"
-                name="password"
-                className="form-control"
-                value={this.state.password}
-                onChange={this.handleChange}
-                placeholder="Enter password"
-                required
-                onKeyUp={() => Passwordvalid(this.state.password)}
-              />
+              <input type="password" name="password" className="form-control"
+                value={this.state.password} onChange={this.handleChange} placeholder="Enter password" required
+                onKeyUp={() => Passwordvalid(this.state.password)}/>
               <span id="passwordMessage"></span>
             </div>
 

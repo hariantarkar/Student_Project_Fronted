@@ -127,26 +127,17 @@ export default function UpdateStudent({ student = {}, onClose }) {
 
           <div className="mb-3">
             <label className="form-label">Name</label>
-            <input
-              className="form-control"
-              value={name}
-              onChange={(e) => {
-                setName(e.target.value);
-                FullNameValid(e.target.value);
-              }}
-            />
+            <input className="form-control" value={name} onChange={(e) => {
+                setName(e.target.value); 
+                FullNameValid(e.target.value);}}/>
             <span id="nameError"></span>
           </div>
 
           <div className="mb-3">
             <label className="form-label">Email</label>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => {
+            <input type="email" value={email} onChange={(e) => {
                 setEmail(e.target.value);
-                validateEmailValue(e.target.value);
-              }}
+                validateEmailValue(e.target.value);}}
               onBeforeInput={(e) => {
                 const data = e.data;
                 const selStart = typeof e.target.selectionStart === "number" ? e.target.selectionStart : 0;
@@ -166,44 +157,31 @@ export default function UpdateStudent({ student = {}, onClose }) {
                   validateEmailValue(" " + e.target.value);
                 }
               }}
-              className="form-control"
-            />
+              className="form-control"/>
             <span id="emailError"></span>
           </div>
 
     
           <div className="mb-3">
             <label className="form-label">Contact</label>
-            <input
-              className="form-control"
-              value={contact}
-              onChange={(e) => {
+            <input className="form-control" value={contact} onChange={(e) => {
                 setContact(e.target.value);
-                PhoneValid(e.target.value);
-              }}
-            />
+                PhoneValid(e.target.value);}}/>
             <span id="phoneError"></span>
           </div>
 
           
           <div className="mb-3">
             <label className="form-label">Current Course</label>
-            <input
-              type="text"
-              className="form-control"
-              value={loadingCourses ? "Loading..." : currentCourseName}
-              disabled
-            />
+            <input type="text" className="form-control"
+              value={loadingCourses ? "Loading..." : currentCourseName} disabled/>
           </div>
 
         
           <div className="mb-4">
             <label className="form-label">Update Course </label>
-            <select
-              className="form-select"
-              value={selectedCourse}
-              onChange={(e) => setSelectedCourse(e.target.value)}
-            >
+            <select className="form-select" value={selectedCourse}
+              onChange={(e) => setSelectedCourse(e.target.value)}>
               <option value="">
                 Select New Course 
               </option>
@@ -220,10 +198,8 @@ export default function UpdateStudent({ student = {}, onClose }) {
             <button className="btn btn-success flex-fill" onClick={handleUpdate}>
               Update Student
             </button>
-            <button
-              className="btn btn-secondary flex-fill"
-              onClick={() => onClose && onClose()}
-            >
+            <button className="btn btn-secondary flex-fill"
+              onClick={() => onClose && onClose()}>
               Cancel
             </button>
           </div>

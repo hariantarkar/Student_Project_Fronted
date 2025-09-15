@@ -1,4 +1,3 @@
-
 import React, { Component } from "react"; 
 import "bootstrap/dist/css/bootstrap.min.css";
 import RegistrationService from "../services/RegistrationService";
@@ -46,13 +45,13 @@ export default class Register extends Component {
 
     try {
       this.setState({ loading: true });
-      //const res = await RegistrationService.registerUser({
+      const res = await RegistrationService.registerUser({
         name,
         email,
         contact,
         password,
         role,
-     // });
+      });
 
     
       this.setState({
@@ -80,67 +79,38 @@ export default class Register extends Component {
       <div className="register-container">
         <div className="register-card">
           <h3 className="text-center mb-4">Register</h3>
-
           {this.state.error && <div className="alert alert-danger">{this.state.error}</div>}
 
           <form onSubmit={this.handleSubmit}>
             <div className="mb-3">
               <label className="form-label">Full Name</label>
-              <input
-                type="text"
-                name="name"
-                className="form-control"
-                value={this.state.name}
-                onChange={this.handleChange}
-                placeholder="Enter your name"
-                required
-                onKeyUp={() => FullNameValid(this.state.name)}
-              />
+              <input type="text" name="name" className="form-control"
+                value={this.state.name} onChange={this.handleChange} placeholder="Enter your name"
+                required onKeyUp={() => FullNameValid(this.state.name)}/>
               <span id="s"></span>
             </div>
 
             <div className="mb-3">
               <label className="form-label">Email</label>
-              <input
-                type="email"
-                name="email"
-                className="form-control"
-                value={this.state.email}
-                onChange={this.handleChange}
-                placeholder="Enter your email"
-                required
-                onKeyUp={() => validateEmailValue(this.state.email)}
-              />
+              <input type="email" name="email" className="form-control"
+                value={this.state.email} onChange={this.handleChange} placeholder="Enter your email"
+                required onKeyUp={() => validateEmailValue(this.state.email)}/>
               <span id="s"></span>
             </div>
 
             <div className="mb-3">
               <label className="form-label">Contact</label>
-              <input
-                type="text"
-                name="contact"
-                className="form-control"
-                value={this.state.contact}
-                onChange={this.handleChange}
-                placeholder="Enter contact number"
-                required
-                onKeyUp={() => PhoneValid(this.state.contact)}
-              />
+              <input type="text" name="contact" className="form-control"
+                value={this.state.contact} onChange={this.handleChange} placeholder="Enter contact number"
+                required onKeyUp={() => PhoneValid(this.state.contact)}/>
               <span id="p"></span>
             </div>
 
             <div className="mb-3">
               <label className="form-label">Password</label>
-              <input
-                type="password"
-                name="password"
-                className="form-control"
-                value={this.state.password}
-                onChange={this.handleChange}
-                placeholder="Enter password"
-                required
-                onKeyUp={() => Passwordvalid(this.state.password)}
-              />
+              <input type="password" name="password" className="form-control"
+                value={this.state.password} onChange={this.handleChange} placeholder="Enter password"
+                required onKeyUp={() => Passwordvalid(this.state.password)}/>
               <span id="passwordMessage"></span>
             </div>
 
@@ -152,30 +122,22 @@ export default class Register extends Component {
 
      
         {this.state.success && (
-          <div
-            className="modal fade show"
-            style={{ display: "block", background: "rgba(0,0,0,0.5)" }}
-            tabIndex="-1"
-          >
+          <div className="modal fade show" style={{ display: "block", background: "rgba(0,0,0,0.5)" }}
+            tabIndex="-1">
             <div className="modal-dialog">
               <div className="modal-content">
                 <div className="modal-header bg-success text-white">
                   <h5 className="modal-title">Success</h5>
-                  <button
-                    type="button"
-                    className="btn-close btn-close-white"
-                    onClick={() => this.setState({ success: "" })}
-                  ></button>
+                  <button type="button" className="btn-close btn-close-white"
+                    onClick={() => this.setState({ success: "" })}>
+                  </button>
                 </div>
                 <div className="modal-body">
                   <p>{this.state.success}</p>
                 </div>
                 <div className="modal-footer">
-                  <button
-                    type="button"
-                    className="btn btn-secondary"
-                    onClick={() => this.setState({ success: "" })}
-                  >
+                  <button type="button" className="btn btn-secondary"
+                    onClick={() => this.setState({ success: "" })}>
                     Close
                   </button>
                 </div>

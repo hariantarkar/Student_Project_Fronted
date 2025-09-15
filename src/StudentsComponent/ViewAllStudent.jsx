@@ -60,6 +60,7 @@ export default class ViewAllStudent extends React.Component {
         await deleteStudent(sid);
         this.fetchStudents();
       } catch (err) {
+        console.log(err);
         this.setState({ error: "Failed to delete student" });
       }
     }
@@ -151,7 +152,6 @@ export default class ViewAllStudent extends React.Component {
                             </button>
                           </td>
                         
-
                         </tr>
                       ))
                     ) : (
@@ -169,11 +169,8 @@ export default class ViewAllStudent extends React.Component {
               <div className="d-flex justify-content-between align-items-center mt-3">
                 <div className="d-flex align-items-center">
                   <label className="text-dark fw-bold mb-0 me-2">Show</label>
-                  <select
-                    className="form-select w-auto"
-                    value={pageSize}
-                    onChange={(e) => this.handlePageSizeChange(e.target.value)}
-                  >
+                  <select className="form-select w-auto" value={pageSize}
+                    onChange={(e) => this.handlePageSizeChange(e.target.value)}>
                     {this.generatePageSizes(students.length).map((size) => (
                       <option key={size} value={size}>
                         {size === students.length ? "All" : size}
@@ -184,32 +181,25 @@ export default class ViewAllStudent extends React.Component {
                 </div>
 
                 <div className="d-flex align-items-center gap-2">
-                  <button
-                    className="btn btn-dark"
+                  <button className="btn btn-dark"
                     onClick={() => this.handlePageChange(currentPage - 1)}
-                    disabled={currentPage === 1}
-                  >
+                    disabled={currentPage === 1}>
                     ← Preview
                   </button>
                   <span className="border px-3 py-2 rounded bg-white text-dark fw-bold">
                      {currentPage}
                   </span>
-                  <button
-                    className="btn btn-dark"
+                  <button className="btn btn-dark"
                     onClick={() => this.handlePageChange(currentPage + 1)}
-                    disabled={currentPage === totalPages}
-                  >
+                    disabled={currentPage === totalPages}>
                     Next →
                   </button>
                 </div>
 
                 <div>
                   <label className="fw-bold text-dark me-2">Total</label>
-                  <select
-                    className="form-select d-inline-block w-auto"
-                    onChange={(e) => this.handlePageChange(parseInt(e.target.value))}
-                    value=""
-                  >
+                  <select className="form-select d-inline-block w-auto"
+                    onChange={(e) => this.handlePageChange(parseInt(e.target.value))} value="">
                     <option value="" disabled>
                       Total Page ({totalPages})
                     </option>

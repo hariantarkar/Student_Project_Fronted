@@ -48,11 +48,9 @@ export default function ViewPerformance() {
           onChange={handleSearch}/>
       </div>
 
-      <div className="table-responsive"
-            style={{ maxHeight: "400px", overflowY: "auto" }}>
+      <div className="table-responsive" style={{ maxHeight: "400px", overflowY: "auto" }}>
         <table className="table table-bordered text-center align-middle table-hover">
-          <thead className="table-dark"
-                style={{ position: "sticky", top: "0", zIndex: "2" }}>
+          <thead className="table-dark" style={{ position: "sticky", top: "0", zIndex: "2" }}>
             <tr>
               <th>SR NO</th>
               <th>Name</th>
@@ -87,23 +85,17 @@ export default function ViewPerformance() {
                     timeZone: "Asia/Kolkata",dateStyle: "short",
                     timeStyle: "medium",})}
                   </td>
-
                   <td>
-                    <button
-                      className="btn btn-warning btn-sm"
-                      onClick={() =>
-                        navigate(`/admin/dashboard/performance/update/${p.sid}`)
-                      }
-                    >
+                    <button className="btn btn-warning btn-sm" onClick={() =>
+                        navigate(`/admin/dashboard/performance/update/${p.sid}`)}>
                       Update
                     </button>
                   </td>
-
                   <td>
-              <button className="btn btn-success btn-sm" onClick={() =>
-                  navigate(`/admin/dashboard/performance/chart/${p.sid}`)}>
-                  View
-              </button>
+                    <button className="btn btn-success btn-sm" onClick={() =>
+                      navigate(`/admin/dashboard/performance/chart/${p.sid}`)}>
+                      View
+                    </button>
                   </td>
                 </tr>
               ))

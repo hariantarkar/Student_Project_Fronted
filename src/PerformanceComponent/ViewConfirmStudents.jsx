@@ -36,9 +36,7 @@ export default function ViewConfirmedStudents() {
   return (
     <div className="container mt-0">
       <h3 className="mb-3 text-center">Confirmed Students (For Performance)</h3>
-
       {error && <p className="text-danger">{error}</p>}
-
 
       <div className="mb-3">
         <input type="text" className="form-control"
@@ -46,10 +44,7 @@ export default function ViewConfirmedStudents() {
           onChange={(e) => setSearch(e.target.value)}/>
       </div>
 
-      <div
-        className="table-responsive"
-        style={{ maxHeight: "400px", overflowY: "auto" }}
-      >
+      <div className="table-responsive" style={{ maxHeight: "400px", overflowY: "auto" }}>
         <table className="table table-bordered text-center table-hover">
           <thead className="table-dark" style={{ position: "sticky", top: 0 }}>
             <tr>
@@ -70,8 +65,7 @@ export default function ViewConfirmedStudents() {
                   <td>{s.course_name}</td>
                   <td>
                     <button className="btn btn-primary btn-sm"
-                      onClick={() => navigate(`../add/${s.sid}`)}
-                    >
+                      onClick={() => navigate(`../add/${s.sid}`)}>
                       Add Performance
                     </button>
                   </td>

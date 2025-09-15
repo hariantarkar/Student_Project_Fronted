@@ -7,8 +7,7 @@ export const getStudents = async () => {
 };
 export const deleteStudent = async (sid) => {
   const response = await fetch(`http://localhost:9999/deleteStudent/${sid}`, {
-    method: "DELETE",
-  });
+    method: "DELETE",});
   if (!response.ok) {
     throw new Error("Failed to delete student");
   }
@@ -42,19 +41,15 @@ export const getApprovedUsers = async () => {
 
 export const approveUser = async (uid) => {
     const res = await fetch(`http://localhost:9999/approve-user/${uid}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" }
-    });
+        method: "PUT",headers: { "Content-Type": "application/json" }});
     if (!res.ok) throw new Error("Failed to approve user");
     return res.json();
 };
 
 export const addStudent = async (studentData) => {
     const res = await fetch("http://localhost:9999/students", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(studentData)
-    });
+        method: "POST",headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(studentData)});
     if (!res.ok) {
         const errorData = await res.json();
         throw new Error(errorData.message || "Failed to add student");
@@ -67,22 +62,19 @@ const API_URL = "http://localhost:9999";
 
 export const updateStudent = async (studentData) => {
   const response = await axios.put(`${API_URL}/students/update`, studentData, {
-    withCredentials: true,
-  });
+    withCredentials: true,});
   return response.data;
 };
 
 export const getStudentById = async (sid) => {
   const response = await fetch(`http://localhost:9999/students/${sid}`, {
-    method: "GET",
-    headers: { "Content-Type": "application/json" },
-  });
+    method: "GET",headers: { "Content-Type": "application/json" },});
 
   let data = {};
   try {
     data = await response.json();
   } catch (err) {
-    console.warn("No JSON response from backend");
+    console.warn("No JSON response from backend"+err);
   }
 
   if (!response.ok) {

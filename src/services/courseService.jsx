@@ -1,10 +1,6 @@
-
 export const saveCourse = async (name) => {
   const response = await fetch("http://localhost:9999/addCourse", {
-    method: "POST",
-    headers: { 
-      "Content-Type": "application/json",
-    },
+    method: "POST",headers: { "Content-Type": "application/json",},
     body: JSON.stringify({ name }),
   });
 
@@ -12,7 +8,6 @@ export const saveCourse = async (name) => {
     const errorData = await response.json();
     throw new Error(errorData.message || "Failed to save course");
   }
-
   const data = await response.json();
   return data.message;
 };
@@ -28,16 +23,14 @@ export const getAllCourses = async () => {
 
 export const updateCourse = async (cid, name) => {
   const response = await fetch("http://localhost:9999/updateCourse", {
-    method: "PUT",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ cid, name }),
-  });
+    method: "PUT",headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ cid, name }),});
   console.log("hello")
   let data = {};
   try {
     data = await response.json();
   } catch (err) {
-    console.warn("No JSON response from backend");
+    console.warn("No JSON response from backend"+err);
   }
 
   if (!response.ok) {
@@ -51,9 +44,7 @@ export const updateCourse = async (cid, name) => {
 
 export const deleteCourse = async (cid) => {
   const response = await fetch(`http://localhost:9999/deleteCourse/${cid}`, {
-    method: "DELETE",
-    headers: { "Content-Type": "application/json" },
-  });
+    method: "DELETE", headers: { "Content-Type": "application/json" },});
 
   if (!response.ok) {
     const errText = (await response.text().catch(() => "")) || "";

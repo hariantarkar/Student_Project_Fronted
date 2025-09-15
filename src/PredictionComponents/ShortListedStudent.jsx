@@ -48,12 +48,10 @@ export default function Shortlisted() {
         <h3>Shortlisted Students</h3>
         <input type="text" placeholder="Search by Name, Email, Readiness..."
           value={searchTerm} onChange={(e) => {
-            setSearchTerm(e.target.value); setCurrentPage(1); }}
-          className="search-bar"/>
+            setSearchTerm(e.target.value); setCurrentPage(1); }} className="search-bar"/>
       </div>
 
       {error && <p className="error-text">{error}</p>}
-
       <table className="shortlisted-table">
         <thead>
           <tr>
@@ -90,8 +88,7 @@ export default function Shortlisted() {
           </button>
         ))}
 
-        <button
-          onClick={() => goToPage(currentPage + 1)}
+        <button onClick={() => goToPage(currentPage + 1)}
           disabled={currentPage === totalPages}>Next ▶
         </button>
       </div>

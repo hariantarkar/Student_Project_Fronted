@@ -85,69 +85,42 @@ export default class AddNewAdmin extends Component {
           <form onSubmit={this.handleSubmit}>
             <div className="mb-3">
               <label className="form-label">Full Name</label>
-              <input
-                type="text"
-                name="name"
-                className="form-control"
-                value={this.state.name}
-                onChange={this.handleChange}
-                placeholder="Enter full name"
-                required
-                onKeyUp={() => FullNameValid(this.state.name)}
-              />
+              <input type="text" name="name" className="form-control"
+                value={this.state.name} onChange={this.handleChange}
+                placeholder="Enter full name"required
+                onKeyUp={() => FullNameValid(this.state.name)}/>
               <span id="s"></span>
             </div>
 
             <div className="mb-3">
               <label className="form-label">Email</label>
-              <input
-                type="email"
-                name="email"
-                className="form-control"
-                value={this.state.email}
-                onChange={this.handleChange}
-                placeholder="Enter email"
-                required
-                onKeyUp={() => validateEmailValue(this.state.email)}
-              />
+              <input type="email" name="email" className="form-control"
+                value={this.state.email} onChange={this.handleChange}
+                placeholder="Enter email" required
+                onKeyUp={() => validateEmailValue(this.state.email)}/>
               <span id="s"></span>
             </div>
 
             <div className="mb-3">
               <label className="form-label">Contact</label>
-              <input
-                type="text"
-                name="contact"
-                className="form-control"
-                value={this.state.contact}
-                onChange={this.handleChange}
-                placeholder="Enter contact number"
-                required
-                onKeyUp={() => PhoneValid(this.state.contact)}
-              />
+              <input type="text" name="contact" className="form-control"
+                value={this.state.contact} onChange={this.handleChange}
+                placeholder="Enter contact number" required
+                onKeyUp={() => PhoneValid(this.state.contact)}/>
               <span id="p"></span>
             </div>
 
             <div className="mb-3">
               <label className="form-label">Password</label>
-              <input
-                type="password"
-                name="password"
-                className="form-control"
-                value={this.state.password}
-                onChange={this.handleChange}
-                placeholder="Enter password"
-                required
-                onKeyUp={() => Passwordvalid(this.state.password)}
-              />
+              <input type="password" name="password" className="form-control"
+                value={this.state.password} onChange={this.handleChange}
+                placeholder="Enter password" required
+                onKeyUp={() => Passwordvalid(this.state.password)}/>
               <span id="passwordMessage"></span>
             </div>
 
-            <button
-              type="submit"
-              className="btn btn-primary w-100"
-              disabled={this.state.loading}
-            >
+            <button type="submit" className="btn btn-primary w-100"
+              disabled={this.state.loading}>
               {this.state.loading ? "Registering..." : "Add Admin"}
             </button>
           </form>
@@ -155,28 +128,20 @@ export default class AddNewAdmin extends Component {
 
 
         {this.state.success && (
-          <div
-            className="modal fade show"
-            style={{ display: "block", background: "rgba(0,0,0,0.5)" }}
-            tabIndex="-1"
-          >
+          <div className="modal fade show" style={{ display: "block", background: "rgba(0,0,0,0.5)" }}
+            tabIndex="-1">
             <div className="modal-dialog">
               <div className="modal-content">
                 <div className="modal-header bg-success text-white">
                   <h5 className="modal-title">Success</h5>
-                  <button
-                    type="button"
-                    className="btn-close btn-close-white"
-                    onClick={() => this.setState({ success: "" })}
-                  ></button>
+                  <button type="button" className="btn-close btn-close-white"
+                    onClick={() => this.setState({ success: "" })}></button>
                 </div>
                 <div className="modal-body">
                   <p>{this.state.success}</p>
                 </div>
                 <div className="modal-footer">
-                  <button
-                    type="button"
-                    className="btn btn-secondary"
+                  <button type="button" className="btn btn-secondary"
                     onClick={() => this.setState({ success: "" })}
                   >
                     Close

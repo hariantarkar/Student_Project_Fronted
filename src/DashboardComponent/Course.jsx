@@ -1,5 +1,3 @@
-
-
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -28,11 +26,10 @@ export default function StudentCourses() {
 
   return (
     <div className="card shadow p-4 mt-5">
-      <h3 className="mb-3">My Courses</h3>
+      <h3 className="mb-3">My Course</h3>
       <ul className="list-group">
         {courses.map((c) => (
-          <li key={c.cid} className="list-group-item">
-            {c.course}
+          <li key={c.cid} className="list-group-item">{c.course}
           </li>
         ))}
       </ul>

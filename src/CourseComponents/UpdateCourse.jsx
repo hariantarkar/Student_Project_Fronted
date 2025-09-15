@@ -19,16 +19,13 @@ export default class UpdateCourse extends React.Component {
     const { cid, name } = this.state;
     this.setState({ saving: true, error: null });
     console.log("updating course...");
-    updateCourse(cid, name)
-      .then((res) => {
+    updateCourse(cid, name).then((res) => {
         const msg = res?.message || "Course updated successfully";
         console.log("course is updated");
         this.props.onClose({ type: "success", text: msg });
-         setTimeout(() => {
-      this.props.onClose();
+         setTimeout(() => {this.props.onClose();
     }, 1000);
-      })
-      .catch((err) => {
+      }).catch((err) => {
         this.setState({ saving: false, error: err.message || "Failed to update course" });
       });
   };
@@ -51,27 +48,17 @@ export default class UpdateCourse extends React.Component {
 
             <div className="mb-4">
               <label className="form-label">Course Name</label>
-              <input
-                className="form-control"
-                value={name}
-                onChange={this.handleChange}
-                onKeyUp={() => UpdateCourseValid(name)}
-              />
+              <input className="form-control" value={name} onChange={this.handleChange}
+                onKeyUp={() => UpdateCourseValid(name)}/>
               <span id="s"></span>
             </div>
 
             <div className="d-flex gap-2">
-              <button
-                className="btn btn-success flex-fill"
-                onClick={this.handleUpdate}
-                disabled={saving}
-              >
-                {saving ? "Updating…" : "Update Course"}
+              <button className="btn btn-success flex-fill" onClick={this.handleUpdate}
+                disabled={saving}>{saving ? "Updating…" : "Update Course"}
               </button>
-              <button
-                className="btn btn-secondary flex-fill"
-                onClick={() => this.props.onClose()}
-                disabled={saving}
+              <button className="btn btn-secondary flex-fill"
+                onClick={() => this.props.onClose()} disabled={saving}
               >
                 Cancel
               </button>
