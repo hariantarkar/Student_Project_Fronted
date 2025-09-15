@@ -1,4 +1,3 @@
-
 export function FullNameValid(str) {
   const span = document.getElementById("s");
   
@@ -8,7 +7,6 @@ export function FullNameValid(str) {
   return flag;
 }
 
-  
 export function validateEmailValue(str) {
   str = str.trim(); 
   const span = document.getElementById("s");
@@ -19,28 +17,24 @@ export function validateEmailValue(str) {
     return false;
   }
 
-  
   if (!/^[a-z0-9]/i.test(str[0])) {
     span.innerHTML = "Invalid Email: first character must be a letter or digit";
     span.style.color = "red";
     return false;
   }
 
-  
   if (/\s/.test(str)) {
     span.innerHTML = "Invalid Email: spaces not allowed";
     span.style.color = "red";
     return false;
   }
 
-  
   if (!/^[a-z0-9._@-]+$/i.test(str)) {
     span.innerHTML = "Invalid Email: invalid characters";
     span.style.color = "red";
     return false;
   }
 
-  
   if (str.includes("..")) {
     span.innerHTML = "Invalid Email: consecutive dots not allowed";
     span.style.color = "red";
@@ -56,7 +50,6 @@ export function validateEmailValue(str) {
 
   const domainFull = str.slice(atIndex + 1);
 
-  
   if (domainFull.startsWith(".")) {
     span.innerHTML = "Invalid Email: dot not allowed after @";
     span.style.color = "red";
@@ -69,7 +62,6 @@ export function validateEmailValue(str) {
     span.style.color = "red";
     return false;
   }
-
 
   const extension = domainParts[domainParts.length - 1];
   if (!/^[a-z]{2,4}$/i.test(extension)) {

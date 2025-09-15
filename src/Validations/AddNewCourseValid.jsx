@@ -6,13 +6,11 @@ export function validateNewCourse(str) {
     for (let i = 0; i < str.length; i++) {
         const code = str.charCodeAt(i);
         if (i === 0 && code === 46) {
-
             if (str.length === 1) {
                 flag = false;
                 break;
             }
             if (str.charCodeAt(1) === 32) {
-                
                 if (
                     str.length < 3 || 
                     !(str.charCodeAt(2) >= 97 && str.charCodeAt(2) <= 122)

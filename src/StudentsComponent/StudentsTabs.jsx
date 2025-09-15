@@ -11,11 +11,11 @@ const StudentsTabs = () => {
     <div style={{ display: "flex", flexDirection: "column", height: "100vh" }}>
       <div className="students-card">
         <h2 className="tabs-title">Student Management</h2>
-
         <div className="students-container">
           <NavLink to="RegisterStudentAdminSide" end className={({isActive}) => `student-box ${isActive ? "active" : ""}`}>
             Register New Student
           </NavLink>
+          
           <NavLink to="unregisteredStudents" end className={({isActive}) => `student-box ${isActive ? "active" : ""}`}>
             Pending Approval Students
           </NavLink>

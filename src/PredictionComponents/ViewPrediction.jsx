@@ -35,7 +35,6 @@ export default function ViewPrediction() {
         (p.name && p.name.toLowerCase().includes(value)) ||
         (p.email && p.email.toLowerCase().includes(value))
     );
-
     setFilteredData(filtered);
   };
 

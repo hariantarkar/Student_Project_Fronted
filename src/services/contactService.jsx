@@ -1,6 +1,4 @@
-
 import axios from "axios";
-
 const API_URL = "http://localhost:9999"; 
 
 export const addContact = async (contactData) => {

@@ -1,6 +1,5 @@
-
 export function validateEmail(e) {
-    let str = e.target.value.trim().toLowerCase();  // normalize lowercase
+    let str = e.target.value.trim().toLowerCase();  
     e.target.value = str;
     const span = document.getElementById("s");
 
@@ -16,12 +15,10 @@ export function validateEmail(e) {
         e.target.style.borderColor = "green";
     };
 
-
     if (/\s/.test(str)) {
         setInvalid("Invalid Email: spaces not allowed");
         return;
     }
-
 
     if (!/^[a-z0-9._@-]+$/.test(str)) {
         setInvalid("Invalid Email: invalid characters");
@@ -46,13 +43,11 @@ export function validateEmail(e) {
         return;
     }
 
-
     const lastDot = str.lastIndexOf(".");
     if (lastDot === -1 || lastDot < atIndex + 2) {
         setInvalid();
         return;
     }
-
 
     const domainParts = domainFull.split(".");
     if (domainParts.some(part => part.length === 0)) {
@@ -60,13 +55,11 @@ export function validateEmail(e) {
         return;
     }
 
-    
     const extension = domainParts[domainParts.length - 1];
     if (!/^[a-z]{2,4}$/.test(extension)) {
         setInvalid("Invalid Email: wrong domain extension");
         return;
     }
-
 
     setValid();
 }

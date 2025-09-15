@@ -58,66 +58,34 @@ export default class AddStudent extends React.Component {
           <form onSubmit={this.handleAddStudent}>
             <div className="mb-3">
               <label className="form-label">Name</label>
-              <input
-                type="text"
-                name="name"
-                className="form-control"
-                value={this.state.name}
-                onChange={this.handleChange}
-                required
-              />
+              <input type="text" name="name"className="form-control"
+                value={this.state.name} onChange={this.handleChange} required/>
             </div>
             <div className="mb-3">
               <label className="form-label">Email</label>
-              <input
-                type="email"
-                name="email"
-                className="form-control"
-                value={this.state.email}
-                onChange={this.handleChange}
-                required
-              />
+              <input type="email" name="email" className="form-control"
+                value={this.state.email} onChange={this.handleChange} required/>
             </div>
             <div className="mb-3">
               <label className="form-label">Contact</label>
-              <input
-                type="text"
-                name="contact"
-                className="form-control"
-                value={this.state.contact}
-                onChange={this.handleChange}
-                required
-              />
+              <input type="text" name="contact" className="form-control"
+                value={this.state.contact} onChange={this.handleChange} required/>
             </div>
             <div className="mb-3">
               <label className="form-label">User ID</label>
-              <input
-                type="text"
-                name="uid"
-                className="form-control"
-                value={this.state.uid}
-                onChange={this.handleChange}
-                required
-              />
+              <input type="text" name="uid" className="form-control"
+                value={this.state.uid} onChange={this.handleChange} required/>
             </div>
             <div className="mb-3">
               <label className="form-label">Course ID</label>
-              <input
-                type="text"
-                name="cid"
-                className="form-control"
-                value={this.state.cid}
-                onChange={this.handleChange}
-                required
-              />
+              <input type="text" name="cid" className="form-control"
+                value={this.state.cid} onChange={this.handleChange} required/>
             </div>
 
 
             <button className="btn btn-success w-100 mt-2">Add Student</button>
             {this.state.message && (
-              <div
-                className={`mt-2 ${this.state.messageType === "success" ? "text-success" : "text-danger"}`}
-              >
+              <div className={`mt-2 ${this.state.messageType === "success" ? "text-success" : "text-danger"}`}>
                 {this.state.message}
               </div>
             )}

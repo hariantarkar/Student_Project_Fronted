@@ -1,4 +1,3 @@
-
 export function validateEmail(e) {
     let str = e.target.value.trim().toLowerCase();  
     e.target.value = str;
@@ -16,25 +15,21 @@ export function validateEmail(e) {
         e.target.style.borderColor = "green";
     };
 
-    
     if (/\s/.test(str)) {
         setInvalid("Invalid Email: spaces not allowed");
         return;
     }
 
-   
     if (!/^[a-z0-9._@-]+$/.test(str)) {
         setInvalid("Invalid Email: invalid characters");
         return;
     }
 
- 
     if (str.includes("..")) {
         setInvalid("Invalid Email: consecutive dots not allowed");
         return;
     }
 
-    
     const atIndex = str.indexOf("@");
     if (atIndex <= 0 || atIndex !== str.lastIndexOf("@")) {
         setInvalid();
@@ -44,34 +39,28 @@ export function validateEmail(e) {
     const local = str.slice(0, atIndex);
     const domainFull = str.slice(atIndex + 1);
 
-    
     if (domainFull.startsWith(".")) {
         setInvalid("Invalid Email: dot not allowed right after @");
         return;
     }
 
-   
     const lastDot = str.lastIndexOf(".");
     if (lastDot === -1 || lastDot < atIndex + 2) {
         setInvalid();
         return;
     }
 
-  
     const domainParts = domainFull.split(".");
     if (domainParts.some(part => part.length === 0)) {
         setInvalid("Invalid Email: empty domain section");
         return;
     }
 
-   
     const extension = domainParts[domainParts.length - 1];
     if (!/^[a-z]{2,4}$/.test(extension)) {
         setInvalid("Invalid Email: wrong domain extension");
         return;
     }
-
-   
     setValid();
 }
 
@@ -94,7 +83,6 @@ export function Passwordvalid(str)
 		for(var i=0;i<str.length;i++)
 		{
 			const Char=str[i];
-			
 			const ascii=str.charCodeAt(i);
 			
 			if(ascii>=48 && ascii<=57) 

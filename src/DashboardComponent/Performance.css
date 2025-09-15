@@ -12,6 +12,7 @@
   font-weight: 700;
   margin-bottom: 20px;
   color: #204a43;
+  margin-top: 20px;
 }
 
 .attempt-select {
@@ -19,10 +20,28 @@
   justify-content: center;
   margin-bottom: 20px;
 }
-
+.attempt-select label {
+  color: #204a43; 
+  font-weight: 600;
+  font-size: 14px;
+  margin-top: 10px;
+}
 .attempt-select select {
   padding: 6px 12px;
   border-radius: 8px;
   border: 1px solid #ccc;
   outline: none;
+}
+
+.card {
+  border-radius: 12px;
+  background: #ffffff;
+}
+
+.card p {
+  margin-bottom: 8px;
+}
+
+.card hr {
+  border-color: #ccc;
 }

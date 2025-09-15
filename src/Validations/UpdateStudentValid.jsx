@@ -1,4 +1,3 @@
-
 export function FullNameValid(str) {
   const span = document.getElementById("nameError");
   const flag = /^[a-zA-Z ]+$/.test(str);
@@ -59,8 +58,6 @@ export function Passwordvalid(str) {
     return false;
   }
 }
-
-
 
 export function validateEmailValue(input) {
   const span = document.getElementById("emailError");

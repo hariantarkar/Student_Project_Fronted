@@ -52,7 +52,6 @@ export default class AdminLogin extends Component {
       <div className="login-container">
         <div className="login-card">
           <h3 className="text-center">Admin Login</h3>
-
           {this.state.error && (
             <div className="alert alert-danger">{this.state.error}</div>
           )}
@@ -60,54 +59,18 @@ export default class AdminLogin extends Component {
           <form onSubmit={this.handleSubmit}>
             <div className="mb-3">
               <label className="form-label">Username</label>
-
-              <input
-                type="email"
-                name="email"
-                className="form-control"
-                value={this.state.email}
-                onChange={this.handleChange}
-                placeholder="Enter user email"
-                required onKeyUp={(e) => validateEmail(e)}
-              />
+              <input type="email" name="email" className="form-control"
+                value={this.state.email} onChange={this.handleChange}
+                placeholder="Enter user email"required onKeyUp={(e) => validateEmail(e)}/>
               <span id="s"></span>
 
-              
-
-<<<<<<< Updated upstream
-{/* 
-              <input type="email" name="email" className="form-control" value={this.state.email}
-=======
-
-              {/* <input type="email" name="email" className="form-control" value={this.state.email}
->>>>>>> Stashed changes
-                onChange={this.handleChange} placeholder="Enter user email"
-                required onKeyUp={(e) => validateEmail(e)}/>
-              <span id="s"></span> */}
-
             </div>
-
             <div className="mb-3">
               <label className="form-label">Password</label>
-
-
-              <input
-                type="password"
-                name="password"
-                className="form-control"
-                value={this.state.password}
-                onChange={this.handleChange}
-                placeholder="Enter password"
-                required onKeyUp={(e) => Passwordvalid(e.target.value)}
-              />
-              <span id="passwordMessage"></span>
-
-              
-
-              {/* <input type="password" name="password" className="form-control" value={this.state.password}
-                onChange={this.handleChange} placeholder="Enter password"
+              <input type="password" name="password" className="form-control"
+                value={this.state.password} onChange={this.handleChange} placeholder="Enter password"
                 required onKeyUp={(e) => Passwordvalid(e.target.value)}/>
-              <span id="passwordMessage"></span> */}
+              <span id="passwordMessage"></span>
 
             </div>
 
@@ -120,4 +83,3 @@ export default class AdminLogin extends Component {
     );
   }
 }
-
